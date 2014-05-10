@@ -1,8 +1,8 @@
 LOG210-01
 
-Membre de l'équipe 03: <\br>
+Membre de l'ï¿½quipe 03: 
 <ul>
-	<li>Marc-André Croteau</li>
+	<li>Marc-Andrï¿½ Croteau</li>
 	<li>Marc Grenier</li>
 	<li>Ludovic Lavoie-Bouliane</li>
 	<li>Vincent Leclerc</li>
