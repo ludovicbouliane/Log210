@@ -1,8 +1,23 @@
-*{
-	margin:0;
-	padding:0;
+.login{
+	margin-top:30%;
+	border:1px solid #000;
+	border-radius:5px;
+	padding:10px
 }
 
-body{
-	font-size:12;
+.login_row{
+	margin-bottom:15px;
+}
+
+.login_input{
+	width:100%;
+}
+
+.login_button{
+	padding:3px;
+	float:right;
+}
+
+.login_register_link{
+	align:center;
 }
