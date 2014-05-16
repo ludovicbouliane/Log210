@@ -6,7 +6,6 @@
 	$action->execute();
 	
 	require_once("partial/header.php");
-	
 ?>
 	<h1> Accueil </h1>
 <?php
