@@ -16,7 +16,7 @@
 						Nom d'usager : 
 					</div>
 					<div class="col-lg-9">
-						<input type="text" class="form-control"/>
+						<input type="text" class="form-control" name="username" placeholder="Nom d'usager" required/>
 					</div>
 				</div>
 				<div class="row login_row">
@@ -25,13 +25,13 @@
 					</div>
 					
 					<div class="col-lg-9">
-						<input type="password" class="form-control"/>
+						<input type="password" class="form-control" name="password" placeholder="Mot de passe" required/>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-sm-3 login_register_link">
-						<a href="register.php">Créer un compte</a>
+						<a href="register">Créer un compte</a>
 					</div>
 					<div class="col-sm-9">
 						<input type="submit" value="Connexion" class="btn btn-default" />

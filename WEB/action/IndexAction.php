@@ -8,6 +8,9 @@
 		}
 				
 		protected function executeAction(){
+			if(isset($_POST["username"], $_POST["password"])){
 
+				//TODO send the username and the password to the api
+			}
 		}
 	}
