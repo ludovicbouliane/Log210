@@ -1,4 +1,7 @@
-<div class="row">
+<?php
+	require_once('header.php');
+?>
+<div class=" row page">
 	<div class="navbar navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header"> 
@@ -11,11 +14,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
-					<li><a>Onglet1</a></li>
-					<li><a>Onglet2</a></li>
-					<li><a>Onglet3</a></li>
+					<li><a href="/profil">Mon compte</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-</div>

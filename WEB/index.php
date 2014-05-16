@@ -22,7 +22,7 @@
 		?>
 		<div class="col-xs-12 login">
 			<form method="post" action="index.php">
-				<div class="row login_row">
+				<div class="row form_row">
 					<div class="col-lg-3">
 						Nom d'usager : 
 					</div>
@@ -30,7 +30,7 @@
 						<input type="text" class="form-control" name="username" placeholder="Nom d'usager" value="<?php echo $action->getUsername();?>" required/>
 					</div>
 				</div>
-				<div class="row login_row">
+				<div class="row form_row">
 					<div class="col-lg-3">
 						Mot de passe : 
 					</div>
