@@ -5,10 +5,21 @@
 	$action = new IndexAction(false,"index");
 	$action->execute();
 	
+	$error = $action->getError();
+
 	require_once("partial/header.php");
 ?>
 	<div class="col-xs-3"></div>
 	<div class="col-xs-6">
+		<?php
+			if(strlen($error) != 0){
+				?>
+				<div class="alert alert-danger">
+					<?php echo $error; ?>
+				</div>
+				<?php
+			}
+		?>
 		<div class="col-xs-12 login">
 			<form method="post" action="index.php">
 				<div class="row login_row">
@@ -16,7 +27,7 @@
 						Nom d'usager : 
 					</div>
 					<div class="col-lg-9">
-						<input type="text" class="form-control" name="username" placeholder="Nom d'usager" required/>
+						<input type="text" class="form-control" name="username" placeholder="Nom d'usager" value="<?php echo $action->getUsername();?>" required/>
 					</div>
 				</div>
 				<div class="row login_row">
