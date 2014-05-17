@@ -1,21 +1,20 @@
 <?php
-	$titre = "S'inscrire";
-	require_once("action/RegisterAction.php");
+	$titre = "Profil";
+	require_once("action/EditProfilAction.php");
 	
-	$action = new RegisterAction(false);
+	$action = new EditProfilAction(false);
 	$action->execute();
 	
+	require_once("partial/site_header.php");
+
 	$content = $action->getContent();
 	$error = $action->getError();
 
-	require_once("partial/header.php");
 ?>
-<div class="col-xs-12 page">
+	<div class="col-xs-2"></div>
 
-	<div class="col-sm-2"></div>
-
-	<div class="col-sm-8 register">
-		<h2> Créer un compte</h2>
+	<div class="col-xs-8 profil">
+		<h2> Modifier vos informations personnels</h2>
 
 		<?php
 			if(strlen($error) != 0){
@@ -31,13 +30,13 @@
 			<div class="row form_row">
 				<div class="col-sm-4">Nom :</div>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" name="lastName" placeholder="Nom" value="<?php echo $content["lastName"];?>" required/>
+					<input type="text" class="form-control" name="lastName" placeholder="Nom"  value="<?php echo $content["lastName"];?>" required disabled/>
 				</div>
 			</div>
 			<div class="row form_row">
 				<div class="col-sm-4">Prénom :</div>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" name="firstName" placeholder="Prénom" value="<?php echo $content["firstName"];?>" required/>
+					<input type="text" class="form-control" name="firstName" placeholder="Prénom" value="<?php echo $content["firstName"];?>" required disabled/>
 				</div>
 			</div>
 			<div class="row form_row">
@@ -88,32 +87,18 @@
 				</div>
 			</div>
 			
-			<div class="row form_row">
-				<div class="col-sm-4">Mot de passe :</div>
-				<div class="col-sm-8">
-					<input type="password" class="form-control" name="password" placeholder="Mot de passe" required/>
-				</div>
-			</div>
-			
-			<div class="row form_row">
-				<div class="col-sm-4">Confirmation de mot de passe</div>
-				<div class="col-sm-8">
-					<input type="password" class="form-control" name="confirmPassword" placeholder="Confirmation de mot de passe" required/>
-				</div>
-			</div>
-			
+						
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-8">
-					<input type="submit" value="Créer" class="btn btn-default" name="submit"/>
+					<input type="submit" value="Enregistrer" class="btn btn-default" name="submit"/>
 				</div>
 			</div>
 			
 		</form>
 	</div>
-	<div class="col-sm-2"></div>
-</div>
-	
+	<div class="col-xs-2"></div>
+
 <?php
-	require_once("partial/footer.php");
+	require_once("partial/site_footer.php");
 ?>
