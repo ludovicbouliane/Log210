@@ -1,0 +1,77 @@
+﻿using System;
+using System.Linq;
+using System.Net;
+using AutoMapper;
+using DataAccess.Interfaces;
+using DataAccess.Models;
+using Domain.Models;
+
+namespace Domain.Services
+{
+    public class UserService : IUserService
+    {
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
+        {
+            if (userRepository == null) throw new ArgumentNullException("userRepository");
+            _userRepository = userRepository;
+        }
+
+        public IResponse GetUserById(int userId)
+        {
+            var response = new Response();
+            var user = _userRepository.GetSingle(u => u.Id == userId);
+
+            if (user == null)
+            {
+<<<<<<< HEAD
+                response.Set(HttpStatusCode.NotFound, "User does not exist");
+=======
+                response.Set(HttpStatusCode.NotFound, Resources.Users.DoesNotExist);
+>>>>>>> cbf0fdbc588d64b459a3493c62154ab7e3ec7558
+                return response;
+            }
+
+            var userModel = Mapper.Map<User, UserModel>(user);
+
+            response.Set(HttpStatusCode.OK, userModel);
+            return response;
+        }
+
+        public IResponse GetAllUsers()
+        {
+            var response = new Response();
+            var users = _userRepository.GetAll();
+            
+            if (users == null)
+            {
+                response.Set(HttpStatusCode.NoContent, Resources.Users.NoUserFound);
+                return response;
+            }
+
+            var userModels = users.Select(Mapper.Map<User, UserModel>).ToList();
+
+            response.Set(HttpStatusCode.OK, userModels);
+            return response;
+        }
+
+        public IResponse UpdateUser(UserModel userModel)
+        {
+            var response = new Response();
+            
+            var existingUser = _userRepository.GetSingle(u => u.Id == userModel.Id);
+            if (existingUser == null)
+            {
+                response.Set(HttpStatusCode.NotFound, Resources.Users.DoesNotExist);
+                return response;
+            }
+
+            var user = Mapper.Map(userModel, existingUser);
+            _userRepository.Update(user);
+
+            response.Set(HttpStatusCode.NoContent);
+            return response;
+        }
+    }
+}

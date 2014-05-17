@@ -4,7 +4,7 @@
 	
 	$action = new IndexAction(false,"index");
 	$action->execute();
-	
+
 	$error = $action->getError();
 
 	require_once("partial/header.php");
