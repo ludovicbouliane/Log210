@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Controller</name>
+    </assembly>
+    <members>
+        <member name="M:Controller.Controllers.UserController.GetUserById(System.Int32)">
+            <summary>
+            (User) Get a single user by Id.
+            </summary>
+        </member>
+        <member name="M:Controller.Controllers.UserController.GetAllUsers">
+            <summary>
+            (User[]) Get all existing users.
+            </summary>
+        </member>
+        <member name="M:Controller.Controllers.UserController.Update(Domain.Models.UserModel)">
+            <summary>
+            Update a user's Information
+            </summary>
+        </member>
+    </members>
+</doc>
