@@ -30,13 +30,13 @@
 			<div class="row form_row">
 				<div class="col-sm-4">Nom :</div>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" name="lastName" placeholder="Nom"  value="<?php echo $content["lastName"];?>" required disabled/>
+					<input type="text" class="form-control" name="lastName" placeholder="Nom"  value="<?php echo $content["lastName"];?>" disabled/>
 				</div>
 			</div>
 			<div class="row form_row">
 				<div class="col-sm-4">Prénom :</div>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" name="firstName" placeholder="Prénom" value="<?php echo $content["firstName"];?>" required disabled/>
+					<input type="text" class="form-control" name="firstName" placeholder="Prénom" value="<?php echo $content["firstName"];?>" disabled/>
 				</div>
 			</div>
 			<div class="row form_row">

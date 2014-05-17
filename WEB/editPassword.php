@@ -9,8 +9,8 @@
 
 	require_once("partial/site_header.php");
 ?>
-<div class="col-sm-3"></div>
-<div class="col-sm-6">
+<div class="col-md-3"></div>
+<div class="col-md-6">
 	<h2>Modifier votre mot de passe</h2>
 
 	<?php
@@ -50,7 +50,7 @@
 		<div class="col-sm-8">
 			<button class="btn btn-default" name="submit">Enregistrer</button>
 		</div>
-<div class="col-sm-3"></div>
+<div class="col-md-3"></div>
 <?php
 	require_once("partial/site_footer.php");
 ?>

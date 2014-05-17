@@ -21,3 +21,33 @@ body{
 .form_row{
 	margin-bottom:15px;
 }
+
+/****************************
+ * Overwrite bootstrap value
+*****************************/
+/**The page navbar */
+.navbar{
+	border-bottom:1px solid #ccc;
+}
+
+/** 
+	This was added to leave a line under the navbar 
+	when in mobile mode but it was not usefull in 
+	desktop mode 
+*/
+@media screen and (max-width:768px){
+	.navbar-header{
+		border-bottom:1px solid #ccc;
+	}
+}
+
+/** Navbar button for mobile */
+.navbar-toggle{
+	border:1px solid #666;
+}
+
+/** Line in the navbar */
+.icon-bar{
+background-color:#666;
+}
+
