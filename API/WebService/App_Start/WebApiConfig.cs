@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WebService.Initializers;
-using WebService.MessageHandlers;
 
 namespace WebService.App_Start
 {
@@ -12,10 +10,6 @@ namespace WebService.App_Start
             // Add Authorize attribute to all Actions (White List Mode)
             config.Filters.Add(new AuthorizeAttribute());
 
-            config.MessageHandlers.Add(new LoggingMessageHandler());
-            config.MessageHandlers.Add(new AuthorizationMessageHandler());
-            config.MessageHandlers.Add(new CultureMessageHandler());
-            
             config.Initialize(new WindsorInitializer());
             config.Initialize(new AutoMapperInitializer());
 
