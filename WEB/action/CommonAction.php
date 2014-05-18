@@ -33,6 +33,4 @@
 		public function isLoggedIn(){
 			//TODO Do validation that the user is logged in.
 		}
-
-		public abstract function getError();
 	}

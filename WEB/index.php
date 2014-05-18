@@ -11,15 +11,11 @@
 ?>
 	<div class="col-xs-3"></div>
 	<div class="col-xs-6">
-		<?php
-			if(strlen($error) != 0){
-				?>
-				<div class="alert alert-danger">
-					<?php echo $error; ?>
-				</div>
-				<?php
-			}
-		?>
+		
+		<div class="alert alert-danger">
+			<?php echo $error; ?>
+		</div>
+		
 		<div class="col-xs-12 login">
 			<div class="row form_row">
 				<div class="col-lg-3">

@@ -16,15 +16,10 @@
 	<div class="col-sm-8 register">
 		<h2> Créer un compte</h2>
 
-		<?php
-			if(strlen($error) != 0){
-				?>
-				<div class="alert alert-danger">
-					<?php echo $error; ?>
-				</div>
-				<?php
-			}
-		?>
+		<div class="alert alert-danger">
+			<?php echo $error; ?>
+		</div>
+
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
