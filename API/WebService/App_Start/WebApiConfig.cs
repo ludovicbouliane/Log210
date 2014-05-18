@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using WebService.Initializers;
 
 namespace WebService.App_Start
@@ -7,6 +8,9 @@ namespace WebService.App_Start
     {
         public static void Register(HttpConfiguration config)
         {
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
             // Add Authorize attribute to all Actions (White List Mode)
             config.Filters.Add(new AuthorizeAttribute());
 

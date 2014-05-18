@@ -100,8 +100,6 @@ K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Castle.Windsor.
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Controller.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\DataAccess.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Domain.dll
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\EntityFramework.dll
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\EntityFramework.SqlServer.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Microsoft.Web.Infrastructure.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Model.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\MongoDB.Bson.dll
@@ -123,8 +121,6 @@ K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Model.pdb
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\AutoMapper.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Castle.Core.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Castle.Windsor.xml
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\EntityFramework.xml
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\EntityFramework.SqlServer.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Microsoft.Web.Infrastructure.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\MongoDB.Bson.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\MongoDB.Driver.xml
@@ -141,3 +137,6 @@ K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.WebP
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\obj\Debug\WebService.csprojResolveAssemblyReference.cache
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\obj\Debug\WebService.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\obj\Debug\WebService.pdb
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Cors.dll
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.Cors.dll
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.Cors.xml
