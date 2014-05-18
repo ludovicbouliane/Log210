@@ -11,11 +11,15 @@ namespace Domain.Services
     public class RestaurantManagerService : IRestaurantManagerService
     {
         private readonly IRestaurantManagerRepository _restaurantManagerRepository;
+        private readonly IAccountService _accountService;
 
-        public RestaurantManagerService(IRestaurantManagerRepository restaurantManagerRepository)
+        public RestaurantManagerService(IRestaurantManagerRepository restaurantManagerRepository, IAccountService accountService)
         {
             if (restaurantManagerRepository == null) throw new ArgumentNullException("restaurantManagerRepository");
+            if (accountService == null) throw new ArgumentNullException("accountService");
+            
             _restaurantManagerRepository = restaurantManagerRepository;
+            _accountService = accountService;
         }
 
         public IResponse Create(RestaurantManager restaurantManager)
@@ -23,6 +27,12 @@ namespace Domain.Services
             var response = new Response();
 
             restaurantManager.Id = ObjectId.GenerateNewId().ToString();
+
+            if (_accountService.IsUsernameAlreadyTaken(restaurantManager.Account.Username))
+            {
+                response.Set(HttpStatusCode.BadRequest, "Username already exist");
+                return response;
+            }
 
             _restaurantManagerRepository.Insert(restaurantManager);
 

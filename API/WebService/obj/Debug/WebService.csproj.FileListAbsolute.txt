@@ -90,13 +90,13 @@ E:\Documents\Personnel\Programmation\WebAPI\ClubMobile\WebService\obj\Debug\WebS
 E:\Documents\Personnel\Programmation\WebAPI\ClubMobile\WebService\obj\Debug\WebService.pdb
 K:\Documents\Personnel\Programmation\WebAPI\ClubMobile\WebService\bin\Microsoft.Web.Infrastructure.xml
 K:\Documents\Personnel\Programmation\WebAPI\ClubMobile\WebService\bin\fr\Domain.resources.dll
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Castle.Windsor.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\AutoMapper.Net4.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\WebService.dll.config
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\WebService.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\WebService.pdb
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\AutoMapper.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Castle.Core.dll
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Castle.Windsor.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Controller.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\DataAccess.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Domain.dll
@@ -106,7 +106,9 @@ K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\MongoDB.Bson.dl
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\MongoDB.Driver.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Newtonsoft.Json.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Net.Http.Formatting.dll
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Cors.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Helpers.dll
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.Cors.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.WebHost.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Mvc.dll
@@ -128,6 +130,7 @@ K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\Newtonsoft.Json
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Net.Http.Formatting.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Helpers.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.xml
+K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.Cors.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.WebHost.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Mvc.xml
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Razor.xml
@@ -137,6 +140,3 @@ K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.WebP
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\obj\Debug\WebService.csprojResolveAssemblyReference.cache
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\obj\Debug\WebService.dll
 K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\obj\Debug\WebService.pdb
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Cors.dll
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.Cors.dll
-K:\Documents\Université\LOG210\TP\Log210-E03\API\WebService\bin\System.Web.Http.Cors.xml
