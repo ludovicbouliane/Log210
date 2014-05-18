@@ -55,7 +55,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\RestaurantManagerController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\WebApiController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

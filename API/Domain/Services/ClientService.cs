@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using AutoMapper;
 using DataAccess.Repositories.Interfaces;
-using Domain.DomainObjects;
 using Domain.Services.Interfaces;
+using Model;
+using MongoDB.Bson;
 
 namespace Domain.Services
 {
@@ -18,30 +20,32 @@ namespace Domain.Services
             _clientRepository = clientRepository;
         }
 
-        public IResponse Authentificate(Account clientAccount)
-        {
-            var response = new Response();
-
-            var client = _clientRepository.GetSingle(null/*u => u.Id == clientAccount.Id*/);
-            if (client == null)
-            {
-                response.Set(HttpStatusCode.NotFound, "No client found");
-                return response;
-            }
-
-            var user = Mapper.Map(clientAccount, client);
-
-            response.Set(HttpStatusCode.NoContent);
-            return response;
-        }
-
         public IResponse Create(Client client)
         {
             var response = new Response();
 
-            _clientRepository.Save(client);
+            client.Id = ObjectId.GenerateNewId().ToString(); 
+
+            _clientRepository.Insert(client);
 
             response.Set(HttpStatusCode.Created);
+            return response;
+        }
+
+        public IResponse Update(Client client)
+        {
+            var response = new Response();
+
+            var existingClient = _clientRepository.GetSingle(c => c.Id == client.Id);
+            if (existingClient == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No clients found");
+                return response;
+            }
+
+            _clientRepository.Save(client);
+
+            response.Set(HttpStatusCode.NoContent);
             return response;
         }
 
@@ -73,9 +77,9 @@ namespace Domain.Services
         //        return response;
         //    }
 
-        //    var userModel = Mapper.Map<User, Client>(user);
+        //    var client = Mapper.Map<User, Client>(user);
 
-        //    response.Set(HttpStatusCode.OK, userModel);
+        //    response.Set(HttpStatusCode.OK, client);
         //    return response;
         //}
 

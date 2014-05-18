@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace DataAccess.Repositories.Interfaces
 {
     public interface IRepository<T> where T : class
     {
         IList<T> GetAll();
-        T GetSingle(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
+        T GetSingle(Func<T, bool> where);
+        void Insert(params T[] items);
         void Save(params T[] items);
+        void Delete(params string[] ids);
     }
 }

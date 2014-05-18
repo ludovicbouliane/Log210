@@ -1,11 +1,11 @@
-﻿using Domain.DomainObjects;
+﻿using Model;
 
 namespace Domain.Services.Interfaces
 {
     public interface IClientService
     {
-        IResponse Authentificate(Account clientAccount);
         IResponse Create(Client client);
+        IResponse Update(Client client);
         IResponse GetAll();
     }
 }

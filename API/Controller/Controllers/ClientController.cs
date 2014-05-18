@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Http;
-using Domain.DomainObjects;
 using Domain.Services.Interfaces;
+using Model;
 
 namespace Controller.Controllers
 {
@@ -25,21 +25,21 @@ namespace Controller.Controllers
             return ResponseMessage(response);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("login")]
-        public IHttpActionResult Authentificate([FromBody]Account clientAccount)
-        {
-            var response = _clientService.Authentificate(clientAccount);
-            return ResponseMessage(response);
-        }
-
         [HttpPut]
         [AllowAnonymous]
         [Route("")]
         public IHttpActionResult Create([FromBody]Client client)
         {
             var response = _clientService.Create(client);
+            return ResponseMessage(response);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("")]
+        public IHttpActionResult Update([FromBody]Client user)
+        {
+            var response = _clientService.Update(user);
             return ResponseMessage(response);
         }
     }

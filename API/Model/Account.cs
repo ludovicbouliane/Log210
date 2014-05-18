@@ -1,4 +1,4 @@
-﻿namespace Domain.DomainObjects
+﻿namespace Model
 {
     public class Account
     {

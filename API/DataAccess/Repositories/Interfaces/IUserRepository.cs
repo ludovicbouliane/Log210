@@ -2,7 +2,7 @@
 
 namespace DataAccess.Repositories.Interfaces
 {
-    public interface IClientRepository : IRepository<Client>
+    public interface IUserRepository : IRepository<User>
     {
 
     }

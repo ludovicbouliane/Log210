@@ -1,13 +1,19 @@
 ﻿using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace Domain.DomainObjects
+namespace Model
 {
     public class Client
     {
         //[Required(ErrorMessageResourceType = typeof(Users), ErrorMessageResourceName = "IdRequired")]
         //[MaxLength(350, ErrorMessageResourceType = typeof(Users), ErrorMessageResourceName = "MaximumEmailLength")]
         
-        public int Id { get; set; }
+        
+        
+        
+        [BsonId]
+        public string Id { get; set; }
         public Account Account { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
