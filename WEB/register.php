@@ -4,8 +4,6 @@
 	
 	$action = new RegisterAction(false);
 	$action->execute();
-	
-	$error = $action->getError();
 
 	require_once("partial/header.php");
 ?>
@@ -17,7 +15,7 @@
 		<h2> Créer un compte</h2>
 
 		<div class="alert alert-danger">
-			<?php echo $error; ?>
+			
 		</div>
 
 		<div class="row form_row">

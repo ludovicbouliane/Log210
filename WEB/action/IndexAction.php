@@ -10,7 +10,11 @@
 		}
 				
 		protected function executeAction(){
+			if(isset($_GET["Id"])){
+				//Here we should get all information about the user
+				header('Location:accueil.php');
 
+			}
 		}
 
 		public function getError(){

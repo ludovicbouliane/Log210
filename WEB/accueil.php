@@ -1,11 +1,6 @@
 <?php
 	$titre = "Modifier le mot de passe";
 	require_once("action/EditPasswordAction.php");
-	
-	$action = new EditPasswordAction(false);
-	$action->execute();
-	
-	$error = $action->getError();
 
 	require_once("partial/site_header.php");
 ?>
