@@ -42,7 +42,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a>Déconnexion</a>
+								<a href="?logout=true">Déconnexion</a>
 							</li>
 						</ul>
 					</li>

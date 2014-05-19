@@ -14,6 +14,7 @@
 				//Here we should get all information about the user
 				$_SESSION["Id"] = $_POST["Id"];
 				$_SESSION["username"] = $_POST["Account"]["Username"];
+				
 			}
 		}
 

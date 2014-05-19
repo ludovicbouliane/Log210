@@ -1,7 +1,7 @@
 <?php
 	$titre = "Connexion";
 	require_once("action/IndexAction.php");
-	
+
 	$action = new IndexAction(false);
 	$action->execute();
 
@@ -22,7 +22,7 @@
 					Nom d'usager : 
 				</div>
 				<div class="col-lg-9">
-					<input type="text" class="form-control" id="username" placeholder="Nom d'usager" value="hello" required/>
+					<input type="text" class="form-control" id="username" placeholder="Nom d'usager" required/>
 				</div>
 			</div>
 			<div class="row form_row">
@@ -31,7 +31,7 @@
 				</div>
 				
 				<div class="col-lg-9">
-					<input type="password" class="form-control" id="password" placeholder="Mot de passe" value="BigCrots" required/>
+					<input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
 				</div>
 			</div>
 			

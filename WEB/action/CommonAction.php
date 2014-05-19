@@ -20,7 +20,7 @@
 			if($this->isAuthentifiedRequired){
 				// If the user is not authenticated and he should be, 
 				//  we send him back to the connection window.
-				if(! $this->isLoggedIn()){
+				if($this->isLoggedIn() == false){
 					header("location:index");
 				}
 			}
@@ -31,11 +31,11 @@
 		protected abstract function executeAction();
 		
 		public function isLoggedIn(){
-			return isset($_SESISON["Id"]);
+			return isset($_SESSION["Id"]);
 		}
 
 		public function getUserId(){
-			return $_SESISON["Id"];
+			return $_SESSION["Id"];
 		}
 
 		public function getUsername(){

@@ -4,4 +4,4 @@
 	$action = new ProfilAction(true);
 	$action->execute();
 
-	echo $action->data;
+	echo $action->getData();

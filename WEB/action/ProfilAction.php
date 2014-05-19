@@ -11,10 +11,10 @@
 				
 		protected function executeAction(){
 			if(isset($_POST["getUsername"])){
-				$this->data = getUsername();
+				$this->data = parent::getUsername();
 			}
 			else if(isset($_POST["getUserId"])){
-				$this->data = getUserId();	
+				$this->data = parent::getUserId();	
 			}
 		}
 
