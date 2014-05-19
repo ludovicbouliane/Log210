@@ -13,11 +13,11 @@ namespace DataAccess.Repositories
 
                 var existingRestaurant = GetSingle(c => c.Id == restaurant.Id);
 
-                if (restaurant.Adress != null) existingRestaurant.Adress = restaurant.Adress;
+                if (restaurant.Address != null) existingRestaurant.Address = restaurant.Address;
                 if (restaurant.City != null) existingRestaurant.City = restaurant.City;
-                if (restaurant.Province != null) existingRestaurant.Province = restaurant.Province;
+                if (restaurant.State != null) existingRestaurant.State = restaurant.State;
                 if (restaurant.Country != null) existingRestaurant.Country = restaurant.Country;
-                if (restaurant.PostalCode != null) existingRestaurant.PostalCode = restaurant.PostalCode;
+                if (restaurant.ZipCode != null) existingRestaurant.ZipCode = restaurant.ZipCode;
                 if (restaurant.Name != null) existingRestaurant.Name = restaurant.Name;
                 if (restaurant.Telephone != null) existingRestaurant.Telephone = restaurant.Telephone;
                 if (restaurant.RestaurantManagerId != null) existingRestaurant.RestaurantManagerId = restaurant.RestaurantManagerId;
