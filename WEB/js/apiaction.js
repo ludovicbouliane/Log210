@@ -1,8 +1,14 @@
-function authenticate(){
+
+public function authenticate(){
 	var info = 	JSON.stringify({
 		'Username' :    document.getElementById('username').value,
 		'Password' : 	document.getElementById('password').value
 	});
+}
+
+
+private function authenticate(info){
+	
 
 	document.getElementById('password').value = ''
 
@@ -22,7 +28,7 @@ function authenticate(){
 		});		
 }
 
-function setIsLoggedIn(info){
+private function setIsLoggedIn(info){
 
 	$.ajax({
 		type : 'POST',
@@ -34,7 +40,8 @@ function setIsLoggedIn(info){
 		});
 }
 
-function register(){
+
+public function register(){
 	var account = {
 		'Username' : document.getElementById('username').value,
 		'Password' : document.getElementById('password').value
@@ -45,10 +52,10 @@ function register(){
 		'FirstName' :    document.getElementById('firstName').value,
 		'LastName' : 	document.getElementById('lastName').value,
 		'Adress' : 	document.getElementById('address').value,
-		'City' : 	document.getElementById('city').value,
-		'State' : 	document.getElementById('state').value,
-		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
+		//'City' : 	document.getElementById('city').value,
+		//'State' : 	document.getElementById('state').value,
+		//'Country' : 	document.getElementById('country').value,
+		//'ZipCode' : 	document.getElementById('zipCode').value,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -57,13 +64,20 @@ function register(){
 		type:"PUT",
 		url: 'http://mcroteau.no-ip.org:8080/LOG210/WebService/api/clients',
 		contentType:"application/json",
-		data: info
-		}).done( 
-			function(data){
+		data: info,
+		success : function(data){
 				//Here we should receive a message code saying creation worked or not
 
-			}
-		);	
+				var userInfo = 	JSON.stringify({
+					'Username' :    document.getElementById('username').value,
+					'Password' : 	document.getElementById('password').value
+				});
+				authenticate(userInfo);
+			},
+		error : function(data){
+			console.log(data.responseText);
+		}
+		});	
 }
 
 //TODO add ger user infos in api

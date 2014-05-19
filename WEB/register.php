@@ -21,19 +21,19 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="lastName" placeholder="Nom" required/>
+				<input type="text" class="form-control" id="lastName" placeholder="Nom" value="yo1" required/>
 			</div>
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Prénom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
+				<input type="text" class="form-control" id="firstName" placeholder="Prénom" value="yo1" required/>
 			</div>
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Adresse :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="address" placeholder="Adresse" required/>
+				<input type="text" class="form-control" id="address" placeholder="Adresse" value="yo1" required/>
 			</div>
 		</div>
 		<div class="row form_row">
@@ -67,28 +67,28 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Numéro de téléphone <p>(555 555-5555)</p></div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=12 class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" required/>
+				<input type="text" maxlength=12 class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" value="555 555-5555" required/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Date de naissance <p>(jj/mm/aaaa)</p></div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=10 class="form-control" id="birthDate" placeholder="Date de naissance" required/>
+				<input type="text" maxlength=10 class="form-control" id="birthDate" placeholder="Date de naissance" value="2014-10-10" required/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Nom d'usager</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" required/>
+				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" value="yo1" required/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Mot de passe :</div>
 			<div class="col-sm-8">
-				<input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
+				<input type="password" class="form-control" id="password" placeholder="Mot de passe" value="yo1" required/>
 			</div>
 		</div>
 		
