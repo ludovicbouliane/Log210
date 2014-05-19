@@ -24,5 +24,14 @@ namespace Controller.Controllers
             var response = _accountService.Authentificate(account);
             return ResponseMessage(response);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("password")]
+        public IHttpActionResult UpdatePassword([FromBody]Account account)
+        {
+            var response = _accountService.UpdatePassword(account);
+            return ResponseMessage(response);
+        }
     }
 }

@@ -13,18 +13,28 @@ namespace Domain.Services
     public class ClientService : IClientService
     {
         private readonly IClientRepository _clientRepository;
+        private readonly IAccountService _accountService;
 
-        public ClientService(IClientRepository clientRepository)
+        public ClientService(IClientRepository clientRepository, IAccountService accountService)
         {
             if (clientRepository == null) throw new ArgumentNullException("clientRepository");
+            if (accountService == null) throw new ArgumentNullException("accountService");
+
             _clientRepository = clientRepository;
+            _accountService = accountService;
         }
 
         public IResponse Create(Client client)
         {
             var response = new Response();
 
-            client.Id = ObjectId.GenerateNewId().ToString(); 
+            client.Id = ObjectId.GenerateNewId().ToString();
+
+            if (_accountService.IsUsernameAlreadyTaken(client.Account.Username))
+            {
+                response.Set(HttpStatusCode.BadRequest, "Username already exist");
+                return response;
+            }
 
             _clientRepository.Insert(client);
 
@@ -66,38 +76,19 @@ namespace Domain.Services
             return response;
         }
 
-        //public IResponse GetUserById(int userId)
-        //{
-        //    var response = new Response();
-        //    var user = _clientRepository.GetSingle(u => u.Id == userId);
+        public IResponse GetClientById(string clientId)
+        {
+            var response = new Response();
+            var client = _clientRepository.GetSingle(c => c.Id == clientId);
 
-        //    if (user == null)
-        //    {
-        //        response.Set(HttpStatusCode.NotFound, "No User Found");
-        //        return response;
-        //    }
-
-        //    var client = Mapper.Map<User, Client>(user);
-
-        //    response.Set(HttpStatusCode.OK, client);
-        //    return response;
-        //}
-
-        //public IResponse GetAllUsers()
-        //{
-        //    var response = new Response();
-        //    var users = _clientRepository.GetAll();
+            if (client == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No client found");
+                return response;
+            }
             
-        //    if (!users.Any())
-        //    {
-        //        response.Set(HttpStatusCode.NoContent, "No User Found");
-        //        return response;
-        //    }
-
-        //    var userModels = users.Select(Mapper.Map<User, Client>).ToList();
-
-        //    response.Set(HttpStatusCode.OK, userModels);
-        //    return response;
-        //}
+            response.Set(HttpStatusCode.OK, client);
+            return response;
+        }
     }
 }

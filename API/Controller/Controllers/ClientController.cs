@@ -25,6 +25,15 @@ namespace Controller.Controllers
             return ResponseMessage(response);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{clientId}")]
+        public IHttpActionResult GetClientById(string clientId)
+        {
+            var response = _clientService.GetClientById(clientId);
+            return ResponseMessage(response);
+        }
+
         [HttpPut]
         [AllowAnonymous]
         [Route("")]

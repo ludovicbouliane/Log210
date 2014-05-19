@@ -7,5 +7,6 @@ namespace Domain.Services.Interfaces
         IResponse Create(Client client);
         IResponse Update(Client client);
         IResponse GetAll();
+        IResponse GetClientById(string clientId);
     }
 }
