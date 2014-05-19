@@ -50,7 +50,6 @@
     <Compile Include="Contractor.cs" />
     <Compile Include="Restaurant.cs" />
     <Compile Include="RestaurantManager.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

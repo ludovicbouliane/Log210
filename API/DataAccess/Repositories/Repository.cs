@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using DataAccess.Repositories.Interfaces;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -10,11 +9,12 @@ namespace DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private const string DatabaseName = "LOG210";
+        private const string DatabaseName = "log210";
         protected readonly MongoDatabase _database;
 
-        public Repository(MongoClient mongoClient)
+        public Repository()
         {
+            var mongoClient = new MongoClient("mongodb://log210:etsmtl@ds048537.mongolab.com:48537/log210");
             var mongoServer = mongoClient.GetServer();
             _database = mongoServer.GetDatabase(DatabaseName);
         }
