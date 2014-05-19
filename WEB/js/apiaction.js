@@ -52,9 +52,9 @@ function register(){
 		'LastName' : 	document.getElementById('lastName').value,
 		'Address' : 	document.getElementById('address').value,
 		'City' : 	document.getElementById('city').value,
-		'State' : 	document.getElementById('state').value,
+		'Province' : 	document.getElementById('province').value,
 		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
+		'PostalCode' : 	document.getElementById('postalCode').value,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -104,10 +104,10 @@ function getUserInfos(){
 				document.getElementById('firstName').value = data["FirstName"];
 				document.getElementById('lastName').value= data["LastName"];
 				document.getElementById('address').value = data["Adress"];
-				document.getElementById('city').value = data["Adress"];
-				document.getElementById('state').value = data["Adress"];
-				document.getElementById('country').value = data["Adress"];
-				document.getElementById('zipCode').value = data["Adress"];
+				document.getElementById('city').value = data["City"];
+				document.getElementById('province').value = data["Province"];
+				document.getElementById('country').value = data["Country"];
+				document.getElementById('postalCode').value = data["PostalCode"];
 				document.getElementById('phoneNumber').value = data["Telephone"];
 				document.getElementById('birthDate').value = data["BirthDate"];
 				}
@@ -139,10 +139,10 @@ function updateClient(){
 		'FirstName' :    document.getElementById('firstName').value,
 		'LastName' : 	document.getElementById('lastName').value,
 		'Adress' : 	document.getElementById('address').value,
-		//'city' : 	document.getElementById('city').value,
-		//'State' : 	document.getElementById('state').value,
-		//'Country' : 	document.getElementById('country').value,
-		//'ZipCode' : 	document.getElementById('zipCode').value,
+		'City' : 	document.getElementById('city').value,
+		'Province' : 	document.getElementById('province').value,
+		'Country' : 	document.getElementById('country').value,
+		'PostalCode' : 	document.getElementById('postalCode').value,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -192,4 +192,16 @@ function updatePassword(){
 
 		});
 	}
+}
+
+function addRestaurant(){
+	
+}
+
+function updateRestaurant(){
+
+}
+
+function deleteRestaurant(){
+
 }
