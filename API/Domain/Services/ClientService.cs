@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using AutoMapper;
 using DataAccess.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 using Model;
