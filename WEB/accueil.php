@@ -4,6 +4,7 @@
 	require_once("action/AccueilAction.php");
 
 	$action = new AccueilAction(true);
+	$action->execute();
 
 	require_once("partial/site_header.php");
 ?>

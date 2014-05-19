@@ -1,20 +1,20 @@
+var apiUrl = "http://log210.azurewebsites.net/api/";
 
-public function authenticate(){
+function authenticate(){
 	var info = 	JSON.stringify({
 		'Username' :    document.getElementById('username').value,
 		'Password' : 	document.getElementById('password').value
 	});
+	authenticateUser(info);
 }
 
-
-private function authenticate(info){
-	
+function authenticateUser(info){
 
 	document.getElementById('password').value = ''
 
 	$.ajax({
 		type:"post",
-		url: 'http://mcroteau.no-ip.org:8080/LOG210/WebService/api/accounts/login',
+		url: apiUrl + 'accounts/login',
 		contentType:"application/json",
 		data: info,
 		success:function(data){
@@ -28,7 +28,7 @@ private function authenticate(info){
 		});		
 }
 
-private function setIsLoggedIn(info){
+function setIsLoggedIn(info){
 
 	$.ajax({
 		type : 'POST',
@@ -40,8 +40,7 @@ private function setIsLoggedIn(info){
 		});
 }
 
-
-public function register(){
+function register(){
 	var account = {
 		'Username' : document.getElementById('username').value,
 		'Password' : document.getElementById('password').value
@@ -51,18 +50,18 @@ public function register(){
 		'Account' : account,
 		'FirstName' :    document.getElementById('firstName').value,
 		'LastName' : 	document.getElementById('lastName').value,
-		'Adress' : 	document.getElementById('address').value,
-		//'City' : 	document.getElementById('city').value,
-		//'State' : 	document.getElementById('state').value,
-		//'Country' : 	document.getElementById('country').value,
-		//'ZipCode' : 	document.getElementById('zipCode').value,
+		'Address' : 	document.getElementById('address').value,
+		'City' : 	document.getElementById('city').value,
+		'State' : 	document.getElementById('state').value,
+		'Country' : 	document.getElementById('country').value,
+		'ZipCode' : 	document.getElementById('zipCode').value,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
 
 	$.ajax({
 		type:"PUT",
-		url: 'http://mcroteau.no-ip.org:8080/LOG210/WebService/api/clients',
+		url: apiUrl + 'clients',
 		contentType:"application/json",
 		data: info,
 		success : function(data){
@@ -72,7 +71,7 @@ public function register(){
 					'Username' :    document.getElementById('username').value,
 					'Password' : 	document.getElementById('password').value
 				});
-				authenticate(userInfo);
+				authenticateUser(userInfo);
 			},
 		error : function(data){
 			console.log(data.responseText);
@@ -80,7 +79,6 @@ public function register(){
 		});	
 }
 
-//TODO add ger user infos in api
 function getUserInfos(){
 			
 	var userId = '';
@@ -91,14 +89,13 @@ function getUserInfos(){
 		data: "getUserId=1"
 		}).done(
 			function(data){
-				//retrieve user id
 				userId = data;
 			}
 		);
 
 	$.ajax({
 		type:"GET",
-		url: 'http://mcroteau.no-ip.org:8080/LOG210/WebService/api/clients/'. userId,
+		url: apiUrl + 'clients/'. userId,
 		contentType:"application/json",
 		}).done(
 			function(data){
@@ -142,10 +139,10 @@ function updateClient(){
 		'FirstName' :    document.getElementById('firstName').value,
 		'LastName' : 	document.getElementById('lastName').value,
 		'Adress' : 	document.getElementById('address').value,
-		'city' : 	document.getElementById('city').value,
-		'State' : 	document.getElementById('state').value,
-		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
+		//'city' : 	document.getElementById('city').value,
+		//'State' : 	document.getElementById('state').value,
+		//'Country' : 	document.getElementById('country').value,
+		//'ZipCode' : 	document.getElementById('zipCode').value,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -166,35 +163,33 @@ function updatePassword(){
 
 	if(document.getElementById('newPassword').value == document.getElementById('confirmNewPassword').value){
 
-		//TODO get the username
-		var account = {
-			'Username' : 'The username',
-			'Password' : document.getElementById('password').value
-		};
+		var username = '';
 
+		$.ajax({
+			type:"POST",
+			url : 'profil.php',
+			data : { 'getUsername' : 1},
+			success : function(data){
+				console.log(data);
+				username = data;
+			}
+		});
+
+		
 		var info = JSON.stringify({
-			//TODO find a way to get the client id 
-			'Id' : null,
-			'Account' : account,
+			'Username' : username,
 			'NewPassword' : document.getElementById('newPassword').value
 		});
 
 		$.ajax({
 			type:"POST",
-			url: 'http://mcroteau.no-ip.org:8080/LOG210/WebService/api/accounts/password',
+			url: url + 'accounts/password',
 			contentType:"application/json",
 			data: info,
 			success:function(data){
 
 			}
 
-		});	
+		});
 	}
-	else{
-		
-		
-		document.getElementById('')
-
-	}
-
 }

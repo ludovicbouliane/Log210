@@ -2,10 +2,8 @@
 	$titre = "Modifier le mot de passe";
 	require_once("action/EditPasswordAction.php");
 	
-	$action = new EditPasswordAction(false);
+	$action = new EditPasswordAction(true);
 	$action->execute();
-	
-	$error = $action->getError();
 
 	require_once("partial/site_header.php");
 ?>
@@ -13,16 +11,9 @@
 <div class="col-md-6">
 	<h2>Modifier votre mot de passe</h2>
 
-	<?php
-		if(strlen($error) != 0){
-			?>
-			<div class="alert alert-danger">
-				<?php echo $error; ?>
-			</div>
-			<?php
-		}
-	?>
-
+	<div class="alert alert-danger">
+		
+	</div>
 	
 	<div class="row form_row">
 		<div class="col-sm-4">Mot de passe :</div>

@@ -1,4 +1,5 @@
 <?php
+	$title = "Ajouter un restaurant";
 	require_once('header.php');
 ?>
 <div class=" row page">
@@ -14,8 +15,21 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="addrestaurant">Ajouter un restaurant</a>
+							</li>
+							<li>
+								<a href="updaterestaurant">Modifier un restaurant</a>
+							</li>
+							<li>
+								<a href="deleterestaurant">Supprimer un restaurant</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
-
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte</a>
