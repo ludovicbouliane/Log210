@@ -31,6 +31,14 @@
 		protected abstract function executeAction();
 		
 		public function isLoggedIn(){
-			//TODO Do validation that the user is logged in.
+			return isset($_SESISON["Id"]);
+		}
+
+		public function getUserId(){
+			return $_SESISON["Id"];
+		}
+
+		public function getUsername(){
+			return $_SESSION["username"];
 		}
 	}

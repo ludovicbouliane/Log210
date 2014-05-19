@@ -10,10 +10,10 @@
 		}
 				
 		protected function executeAction(){
-			if(isset($_GET["Id"])){
+			if(isset($_POST["Id"])){
 				//Here we should get all information about the user
-				header('Location:accueil.php');
-
+				$_SESSION["Id"] = $_POST["Id"];
+				$_SESSION["username"] = $_POST["Account"]["Username"];
 			}
 		}
 

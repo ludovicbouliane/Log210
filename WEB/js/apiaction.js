@@ -12,18 +12,26 @@ function authenticate(){
 		contentType:"application/json",
 		data: info,
 		success:function(data){
-				/*$.ajax({
-					type:"POST",
-					url:"register.php",
-					data:JSON.stringify(p_data)}).success(function(data){
 
-					});*/
+				setIsLoggedIn(data);
 			},
 		error:function(data){
 				//TODO try to hide the javascript error
 				console.log(data.responseText);
 			}
 		});		
+}
+
+function setIsLoggedIn(info){
+
+	$.ajax({
+		type : 'POST',
+		url : 'index.php',
+		data: info,
+		success : function(data){
+				window.location.href = 'accueil.php';
+			}
+		});
 }
 
 function register(){
