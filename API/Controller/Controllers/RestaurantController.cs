@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Domain.Services.Interfaces;
 using Model;
+using Model.DomainModel;
 
 namespace Controller.Controllers
 {
@@ -22,6 +23,24 @@ namespace Controller.Controllers
         public IHttpActionResult Create([FromBody]Restaurant restaurant)
         {
             var response = _restaurantService.Create(restaurant);
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{restaurantId}")]
+        public IHttpActionResult GetRestaurantById(string restaurantId)
+        {
+            var response = _restaurantService.GetRestaurantById(restaurantId);
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("name")]
+        public IHttpActionResult GetAllRestaurantName()
+        {
+            var response = _restaurantService.GetAll();
             return ResponseMessage(response);
         }
 

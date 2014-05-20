@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Web.Http;
 using Domain.Services.Interfaces;
-using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
 
 namespace Controller.Controllers
 {
@@ -28,9 +29,9 @@ namespace Controller.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("password")]
-        public IHttpActionResult UpdatePassword([FromBody]Account account)
+        public IHttpActionResult UpdatePassword([FromBody]PasswordUpdate passwordUpdate)
         {
-            var response = _accountService.UpdatePassword(account);
+            var response = _accountService.UpdatePassword(passwordUpdate);
             return ResponseMessage(response);
         }
     }

@@ -1,10 +1,9 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Domain;
 using Domain.Services;
 
-namespace WebService.Installers
+namespace WebService.CompositionRoot.Installers
 {
     public class ServiceInstaller : IWindsorInstaller
     {

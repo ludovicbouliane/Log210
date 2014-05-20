@@ -60,9 +60,7 @@ namespace DataAccess.Repositories
             foreach (string id in ids)
             {
                 var collection = _database.GetCollection<T>(typeof(T).Name.ToLower() + "s");
-                //var query = Query<T>.Where(t =>  == );
                 collection.Remove(Query.EQ("_id", id));
-                //collection.Remove(query);
             }
         }
     }

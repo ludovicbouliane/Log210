@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Model
+namespace Model.DomainModel
 {
     public class Client
     {
@@ -9,7 +9,7 @@ namespace Model
         //[MaxLength(350, ErrorMessageResourceType = typeof(Users), ErrorMessageResourceName = "MaximumEmailLength")]
         [BsonId]
         public string Id { get; set; }
-        public Account Account { get; set; }
+        public string AccountId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

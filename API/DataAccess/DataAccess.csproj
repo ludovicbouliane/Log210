@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\ContractorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAccountRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContractorRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRestaurantManagerRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRestaurantRepository.cs" />

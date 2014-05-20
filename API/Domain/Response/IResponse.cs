@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 
-namespace Domain
+namespace Domain.Response
 {
     public interface IResponse
     {

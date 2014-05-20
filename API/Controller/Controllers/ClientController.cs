@@ -2,6 +2,8 @@
 using System.Web.Http;
 using Domain.Services.Interfaces;
 using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
 
 namespace Controller.Controllers
 {
@@ -37,7 +39,7 @@ namespace Controller.Controllers
         [HttpPut]
         [AllowAnonymous]
         [Route("")]
-        public IHttpActionResult Create([FromBody]Client client)
+        public IHttpActionResult Create([FromBody]ClientWithAccount client)
         {
             var response = _clientService.Create(client);
             return ResponseMessage(response);

@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using AutoMapper;
 using DataAccess.Repositories.Interfaces;
+using Domain.Response;
 using Domain.Services.Interfaces;
 using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
 using MongoDB.Bson;
 
 namespace Domain.Services
@@ -22,17 +26,21 @@ namespace Domain.Services
             _accountService = accountService;
         }
 
-        public IResponse Create(Client client)
+        public IResponse Create(ClientWithAccount clientWithAccount)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
-            client.Id = ObjectId.GenerateNewId().ToString();
-
-            if (_accountService.IsUsernameAlreadyTaken(client.Account.Username))
+            if (_accountService.IsUsernameAlreadyTaken(clientWithAccount.Account.Username))
             {
                 response.Set(HttpStatusCode.BadRequest, "Username already exist");
                 return response;
             }
+
+            var client = Mapper.Map<ClientWithAccount, Client>(clientWithAccount);
+
+            var accountId = _accountService.CreateAccount(clientWithAccount.Account);
+            client.Id = ObjectId.GenerateNewId().ToString();
+            client.AccountId = accountId;
 
             _clientRepository.Insert(client);
 
@@ -42,7 +50,7 @@ namespace Domain.Services
 
         public IResponse Update(Client client)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
             var existingClient = _clientRepository.GetSingle(c => c.Id == client.Id);
             if (existingClient == null)
@@ -59,7 +67,7 @@ namespace Domain.Services
 
         public IResponse GetAll()
         {
-            var response = new Response();
+            var response = new Response.Response();
 
             var clients = _clientRepository.GetAll();
 
@@ -76,7 +84,7 @@ namespace Domain.Services
 
         public IResponse GetClientById(string clientId)
         {
-            var response = new Response();
+            var response = new Response.Response();
             var client = _clientRepository.GetSingle(c => c.Id == clientId);
 
             if (client == null)

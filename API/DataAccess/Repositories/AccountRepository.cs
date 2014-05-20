@@ -3,7 +3,7 @@ using Model.DomainModel;
 
 namespace DataAccess.Repositories
 {
-    public class RestaurantManagerRepository : Repository<RestaurantManager>, IRestaurantManagerRepository
+    public class AccountRepository : Repository<Account>, IAccountRepository
     {
     }
 }

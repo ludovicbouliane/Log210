@@ -1,9 +1,9 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Model;
+using Model.DomainModel;
 
-namespace WebService.Installers
+namespace WebService.CompositionRoot.Installers
 {
     public class ModelInstaller : IWindsorInstaller
     {

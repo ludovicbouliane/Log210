@@ -1,6 +1,6 @@
 ﻿using System;
 using DataAccess.Repositories.Interfaces;
-using Model;
+using Model.DomainModel;
 
 namespace DataAccess.Repositories
 {

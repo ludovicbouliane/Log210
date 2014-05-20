@@ -1,91 +1,71 @@
 ﻿using System;
 using System.Net;
 using DataAccess.Repositories.Interfaces;
+using Domain.Response;
 using Domain.Services.Interfaces;
-using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
+using MongoDB.Bson;
 
 namespace Domain.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IClientRepository _clientRepository;
-        private readonly IContractorRepository _contractorRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly IRestaurantManagerRepository _restaurantManagerRepository;
+        private readonly IContractorRepository _contractorRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public AccountService(IClientRepository clientRepository, IContractorRepository contractorRepository, IRestaurantManagerRepository restaurantManagerRepository)
+        public AccountService(IAccountRepository accountRepository, IRestaurantManagerRepository restaurantManagerRepository, IContractorRepository contractorRepository, IClientRepository clientRepository)
         {
-            if (clientRepository == null) throw new ArgumentNullException("clientRepository");
-            if (contractorRepository == null) throw new ArgumentNullException("contractorRepository");
+            if (accountRepository == null) throw new ArgumentNullException("accountRepository");
             if (restaurantManagerRepository == null) throw new ArgumentNullException("restaurantManagerRepository");
+            if (contractorRepository == null) throw new ArgumentNullException("contractorRepository");
+            if (clientRepository == null) throw new ArgumentNullException("clientRepository");
 
-            _clientRepository = clientRepository;
-            _contractorRepository = contractorRepository;
+            _accountRepository = accountRepository;
             _restaurantManagerRepository = restaurantManagerRepository;
+            _contractorRepository = contractorRepository;
+            _clientRepository = clientRepository;
         }
 
         public IResponse Authentificate(Account account)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
-            var user = _clientRepository.GetSingle(p => p.Account.Username == account.Username && p.Account.Password == account.Password);
+            var user = _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
 
             if (user != null)
             {
-                user.Account.Password = String.Empty;
-                response.Set(HttpStatusCode.OK, user);
+                var userAccount = new UserAccount{ Id = user.Id };
+                userAccount.AccountType = GetAccountType(userAccount.Id);
+                response.Set(HttpStatusCode.OK, userAccount);
 
                 return response;
             }
-
-            var contractor = _contractorRepository.GetSingle(p => p.Account.Username == account.Username && p.Account.Password == account.Password);
-
-            if (contractor != null)
-            {
-                contractor.Account.Password = String.Empty;
-                response.Set(HttpStatusCode.OK, contractor);
-                return response;
-            }
-
-            var restaurantManager = _restaurantManagerRepository.GetSingle(p => p.Account.Username == account.Username && p.Account.Password == account.Password);
-
-            if (restaurantManager != null)
-            {
-                restaurantManager.Account.Password = String.Empty;
-                response.Set(HttpStatusCode.OK, restaurantManager);
-                return response;
-            }
-
+            
             response.Set(HttpStatusCode.NotFound, "No user found");
             return response;
         }
 
-        public IResponse UpdatePassword(Account account)
+        private string GetAccountType(string accountId)
         {
-            var response = new Response();
+            if (_restaurantManagerRepository.GetSingle(a => a.AccountId == accountId) != null) return "Restaurant Manager";
+            if (_contractorRepository.GetSingle(a => a.AccountId == accountId) != null) return "Contractor";
+            if (_clientRepository.GetSingle(a => a.AccountId == accountId) != null) return "Client";
 
-            var client = _clientRepository.GetSingle(p => p.Account.Username == account.Username);
-            if (client != null)
-            {
-                client.Account.Password = account.Password;
-                _clientRepository.Save(client);
-                response.Set(HttpStatusCode.NoContent);
-                return response;
-            }
+            return String.Empty;
+        }
 
-            var contractor = _contractorRepository.GetSingle(p => p.Account.Username == account.Username);
-            if (contractor != null)
-            {
-                contractor.Account.Password = account.Password;
-                _contractorRepository.Save(contractor);
-                response.Set(HttpStatusCode.NoContent);
-                return response;
-            }
+        public IResponse UpdatePassword(PasswordUpdate passwordUpdate)
+        {
+            var response = new Response.Response();
 
-            var restaurantManager = _restaurantManagerRepository.GetSingle(p => p.Account.Username == account.Username);
-            if (restaurantManager != null)
+            var account = _accountRepository.GetSingle(a => a.Id == passwordUpdate.Id);
+            if (account != null)
             {
-                restaurantManager.Account.Password = account.Password;
-                _restaurantManagerRepository.Save(restaurantManager);
+                account.Password = passwordUpdate.Password;
+                _accountRepository.Save(account);
                 response.Set(HttpStatusCode.NoContent);
                 return response;
             }
@@ -96,16 +76,18 @@ namespace Domain.Services
 
         public bool IsUsernameAlreadyTaken(string username)
         {
-            var user = _clientRepository.GetSingle(p => p.Account.Username == username);
+            var user = _accountRepository.GetSingle(a => a.Username == username);
             if (user != null) return true;
 
-            var contractor = _contractorRepository.GetSingle(p => p.Account.Username == username);
-            if (contractor != null) return true;
-
-            var restaurantManager = _restaurantManagerRepository.GetSingle(p => p.Account.Username == username);
-            if (restaurantManager != null) return true;
-
             return false;
+        }
+
+        public string CreateAccount(Account account)
+        {
+            account.Id = ObjectId.GenerateNewId().ToString();
+            _accountRepository.Insert(account);
+
+            return account.Id;
         }
     }
 }

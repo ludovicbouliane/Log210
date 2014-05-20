@@ -2,6 +2,7 @@
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using Domain;
+using Domain.Response;
 
 namespace Controller.Controllers
 {

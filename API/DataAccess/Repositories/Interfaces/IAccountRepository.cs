@@ -2,7 +2,7 @@
 
 namespace DataAccess.Repositories.Interfaces
 {
-    public interface IContractorRepository : IRepository<Contractor>
+    public interface IAccountRepository : IRepository<Account>
     {
 
     }

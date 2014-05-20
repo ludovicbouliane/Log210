@@ -1,10 +1,9 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using Model.DomainModel;
 
-namespace Model
+namespace Model.ControllerModel
 {
-    public class Contractor
+    public class RestaurantManagerWithAccount
     {
-        [BsonId]
         public string Id { get; set; }
         public Account Account { get; set; }
         public string FirstName { get; set; }

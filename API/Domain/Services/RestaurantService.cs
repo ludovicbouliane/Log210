@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using AutoMapper;
 using DataAccess.Repositories.Interfaces;
+using Domain.Response;
 using Domain.Services.Interfaces;
 using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
 using MongoDB.Bson;
 
 namespace Domain.Services
@@ -20,7 +25,7 @@ namespace Domain.Services
 
         public IResponse Create(Restaurant restaurant)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
             restaurant.Id = ObjectId.GenerateNewId().ToString();
 
@@ -32,7 +37,7 @@ namespace Domain.Services
 
         public IResponse Update(Restaurant restaurant)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
             var existingRestaurant = _restaurantRepository.GetSingle(c => c.Id == restaurant.Id);
             if (existingRestaurant == null)
@@ -49,11 +54,45 @@ namespace Domain.Services
 
         public IResponse Delete(string restaurantId)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
             _restaurantRepository.Delete(restaurantId);
 
             response.Set(HttpStatusCode.OK);
+            return response;
+        }
+
+        public IResponse GetRestaurantById(string restaurantId)
+        {
+            var response = new Response.Response();
+            var restaurant = _restaurantRepository.GetSingle(r => r.Id == restaurantId);
+
+            if (restaurant == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No restaurant found");
+                return response;
+            }
+
+            response.Set(HttpStatusCode.OK, restaurant);
+            return response;
+        }
+
+        public IResponse GetAll()
+        {
+            var response = new Response.Response();
+
+            var restaurants = _restaurantRepository.GetAll();
+
+            if (!restaurants.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No restaurants found");
+                return response;
+            }
+
+            var restaurantNames = restaurants.Select(Mapper.Map<Restaurant, RestaurantName>).ToList();
+
+            response.Set(HttpStatusCode.OK, restaurantNames);
+
             return response;
         }
     }

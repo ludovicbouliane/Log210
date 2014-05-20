@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using AutoMapper;
 using DataAccess.Repositories.Interfaces;
+using Domain.Response;
 using Domain.Services.Interfaces;
-using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
 using MongoDB.Bson;
 
 namespace Domain.Services
@@ -22,17 +25,21 @@ namespace Domain.Services
             _accountService = accountService;
         }
 
-        public IResponse Create(RestaurantManager restaurantManager)
+        public IResponse Create(RestaurantManagerWithAccount restaurantManagerWithAccount)
         {
-            var response = new Response();
+            var response = new Response.Response();
 
-            restaurantManager.Id = ObjectId.GenerateNewId().ToString();
-
-            if (_accountService.IsUsernameAlreadyTaken(restaurantManager.Account.Username))
+            if (_accountService.IsUsernameAlreadyTaken(restaurantManagerWithAccount.Account.Username))
             {
                 response.Set(HttpStatusCode.BadRequest, "Username already exist");
                 return response;
             }
+
+            var restaurantManager = Mapper.Map<RestaurantManagerWithAccount, RestaurantManager>(restaurantManagerWithAccount);
+
+            var accountId = _accountService.CreateAccount(restaurantManagerWithAccount.Account);
+            restaurantManager.Id = ObjectId.GenerateNewId().ToString();
+            restaurantManager.AccountId = accountId;
 
             _restaurantManagerRepository.Insert(restaurantManager);
 
@@ -42,7 +49,7 @@ namespace Domain.Services
 
         public IResponse GetAll()
         {
-            var response = new Response();
+            var response = new Response.Response();
 
             var restaurantManagers = _restaurantManagerRepository.GetAll();
 

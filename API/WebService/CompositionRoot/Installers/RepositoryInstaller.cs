@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using DataAccess.Repositories;
 
-namespace WebService.Installers
+namespace WebService.CompositionRoot.Installers
 {
     public class RepositoryInstaller : IWindsorInstaller
     {

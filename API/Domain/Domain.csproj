@@ -54,7 +54,9 @@
   <ItemGroup>
     <Compile Include="Response\IResponse.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\ContractorService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Services\Interfaces\IContractorService.cs" />
     <Compile Include="Services\Interfaces\IClientService.cs" />
     <Compile Include="Response\Response.cs" />
     <Compile Include="Services\ClientService.cs" />

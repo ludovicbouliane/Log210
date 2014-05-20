@@ -3,7 +3,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace WebService.Installers
+namespace WebService.CompositionRoot.Installers
 {
     public class ApiControllerInstaller : IWindsorInstaller
     {

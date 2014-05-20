@@ -2,6 +2,8 @@
 using System.Web.Http;
 using Domain.Services.Interfaces;
 using Model;
+using Model.ControllerModel;
+using Model.DomainModel;
 
 namespace Controller.Controllers
 {
@@ -19,9 +21,9 @@ namespace Controller.Controllers
         [HttpPut]
         [AllowAnonymous]
         [Route("")]
-        public IHttpActionResult Create([FromBody]RestaurantManager restaurantManager)
+        public IHttpActionResult Create([FromBody]RestaurantManagerWithAccount restaurantManagerWithAccount)
         {
-            var response = _restaurantManagerService.Create(restaurantManager);
+            var response = _restaurantManagerService.Create(restaurantManagerWithAccount);
             return ResponseMessage(response);
         }
 

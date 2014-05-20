@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace WebService
+namespace WebService.App_Start
 {
     public class ModelStateValidator : ActionFilterAttribute
     {
