@@ -39,6 +39,12 @@
 		}
 
 		public function getUsername(){
-			return $_SESSION["username"];
+			$username = '';
+			
+			if(isset($_SESSION["username"])){
+				$username = $_SESSION["username"];
+			}
+			
+			return $username;
 		}
 	}

@@ -1,11 +1,17 @@
 <?php
 	$titre = "Supprimer un restaurant";
+	
+	require_once("action/DeleteRestaurantAction.php");
+
+	$action = new DeleteRestaurantAction(true);
+	$action->execute();
+
 	require_once('partial/site_header.php');
 
 ?>
-	<div class="col-xs-2"></div>
+	<div class="col-sm-2"></div>
 
-	<div class="col-xs-8 profil">
+	<div class="col-sm-8 profil">
 		<h2> Supprimer un restaurant</h2>
 
 		<div class="row form_row">
@@ -24,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-2"></div>
+	<div class="col-sm-2"></div>
 	
 <?php
 	require_once('partial/site_footer.php');

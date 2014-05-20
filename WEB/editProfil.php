@@ -10,9 +10,9 @@
 	$error = $action->getError();
 
 ?>
-	<div class="col-xs-2"></div>
+	<div class="col-sm-2"></div>
 
-	<div class="col-xs-8 profil">
+	<div class="col-sm-8 profil">
 		<h2> Modifier vos informations personnels</h2>
 
 		<?php
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-2"></div>
+	<div class="col-sm-2"></div>
 
 <?php
 	require_once("partial/site_footer.php");
