@@ -1,41 +1,33 @@
 <?php
-	$titre = "S'inscrire";
-	require_once("action/RegisterAction.php");
+	$titre = "Ajouter un restaurant";
 	
-	$action = new RegisterAction(false);
+	require_once("action/AddRestaurantAction.php");
+
+	$action = new AddRestaurantAction(true);
 	$action->execute();
 
-	require_once("partial/header.php");
+	require_once('partial/site_header.php');
 ?>
-<div class="col-xs-12 page">
-
+	
 	<div class="col-sm-2"></div>
 
-	<div class="col-sm-8 register">
-		<h2> Créer un compte</h2>
+	<div class="col-sm-8 profil">
+		<h2> Ajouter un restaurant</h2>
 
-		<div class="alert alert-danger">
-			
-		</div>
-
-		<div class="row form_row">
-			<div class="col-sm-4">Prénom :</div>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
-			</div>
-		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="lastName" placeholder="Nom" required/>
+				<input type="text" class="form-control" id="name" placeholder="Nom" required/>
 			</div>
 		</div>
+
 		<div class="row form_row">
 			<div class="col-sm-4">Adresse :</div>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="address" placeholder="Adresse" required/>
 			</div>
 		</div>
+
 		<div class="row form_row">
 			<div class="col-sm-4">Ville :</div>
 			<div class="col-sm-8">
@@ -67,42 +59,32 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Numéro de téléphone <p>(555 555-5555)</p></div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=12 class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" value="555 555-5555" required/>
+				<input type="text" maxlength=12 class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" required/>
 			</div>
 		</div>
-		
+
 		<div class="row form_row">
-			<div class="col-sm-4">Date de naissance <p>(jj/mm/aaaa)</p></div>
+			<div class="col-sm-4">Restaurateur : </div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=10 class="form-control" id="birthDate" placeholder="Date de naissance" value="2014-10-10" required/>
+				<select id="listRestaurateur" class="form-control"> 
+					<option value="">Aucun</option>
+				</select>
 			</div>
 		</div>
-		
+
 		<div class="row form_row">
-			<div class="col-sm-4">Nom d'usager</div>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" required/>
-			</div>
-		</div>
-		
-		<div class="row form_row">
-			<div class="col-sm-4">Mot de passe :</div>
-			<div class="col-sm-8">
-				<input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
-			</div>
-		</div>
-		
-		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-8">
-				<input type="submit" value="Créer" class="btn btn-default" onclick="register()"/>
+				<input type="submit" value="Ajouter" class="btn btn-default" onclick="addRestaurant()"/>
 			</div>
 		</div>
-		
 	</div>
 	<div class="col-sm-2"></div>
-</div>
-	
+
+
 <?php
-	require_once("partial/footer.php");
+	require_once('partial/site_footer.php');
 ?>
+<script>
+	window.onload = fillRestaurateurList();
+</script>
