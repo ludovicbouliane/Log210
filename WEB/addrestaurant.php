@@ -13,7 +13,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom" required/>
+				<input type="text" class="form-control" id="name" placeholder="Nom" required/>
 			</div>
 		</div>
 
@@ -34,7 +34,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Province :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="province" placeholder="Province" required/>
+				<input type="text" class="form-control" id="state" placeholder="Province" required/>
 			</div>
 		</div>
 		
@@ -48,7 +48,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Code postal :</div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=7 class="form-control" id="postalCode" placeholder="Code postal" required/>
+				<input type="text" maxlength=7 class="form-control" id="zipCode" placeholder="Code postal" required/>
 			</div>
 		</div>
 		
@@ -82,5 +82,5 @@
 	require_once('partial/site_footer.php');
 ?>
 <script>
-	//window.onload = fillRestaurateurList();
+	window.onload = fillRestaurateurList();
 </script>

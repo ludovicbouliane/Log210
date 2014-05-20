@@ -19,21 +19,21 @@
 		</div>
 
 		<div class="row form_row">
-			<div class="col-sm-4">Nom :</div>
+			<div class="col-sm-4">Prénom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="lastName" placeholder="Nom" value="yo1" required/>
+				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
 			</div>
 		</div>
 		<div class="row form_row">
-			<div class="col-sm-4">Prénom :</div>
+			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="firstName" placeholder="Prénom" value="yo1" required/>
+				<input type="text" class="form-control" id="lastName" placeholder="Nom" required/>
 			</div>
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Adresse :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="address" placeholder="Adresse" value="yo1" required/>
+				<input type="text" class="form-control" id="address" placeholder="Adresse" required/>
 			</div>
 		</div>
 		<div class="row form_row">
@@ -46,7 +46,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Province :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="province" placeholder="Province" required/>
+				<input type="text" class="form-control" id="state" placeholder="Province" required/>
 			</div>
 		</div>
 		
@@ -60,7 +60,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Code postal :</div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=7 class="form-control" id="postalCode" placeholder="Code postal" required/>
+				<input type="text" maxlength=7 class="form-control" id="zipCode" placeholder="Code postal" required/>
 			</div>
 		</div>
 		
@@ -81,14 +81,14 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Nom d'usager</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" value="yo1" required/>
+				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" required/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Mot de passe :</div>
 			<div class="col-sm-8">
-				<input type="password" class="form-control" id="password" placeholder="Mot de passe" value="yo1" required/>
+				<input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
 			</div>
 		</div>
 		
