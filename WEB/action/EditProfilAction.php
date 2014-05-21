@@ -5,12 +5,12 @@
 	
 		private $error = '';
 
-		public function __construct($isAuthenticatedRequired){
-			parent::__construct($isAuthenticatedRequired);
+		public function __construct(){
+			parent::__construct(CommonAction::$CLIENT_ACCOUNTTYPE);
 		}
 				
 		protected function executeAction(){
-			
+				
 		}
 
 		public function getError(){

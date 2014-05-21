@@ -2,10 +2,16 @@
 	session_start();
 
 	abstract class CommonAction{
-		private $isAuthentifiedRequired;
+		public static $PUBLIC_ACCOUNTTYPE = 0;
+		public static $CLIENT_ACCOUNTTYPE = 1;
+		public static $RESTAURANTMANAGER_ACCOUNTTYPE = 2;
+		public static $CONTRACTOR_ACCOUNTTYPE = 3;
+		public static $ADMIN_ACCOUNTTYPE = 4;
 
-		public function __construct($isAuthentifiedRequired){
-			$this->isAuthentifiedRequired = $isAuthentifiedRequired;
+		private $pageVisibility;
+
+		public function __construct($pageVisibility){
+			$this->pageVisibility = $pageVisibility;	
 		}
 
 		public function execute(){
@@ -16,35 +22,29 @@
 				session_start();
 			}
 		
-			//If the page requires the user to be authenticated to see it
-			if($this->isAuthentifiedRequired){
-				// If the user is not authenticated and he should be, 
-				//  we send him back to the connection window.
-				if($this->isLoggedIn() == false){
-					header("location:index");
-				}
+			if (!isset($_SESSION["AccountType"])) {
+				$_SESSION["AccountType"] = CommonAction::$PUBLIC_ACCOUNTTYPE;
 			}
+
+			if ($_SESSION["AccountType"] < $this->pageVisibility) {
+				header("location:index");
+				exit;
+			}			
 			
 			$this->executeAction();
 		}
 
 		protected abstract function executeAction();
 		
-		public function isLoggedIn(){
-			return isset($_SESSION["Id"]);
+		protected function isLoggedIn(){
+			return $_SESSION["AccountType"] > CommonAction::$PUBLIC_ACCOUNTTYPE;
 		}
 
-		public function getUserId(){
+		protected function getUserId(){
 			return $_SESSION["Id"];
 		}
 
-		public function getUsername(){
-			$username = '';
-			
-			if(isset($_SESSION["username"])){
-				$username = $_SESSION["username"];
-			}
-			
-			return $username;
+		public function getAccountType(){
+			return $_SESSION["AccountType"];
 		}
 	}

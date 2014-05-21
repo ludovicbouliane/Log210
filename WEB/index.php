@@ -2,7 +2,7 @@
 	$titre = "Connexion";
 	require_once("action/IndexAction.php");
 
-	$action = new IndexAction(false);
+	$action = new IndexAction();
 	$action->execute();
 
 	$error = $action->getError();

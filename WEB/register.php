@@ -2,7 +2,7 @@
 	$titre = "S'inscrire";
 	require_once("action/RegisterAction.php");
 	
-	$action = new RegisterAction(false);
+	$action = new RegisterAction();
 	$action->execute();
 
 	require_once("partial/header.php");

@@ -3,7 +3,7 @@
 	
 	require_once("action/DeleteRestaurantAction.php");
 
-	$action = new DeleteRestaurantAction(true);
+	$action = new DeleteRestaurantAction();
 	$action->execute();
 
 	require_once('partial/site_header.php');
@@ -18,7 +18,6 @@
 			<div class="col-sm-4">Restaurant : </div>
 			<div class="col-sm-8">
 				<select id="listRestaurant" class="form-control"> 
-					<option value="">Restaurant</option>
 				</select>
 			</div>
 		</div>
@@ -36,5 +35,5 @@
 	require_once('partial/site_footer.php');
 ?>
 <script type="text/javascript">
-	//window.onload = fillListRestaurant();
+	window.onload = fillRestaurantList();
 </script>

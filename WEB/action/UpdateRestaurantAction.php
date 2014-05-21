@@ -3,8 +3,8 @@
 	
 	class UpdateRestaurantAction extends CommonAction{
 
-		public function __construct($isAuthenticatedRequired){
-			parent::__construct($isAuthenticatedRequired);
+		public function __construct(){
+			parent::__construct(CommonAction::$CONTRACTOR_ACCOUNTTYPE);
 		}
 				
 		protected function executeAction(){

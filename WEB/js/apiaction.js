@@ -11,15 +11,13 @@ function authenticate(){
 
 function authenticateUser(info){
 
-	document.getElementById('password').value = ''
-
 	$.ajax({
 		type:"post",
 		url: apiUrl + 'accounts/login',
 		contentType:"application/json",
 		data: info,
 		success:function(data){
-
+				document.getElementById('password').value = ''
 				setIsLoggedIn(data);
 			},
 		error:function(data){
@@ -48,7 +46,7 @@ function register(){
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
-	console.log(info);
+
 	$.ajax({
 		type:"PUT",
 		url: apiUrl + 'clients',
@@ -72,16 +70,10 @@ function register(){
 //Manage client account
 function updateClient(){
 	var userId = getUserId();
-	var username = getUsername();
-	
-	var account = {
-		'Username' : username
-	};
 
 	var info = JSON.stringify({
 
 		'Id' : userId,
-		'Account' : account,
 		'FirstName' :    document.getElementById('firstName').value,
 		'LastName' : 	document.getElementById('lastName').value,
 		'Address' : 	document.getElementById('address').value,
@@ -109,11 +101,10 @@ function updatePassword(){
 
 	if(document.getElementById('newPassword').value == document.getElementById('confirmNewPassword').value){
 
-		//var userId = getUserId();
-		var username = getUsername();
-		console.log(username);
+		var userId = getUserId();
+	
 		var info = JSON.stringify({
-			'Username' : username,
+			'Id' : userId,
 			'Password' : document.getElementById('newPassword').value
 		});
 
@@ -123,17 +114,36 @@ function updatePassword(){
 			contentType:"application/json",
 			data: info,
 			success:function(data){
-				console.log(data)
+				document.getElementById('password').value = '';
+				document.getElementById('newPassword').value = '';
+				document.getElementById('confirmNewPassword').value = '';
 			}
 
 		});
 	}
 }
 
+function fillPRofilInfo(){
+
+	var data = getUserInfos();
+
+	document.getElementById('username').value = data["Account"]["Username"];
+	document.getElementById('firstName').value = data["FirstName"];
+	document.getElementById('lastName').value= data["LastName"];
+	document.getElementById('address').value = data["Address"];
+	document.getElementById('city').value = data["City"];
+	document.getElementById('state').value = data["State"];
+	document.getElementById('country').value = data["Country"];
+	document.getElementById('zipCode').value = data["ZipCode"];
+	document.getElementById('phoneNumber').value = data["Telephone"];
+	document.getElementById('birthDate').value = data["BirthDate"].substr(0,10);
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Managing restaurant
 function addRestaurant(){
 	var info = JSON.stringify({
+		'ContractorId' :   		getUserId(),
 		'Name' : 				document.getElementById("name").value,
 		'Address' : 			document.getElementById('address').value,
 		'City' : 				document.getElementById('city').value,
@@ -150,7 +160,14 @@ function addRestaurant(){
 		contentType:"application/json",
 		data: info,
 		success:function(data){
-
+			document.getElementById("name").value = '';
+			document.getElementById('address').value= '';
+			document.getElementById('city').value = '';
+			document.getElementById('state').value = '';
+			document.getElementById('country').value = '';
+			document.getElementById('zipCode').value = '';
+			document.getElementById('phoneNumber').value = '';
+			document.getElementById('listRestaurateur').value = '';
 		}
 
 	});
@@ -158,6 +175,7 @@ function addRestaurant(){
 
 function updateRestaurant(){
 	var info = JSON.stringify({
+		'Id': 					document.getElementById('listRestaurant').value, 
 		'Name' : 				document.getElementById("name").value,
 		'Address' : 			document.getElementById('address').value,
 		'City' : 				document.getElementById('city').value,
@@ -167,16 +185,42 @@ function updateRestaurant(){
 		'Telephone' : 			document.getElementById('phoneNumber').value,
 		'RestaurantManagerId' : document.getElementById('listRestaurateur').value
 	});
+
+	$.ajax({
+		type:"POST",
+		url: apiUrl + 'restaurants',
+		contentType:"application/json",
+		data: info,
+		success:function(data){
+
+		}
+
+	});
 }
 
 function deleteRestaurant(){
+	$.ajax({
+		type:"DELETE",
+		url: apiUrl + 'restaurants/' + document.getElementById('listRestaurant').value,
+		contentType:"application/json",
+		success:function(data){
+			document.getElementById('listRestaurant').value = '';
+			fillRestaurantList();
+		}
 
+	});
 }
 
 function fillRestaurateurList(){
 	var listRestaurateur = getAllRestaurateur();
 
 	var selectContainer = document.getElementById('listRestaurateur');
+
+	while (selectContainer.hasChildNodes()) {
+ 	   selectContainer.removeChild(selectContainer.lastChild);
+	}
+		
+	selectContainer.appendChild(addNoneOption());
 
 	for(var i=0 ; i<listRestaurateur.length ; i++){
 		var rest = listRestaurateur[i];
@@ -190,11 +234,68 @@ function fillRestaurateurList(){
 		selectContainer.appendChild(option);
 	}
 }
+
+function fillRestaurantList(){
+		
+	var listRestaurateur = getAllRestaurant();
+
+	var selectContainer = document.getElementById('listRestaurant');
+
+	while (selectContainer.hasChildNodes()) {
+ 	   selectContainer.removeChild(selectContainer.lastChild);
+	}
+		
+	selectContainer.appendChild(addNoneOption());
+
+	for(var i=0 ; i<listRestaurateur.length ; i++){
+		var rest = listRestaurateur[i];
+		
+		var option = document.createElement("option");	
+		option.setAttribute("value",rest["Id"]);
+
+		var name = document.createTextNode(rest["Name"]);
+
+		option.appendChild(name);	
+		selectContainer.appendChild(option);
+	}
+}
+
+function fillRestaurantInfos(){
+	var restaurantId = document.getElementById('listRestaurant').value;
+
+	fillRestaurateurList();
+
+	if(restaurantId.length == 0){
+		document.getElementById("name").value = '';
+		document.getElementById('address').value = '';
+		document.getElementById('city').value = '';
+		document.getElementById('state').value = '';
+		document.getElementById('country').value = '';
+		document.getElementById('zipCode').value = '';
+		document.getElementById('phoneNumber').value = '';
+		document.getElementById('listRestaurateur').value = '';
+	}
+	else{
+		var info = getRestaurantInfos(restaurantId);
+
+		document.getElementById("name").value = info["Name"];
+		document.getElementById('address').value = info["Address"];
+		document.getElementById('city').value = info["City"];
+		document.getElementById('state').value = info["State"];
+		document.getElementById('country').value = info["Country"];
+		document.getElementById('zipCode').value = info["ZipCode"];
+		document.getElementById('phoneNumber').value = info["Telephone"];
+		document.getElementById('listRestaurateur').value = info["RestaurantManagerId"];
+		
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Information getters
 function getUserInfos(){
 			
 	var userId = getUserId();
+	var info = '';
 
 	$.ajax({
 		type:"GET",
@@ -202,19 +303,11 @@ function getUserInfos(){
 		contentType:"application/json",
 		}).done(
 			function(data){
-				document.getElementById('username').value = data["Account"]["Username"];
-				
-				document.getElementById('firstName').value = data["FirstName"];
-				document.getElementById('lastName').value= data["LastName"];
-				document.getElementById('address').value = data["Address"];
-				document.getElementById('city').value = data["City"];
-				document.getElementById('state').value = data["State"];
-				document.getElementById('country').value = data["Country"];
-				document.getElementById('zipCode').value = data["ZipCode"];
-				document.getElementById('phoneNumber').value = data["Telephone"];
-				document.getElementById('birthDate').value = data["BirthDate"].substr(0,10);
-				}
-			);		
+				info = data;
+			}
+		);	
+
+	return info;	
 }
 
 function getUserId(){
@@ -234,19 +327,9 @@ function getUserId(){
 }
 
 function getUsername(){
-	var username = '';
+	var info = getUserInfos();
 
-	$.ajax({
-		type:"POST",
-		url : 'profil.php',
-		async : false,
-		data : { 'getUsername' : 1},
-		success : function(data){
-			username = data;
-		}
-	});
-
-	return username;
+	return info["Account"]["Username"];
 }
 
 function getAllRestaurateur(){
@@ -263,6 +346,40 @@ function getAllRestaurateur(){
 		);
 		return restaurateur;
 }
+
+function getAllRestaurant(){
+	var restaurant = '';
+
+	$.ajax({
+		type:"GET",
+		url: apiUrl + 'restaurants/name',
+		contentType:"application/json",
+		async:false
+		}).done(
+			function(data){
+				restaurant = data;
+			}
+		);
+	return restaurant;
+}
+
+function getRestaurantInfos(restaurantId){
+
+	var info = '';
+
+	$.ajax({
+		type:"GET",
+		url: apiUrl + 'restaurants/' + restaurantId,
+		contentType:"application/json",
+		async:false
+		}).done(
+			function(data){
+				info = data;
+			}
+		);
+
+	return info;
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Common setters
 function setIsLoggedIn(info){
@@ -275,4 +392,14 @@ function setIsLoggedIn(info){
 				window.location.href = 'accueil.php';
 			}
 		});
+}
+
+function addNoneOption(){
+	var noneOption = document.createElement("option");	
+	noneOption.setAttribute("value","");
+
+	var none = document.createTextNode("Aucun");
+
+	noneOption.appendChild(none);	
+	return noneOption;
 }

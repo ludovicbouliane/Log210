@@ -2,7 +2,7 @@
 	$titre = "Modifier le mot de passe";
 	require_once("action/EditPasswordAction.php");
 	
-	$action = new EditPasswordAction(true);
+	$action = new EditPasswordAction();
 	$action->execute();
 
 	require_once("partial/site_header.php");
