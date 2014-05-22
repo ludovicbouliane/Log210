@@ -11,7 +11,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="accueil.php" class="navbar-brand">Accueil</a>
+				<a href="accueil" class="navbar-brand">Accueil</a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
