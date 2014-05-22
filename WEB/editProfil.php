@@ -2,12 +2,10 @@
 	$titre = "Profil";
 	require_once("action/EditProfilAction.php");
 	
-	$action = new EditProfilAction(false);
+	$action = new EditProfilAction();
 	$action->execute();
 	
 	require_once("partial/site_header.php");
-
-	$error = $action->getError();
 
 ?>
 	<div class="col-sm-2"></div>
@@ -15,34 +13,28 @@
 	<div class="col-sm-8 profil">
 		<h2> Modifier vos informations personnels</h2>
 
-		<?php
-			if(strlen($error) != 0){
-				?>
-				<div class="alert alert-danger">
-					<?php echo $error; ?>
-				</div>
-				<?php
-			}
-		?>
+
+		<div id="message"></div>
+
 
 		<div class="row form_row">
 			<div class="col-sm-4">Nom d'usager:</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" disabled required/>
+				<p class="form-control-static" id="username">Nom d'usager</p>
 			</div>
 		</div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Prénom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
+				<p class="form-control-static" id="firstName">Prénom</p>
 			</div>
 		</div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="lastName" placeholder="Nom"  required/>
+				<p class="form-control-static" id="lastName">Nom</p>
 			</div>
 		</div>
 
@@ -108,5 +100,5 @@
 ?>
 
 	<script>
-		window.onload = getUserInfos();
+		window.onload = fillProfilInfo();
 	</script>

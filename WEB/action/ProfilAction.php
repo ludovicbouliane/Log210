@@ -5,15 +5,12 @@
 
 		private $data = '';
 
-		public function __construct($isAuthenticatedRequired){
-			parent::__construct($isAuthenticatedRequired);
+		public function __construct(){
+			parent::__construct(CommonAction::$CLIENT_ACCOUNTTYPE);
 		}
 				
 		protected function executeAction(){
-			if(isset($_POST["getUsername"])){
-				$this->data = parent::getUsername();
-			}
-			else if(isset($_POST["getUserId"])){
+			if(isset($_POST["getUserId"])){
 				$this->data = parent::getUserId();	
 			}
 		}

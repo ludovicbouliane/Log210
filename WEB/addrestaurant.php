@@ -3,7 +3,7 @@
 	
 	require_once("action/AddRestaurantAction.php");
 
-	$action = new AddRestaurantAction(true);
+	$action = new AddRestaurantAction();
 	$action->execute();
 
 	require_once('partial/site_header.php');
@@ -13,6 +13,8 @@
 
 	<div class="col-sm-8 profil">
 		<h2> Ajouter un restaurant</h2>
+
+		<div id="message"></div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
@@ -67,7 +69,6 @@
 			<div class="col-sm-4">Restaurateur : </div>
 			<div class="col-sm-8">
 				<select id="listRestaurateur" class="form-control"> 
-					<option value="">Aucun</option>
 				</select>
 			</div>
 		</div>

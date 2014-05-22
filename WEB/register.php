@@ -2,7 +2,7 @@
 	$titre = "S'inscrire";
 	require_once("action/RegisterAction.php");
 	
-	$action = new RegisterAction(false);
+	$action = new RegisterAction();
 	$action->execute();
 
 	require_once("partial/header.php");
@@ -14,9 +14,7 @@
 	<div class="col-sm-8 register">
 		<h2> Créer un compte</h2>
 
-		<div class="alert alert-danger">
-			
-		</div>
+		<div id="message">	</div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Prénom :</div>

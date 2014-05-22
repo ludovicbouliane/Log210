@@ -1,9 +1,9 @@
 <?php
 	$titre = "Modifier un restaurant";
 	
-	require_once("action/DeleteRestaurantAction.php");
+	require_once("action/EditRestaurantAction.php");
 
-	$action = new DeleteRestaurantAction(true);
+	$action = new EditRestaurantAction();
 	$action->execute();
 
 	require_once('partial/site_header.php');
@@ -15,10 +15,20 @@
 	<div class="col-sm-8 profil">
 		<h2> Modifier un restaurant</h2>
 
+		<div id="message"></div>
+
+		<div class="row form_row">
+			<div class="col-sm-4">Restaurant : </div>
+			<div class="col-sm-8">
+				<select id="listRestaurant" class="form-control" onchange="fillRestaurantInfos()"> 
+				</select>
+			</div>
+		</div>
+
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom" required/>
+				<input type="text" class="form-control" id="name" placeholder="Nom" required/>
 			</div>
 		</div>
 
@@ -85,5 +95,5 @@
 	require_once('partial/site_footer.php');
 ?>
 <script type="text/javascript">
-	//window.onload = getRestaurantInfos();
+	window.onload = fillRestaurantList();
 </script>

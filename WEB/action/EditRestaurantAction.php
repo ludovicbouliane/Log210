@@ -1,14 +1,13 @@
 <?php
 	require_once("action/CommonAction.php");
 	
-	class RegisterAction extends CommonAction{
+	class EditRestaurantAction extends CommonAction{
 
 		public function __construct(){
-			parent::__construct(CommonAction::$PUBLIC_ACCOUNTTYPE);
+			parent::__construct(CommonAction::$CONTRACTOR_ACCOUNTTYPE);
 		}
 				
 		protected function executeAction(){
-			
-		}
 
+		}
 	}

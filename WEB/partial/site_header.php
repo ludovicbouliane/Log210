@@ -15,30 +15,44 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="addrestaurant">Ajouter un restaurant</a>
-							</li>
-							<li>
-								<a href="updaterestaurant">Modifier un restaurant</a>
-							</li>
-							<li>
-								<a href="deleterestaurant">Supprimer un restaurant</a>
-							</li>
-						</ul>
-					</li>
+					<?php
+						if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
+						{
+					?>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="addRestaurant">Ajouter un restaurant</a>
+								</li>
+								<li>
+									<a href="editRestaurant">Modifier un restaurant</a>
+								</li>
+								<li>
+									<a href="deleteRestaurant">Supprimer un restaurant</a>
+								</li>
+							</ul>
+						</li>
+					<?php
+						}
+					?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte</a>
 						<ul class="dropdown-menu">
+							<?php
+								if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE)
+								{
+							?>
+								<li>
+									<a href="editProfil">Modifier mon profil</a>
+								</li>
+							<?php
+								}
+							?>
 							<li>
-								<a href="editprofil">Modifier mon profil</a>
-							</li>
-							<li>
-								<a href="editpassword">Modifier le mot de passe</a>
+								<a href="editPassword">Modifier le mot de passe</a>
 							</li>
 							<li class="divider"></li>
 							<li>

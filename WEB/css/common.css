@@ -48,11 +48,5 @@ body{
 
 /** Line in the navbar */
 .icon-bar{
-background-color:#666;
-}
-
-.alert{
-	visibility:hidden;
-	padding:0px;
-	margin:0px;
+	background-color:#666;
 }

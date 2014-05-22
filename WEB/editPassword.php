@@ -2,7 +2,7 @@
 	$titre = "Modifier le mot de passe";
 	require_once("action/EditPasswordAction.php");
 	
-	$action = new EditPasswordAction(true);
+	$action = new EditPasswordAction();
 	$action->execute();
 
 	require_once("partial/site_header.php");
@@ -11,7 +11,7 @@
 <div class="col-md-6">
 	<h2>Modifier votre mot de passe</h2>
 
-	<div class="alert alert-danger">
+	<div id="message">
 		
 	</div>
 	
