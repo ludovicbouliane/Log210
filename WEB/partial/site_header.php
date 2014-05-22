@@ -46,13 +46,13 @@
 								{
 							?>
 								<li>
-									<a href="editprofil">Modifier mon profil</a>
+									<a href="editProfil">Modifier mon profil</a>
 								</li>
 							<?php
 								}
 							?>
 							<li>
-								<a href="editpassword">Modifier le mot de passe</a>
+								<a href="editPassword">Modifier le mot de passe</a>
 							</li>
 							<li class="divider"></li>
 							<li>
