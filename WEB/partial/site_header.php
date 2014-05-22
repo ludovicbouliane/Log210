@@ -23,13 +23,13 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="addrestaurant">Ajouter un restaurant</a>
+									<a href="addRestaurant">Ajouter un restaurant</a>
 								</li>
 								<li>
-									<a href="updaterestaurant">Modifier un restaurant</a>
+									<a href="editRestaurant">Modifier un restaurant</a>
 								</li>
 								<li>
-									<a href="deleterestaurant">Supprimer un restaurant</a>
+									<a href="deleteRestaurant">Supprimer un restaurant</a>
 								</li>
 							</ul>
 						</li>

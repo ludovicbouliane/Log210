@@ -1,9 +1,9 @@
 <?php
 	$titre = "Modifier un restaurant";
 	
-	require_once("action/DeleteRestaurantAction.php");
+	require_once("action/EditRestaurantAction.php");
 
-	$action = new DeleteRestaurantAction();
+	$action = new EditRestaurantAction();
 	$action->execute();
 
 	require_once('partial/site_header.php');
@@ -14,6 +14,8 @@
 
 	<div class="col-sm-8 profil">
 		<h2> Modifier un restaurant</h2>
+
+		<div id="message"></div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurant : </div>

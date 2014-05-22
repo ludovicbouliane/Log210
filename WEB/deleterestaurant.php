@@ -14,6 +14,8 @@
 	<div class="col-sm-8 profil">
 		<h2> Supprimer un restaurant</h2>
 
+		<div id="message"></div>
+
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurant : </div>
 			<div class="col-sm-8">

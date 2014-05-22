@@ -11,7 +11,7 @@
 <div class="col-md-6">
 	<h2>Modifier votre mot de passe</h2>
 
-	<div class="alert alert-danger">
+	<div id="message">
 		
 	</div>
 	

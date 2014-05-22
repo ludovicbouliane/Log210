@@ -14,9 +14,7 @@
 	<div class="col-sm-8 register">
 		<h2> Créer un compte</h2>
 
-		<div class="alert alert-danger">
-			
-		</div>
+		<div id="message">	</div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Prénom :</div>

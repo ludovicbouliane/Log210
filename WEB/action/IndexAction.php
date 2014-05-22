@@ -2,8 +2,6 @@
 	require_once("action/CommonAction.php");
 	
 	class IndexAction extends CommonAction{
-	
-		private $error = '';
 
 		public function __construct(){
 			parent::__construct(CommonAction::$PUBLIC_ACCOUNTTYPE);
@@ -29,10 +27,6 @@
 					$_SESSION["AccountType"] = CommonAction::$PUBLIC_ACCOUNTTYPE;
 				}
 			}
-		}
-
-		public function getError(){
-			return $this->error;
 		}
 
 		public function getLastUsernameUsed(){

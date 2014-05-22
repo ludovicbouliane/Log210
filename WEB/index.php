@@ -5,18 +5,14 @@
 	$action = new IndexAction();
 	$action->execute();
 
-	$error = $action->getError();
-
 	require_once("partial/header.php");
 ?>
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
 		
-		<div class="alert alert-danger">
-			<?php echo $error; ?>
-		</div>
-		
 		<div class="col-xs-12 login">
+			<div id="message"></div>
+
 			<div class="row form_row">
 				<div class="col-lg-3">
 					Nom d'usager : 
@@ -31,7 +27,7 @@
 				</div>
 				
 				<div class="col-lg-9">
-					<input type="password" class="form-control" id="password" placeholder="Mot de passe" tabindex="2" required/>
+					<input type="password" class="form-control" id="password" placeholder="Mot de passe" tabindex="2" onkeyup="parseKeyUp()" required/>
 				</div>
 			</div>
 			
