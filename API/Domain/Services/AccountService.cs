@@ -33,13 +33,11 @@ namespace Domain.Services
         {
             var response = new Response.Response();
 
-            var user = _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
+            var userAccount = _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
 
-            if (user != null)
+            if (userAccount != null)
             {
-                var userAccount = new UserAccount{ Id = user.Id };
-                userAccount.AccountType = GetAccountType(userAccount.Id);
-                response.Set(HttpStatusCode.OK, userAccount);
+                response.Set(HttpStatusCode.OK, BuildUserAccount(userAccount.Id));
 
                 return response;
             }
@@ -48,13 +46,32 @@ namespace Domain.Services
             return response;
         }
 
-        private string GetAccountType(string accountId)
+        private UserAccount BuildUserAccount(string accountId)
         {
-            if (_restaurantManagerRepository.GetSingle(a => a.AccountId == accountId) != null) return "Restaurant Manager";
-            if (_contractorRepository.GetSingle(a => a.AccountId == accountId) != null) return "Contractor";
-            if (_clientRepository.GetSingle(a => a.AccountId == accountId) != null) return "Client";
+            var userAccount = new UserAccount();
 
-            return String.Empty;
+            var restaurantManager = _restaurantManagerRepository.GetSingle(a => a.AccountId == accountId);
+            if (restaurantManager != null)
+            {
+                userAccount.Id = restaurantManager.Id;
+                userAccount.AccountType = "Restaurant Manager";
+            }
+
+            var contractor = _contractorRepository.GetSingle(a => a.AccountId == accountId);
+            if (contractor != null)
+            {
+                userAccount.Id = contractor.Id;
+                userAccount.AccountType = "Contractor";
+            }
+
+            var client = _clientRepository.GetSingle(a => a.AccountId == accountId);
+            if (client != null)
+            {
+                userAccount.Id = client.Id;
+                userAccount.AccountType = "Client";
+            }
+
+            return userAccount;
         }
 
         public IResponse UpdatePassword(PasswordUpdate passwordUpdate)
@@ -88,6 +105,21 @@ namespace Domain.Services
             _accountRepository.Insert(account);
 
             return account.Id;
+        }
+
+        public IResponse GetUsernameByAccountId(string accountId)
+        {
+            var response = new Response.Response();
+
+            var account = _accountRepository.GetSingle(a => a.Id == accountId);
+            if (account != null)
+            {
+                response.Set(HttpStatusCode.OK, account.Username);
+                return response;
+            }
+
+            response.Set(HttpStatusCode.NotFound, "No user found");
+            return response;
         }
     }
 }

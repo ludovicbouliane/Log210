@@ -11,5 +11,6 @@ namespace Domain.Services.Interfaces
         IResponse UpdatePassword(PasswordUpdate passwordUpdate);
         bool IsUsernameAlreadyTaken(string username);
         string CreateAccount(Account account);
+        IResponse GetUsernameByAccountId(string accountId);
     }
 }
