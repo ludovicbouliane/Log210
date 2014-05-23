@@ -33,6 +33,20 @@
 								</li>
 							</ul>
 						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurateur</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="addRestaurant">Ajouter un restaurrateur</a>
+								</li>
+								<li>
+									<a href="editRestaurant">Modifier un restaurateur</a>
+								</li>
+								<li>
+									<a href="deleteRestaurant">Supprimer un restaurateur</a>
+								</li>
+							</ul>
+						</li>
 					<?php
 						}
 					?>
