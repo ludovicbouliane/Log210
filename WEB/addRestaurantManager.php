@@ -8,3 +8,7 @@
 
 	require_once('partial/site_header.php');
 ?>
+
+<?php
+	require_once("partial/site_footer.php");
+?>

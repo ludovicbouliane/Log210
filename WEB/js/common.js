@@ -61,8 +61,13 @@ function getUserId(){
 	return userId;
 }
 
+
+function getUsername(){
+	return getUsernameByAccountId(getUserInfos()["AccountId"]);
+}
+
 // gets the username
-function getUsername(accountId){
+function getUsernameByAccountId(accountId){
 	var username = '';
 
 	$.ajax({

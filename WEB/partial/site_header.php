@@ -37,13 +37,13 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurateur</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="addRestaurant">Ajouter un restaurrateur</a>
+									<a href="addRestaurantManager">Ajouter un restaurateur</a>
 								</li>
 								<li>
-									<a href="editRestaurant">Modifier un restaurateur</a>
+									<a href="editRestaurantManager">Modifier un restaurateur</a>
 								</li>
 								<li>
-									<a href="deleteRestaurant">Supprimer un restaurateur</a>
+									<a href="deleteRestaurantManager">Supprimer un restaurateur</a>
 								</li>
 							</ul>
 						</li>
@@ -53,7 +53,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="accountLink"></a>
 						<ul class="dropdown-menu">
 							<?php
 								if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE)
