@@ -26,10 +26,17 @@
 				$_SESSION["AccountType"] = CommonAction::$PUBLIC_ACCOUNTTYPE;
 			}
 
-			if ($_SESSION["AccountType"] < $this->pageVisibility) {
-				header("location:index");
-				exit;
-			}			
+			if(! in_array($_SESSION["AccountType"], $this->pageVisibility)){
+				if($_SESSION["AccountType"] !== $ADMIN_ACCOUNTTYPE){
+					header("location:index");
+					exit;
+				}
+			}
+
+			//if ($_SESSION["AccountType"] < $this->pageVisibility) {
+			//	header("location:index");
+			//	exit;
+			//}			
 			
 			$this->executeAction();
 		}

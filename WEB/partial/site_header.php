@@ -15,13 +15,14 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
-					<?php
-						if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
-						{
-					?>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
+
 							<ul class="dropdown-menu">
+								<?php
+									if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
+									{
+								?>
 								<li>
 									<a href="addRestaurant">Ajouter un restaurant</a>
 								</li>
@@ -31,11 +32,19 @@
 								<li>
 									<a href="deleteRestaurant">Supprimer un restaurant</a>
 								</li>
+								<?php
+									}
+								?>
 							</ul>
 						</li>
+						<?php
+							if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
+							{
+						?>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurateur</a>
 							<ul class="dropdown-menu">
+
 								<li>
 									<a href="addRestaurantManager">Ajouter un restaurateur</a>
 								</li>
@@ -47,13 +56,13 @@
 								</li>
 							</ul>
 						</li>
-					<?php
-						}
-					?>
+						<?php
+							}
+						?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="accountLink"></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="accountLink">Mon compte</a>
 						<ul class="dropdown-menu">
 							<?php
 								if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE)
