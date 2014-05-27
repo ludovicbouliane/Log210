@@ -22,10 +22,12 @@ function addRestaurant(){
 		success:function(data){
 
 			if(document.getElementById('listRestaurateur').value.length == 0){
-				showWarningMessage("Aucun restaurateur n'a été assigné pour le restaurant créé");
+				var mess = new MessageBox();
+				mess.show(2,"Aucun restaurateur n'a été assigné pour le restaurant créé");
 			}
 			else{
-				showSuccessMessage("Restaurant créé");	
+				var mess = new MessageBox();
+				mess.show(1,"Restaurant créé");
 			}
 
 			document.getElementById("name").value = '';
@@ -63,10 +65,12 @@ function updateRestaurant(){
 		data: info,
 		success:function(data){
 			if(document.getElementById('listRestaurateur').value.length == 0){
-				showWarningMessage("Aucun restaurateur n'a été assigné pour le restaurant mis à jour");
+				var mess = new MessageBox();
+				mess.show(2,"Aucun restaurateur n'a été assigné pour le restaurant mis à jour");
 			}
 			else{
-				showSuccessMessage("Restaurant mis à jour");	
+				var mess = new MessageBox();
+				mess.show(1,"Restaurant mis à jour");
 			}
 
 			document.getElementById("name").value = '';
@@ -93,7 +97,8 @@ function deleteRestaurant(){
 		success:function(data){
 			document.getElementById('listRestaurant').value = '';
 			
-			showSuccessMessage("Le restaurant a été supprimé");
+			var mess = new MessageBox();
+			mess.show(1,"Le restaurant a été supprimé");
 			fillRestaurantList();
 		}
 
@@ -102,8 +107,8 @@ function deleteRestaurant(){
 
 // fills a select with all restaurateur name.
 //	Used in the  addRestaurant and editRestaurant pages.
-function fillRestaurateurList(){
-	var listRestaurateur = getAllRestaurateur();
+function fillRestaurantManagerList(){
+	var listRestaurateur = getAllRestaurantManager();
 
 	var selectContainer = document.getElementById('listRestaurateur');
 

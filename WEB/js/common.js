@@ -83,7 +83,7 @@ function getUsernameByAccountId(accountId){
 }
 
 // gets the name and id of all restaurateur
-function getAllRestaurateur(){
+function getAllRestaurantManager(){
 	var restaurateur = '';
 	$.ajax({
 		type:"GET",
@@ -159,46 +159,4 @@ function addNoneOption(){
 
 	noneOption.appendChild(none);	
 	return noneOption;
-}
-
-// Shows a success message alert
-function showSuccessMessage(message){
-	var messageDiv = document.getElementById('message');
-	
-	while (messageDiv.hasChildNodes()) {
- 	   messageDiv.removeChild(messageDiv.lastChild);
-	}
-
-	var msg = document.createTextNode(message);
-	
-	messageDiv.setAttribute("class", "alert alert-success");
-	messageDiv.appendChild(msg);
-}
-
-// Shows a error message alert
-function showErrorMessage(error){
-	var messageDiv = document.getElementById('message');
-
-	while (messageDiv.hasChildNodes()) {
- 	   messageDiv.removeChild(messageDiv.lastChild);
-	}
-
-	var msg = document.createTextNode(error);
-
-	messageDiv.setAttribute("class", "alert alert-danger");
-	messageDiv.appendChild(msg);
-}
-
-//shows a warning message alert
-function showWarningMessage(warning){
-	var messageDiv = document.getElementById('message');
-
-	while (messageDiv.hasChildNodes()) {
- 	   messageDiv.removeChild(messageDiv.lastChild);
-	}
-
-	var msg = document.createTextNode(warning);
-
-	messageDiv.setAttribute("class", "alert alert-warning");
-	messageDiv.appendChild(msg);
 }

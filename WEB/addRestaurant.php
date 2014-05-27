@@ -87,5 +87,5 @@
 	require_once('partial/site_footer.php');
 ?>
 <script>
-	window.onload = fillRestaurateurList();
+	window.onload = fillRestaurantManagerList();
 </script>

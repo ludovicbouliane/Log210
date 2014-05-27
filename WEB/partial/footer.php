@@ -1,8 +1,8 @@
 		</div>
 		<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/MessageBox.js"></script>
 		<script type="text/javascript" src="/js/common.js"></script>
-		
 
 		<?php
 

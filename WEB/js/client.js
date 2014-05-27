@@ -36,7 +36,8 @@ function authenticateUser(info){
 		},
 		error:function(data){
 			document.getElementById('password').value = ''
-			showErrorMessage("Le nom d'usager ou le mot de passe est incorrect");
+			var mess = new MessageBox();
+			mess.show(3,"Le nom d'usager ou le mot de passe est incorrect");
 		}
 	});		
 }
@@ -68,10 +69,12 @@ function register(){
 		contentType:"application/json",
 		data: info,
 		success : function(data){
-			showSuccessMessage("Votre compte a été créé!!");
+			var mess = new MessageBox();
+			mess.show(1,"Votre compte a été créé!!");
 		},
 		error : function(data){
-			showErrorMessage("Création du compte impossible");
+			var mess = new MessageBox();
+			mess.show(3,"Création du compte impossible");
 		}
 	});	
 }
@@ -101,10 +104,12 @@ function updateClient(){
 		contentType:"application/json",
 		data: info,
 		success:function(data){
-			showSuccessMessage("Votre compte a été mis à jour");
+			var mess = new MessageBox();
+			mess.show(1,"Votre compte a été mis à jour");	
 		},
 		error : function(data){
-			showErrorMessage("Mis à jour du compte impossible");
+			var mess = new MessageBox();
+			mess.show(3,"Mis à jour du compte impossible");
 		}
 	});
 }
@@ -131,10 +136,12 @@ function updatePassword(){
 				document.getElementById('newPassword').value = '';
 				document.getElementById('confirmNewPassword').value = '';
 
-				showSuccessMessage("Mot de passe mis à jour");
+				var mess = new MessageBox();
+				mess.show(1,"Mot de passe mis à jour");	
 			},
 			error : function(data){
-				showErrorMessage("Mis à jour du mot de passe impossible");
+				var mess = new MessageBox();
+				mess.show(3,"Mis à jour du mot de passe impossible");
 			}
 		});
 	}
