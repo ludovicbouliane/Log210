@@ -1,43 +1,42 @@
 function MessageBox(){
 	
-	var MSG_TYPE_SUCCESS = 1;
-	var MSG_TYPE_WARNING = 2;
-	var MSG_TYPE_ERROR   = 3;
+	this.MSG_TYPE_SUCCESS = 1;
+	this.MSG_TYPE_WARNING = 2;
+	this.MSG_TYPE_ERROR   = 3;
 
-	var container = document.getElementById('message');
-	var me = this;
+	this.container = document.getElementById('message');
+	this.me = this;
 
 	this.show = function(msgType,message){
 		var msg = document.createTextNode(message);
 
-		if(msgType == MSG_TYPE_SUCCESS){
-			container.setAttribute("class", "alert alert-success");
+		if(msgType == this.MSG_TYPE_SUCCESS){
+			this.container.setAttribute("class", "alert alert-success");
 		}
-		else if(msgType == MSG_TYPE_WARNING){
-			container.setAttribute("class", "alert alert-warning");
+		else if(msgType == this.MSG_TYPE_WARNING){
+			this.container.setAttribute("class", "alert alert-warning");
 		}
-		else if(msgType == MSG_TYPE_ERROR){
-			container.setAttribute("class", "alert alert-danger");
+		else if(msgType == this.MSG_TYPE_ERROR){
+			this.container.setAttribute("class", "alert alert-danger");
 		}
 
-		container.appendChild(msg);
+		this.container.appendChild(msg);
 
 		$('#message').animate({
 			opacity:1	
 		},1000,function(){
-			setTimeout(me.hide,2000);	
+			setTimeout(this.me.hide,2000);	
 		});
 	}
 
 	this.hide = function(){
-		console.log('here');
 		$('#message').animate({
 			opacity:0	
 		},1000,function(){
-			while (container.hasChildNodes()) {
-		 	   container.removeChild(container.lastChild);
+			while (this.container.hasChildNodes()) {
+		 	   this.container.removeChild(this.container.lastChild);
 			}
-			container.setAttribute("class","");
+			this.container.setAttribute("class","");
 		});
 	}	
 

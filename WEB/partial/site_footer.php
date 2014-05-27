@@ -3,8 +3,8 @@
 	require_once('footer.php');
 ?>
 <script>
-	var username  = getUsername();
-	if(username !== ""){
+	var username ;// = getUsername();
+	if(username !== "" && typeof username !== "undefined"){
 		document.getElementById('accountLink').innerHTML =	username;
 	}
 </script>

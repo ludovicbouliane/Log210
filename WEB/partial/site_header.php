@@ -1,5 +1,6 @@
 <?php
 	$title = "Ajouter un restaurant";
+
 	require_once('header.php');
 ?>
 <div class=" row page">
@@ -59,6 +60,10 @@
 					<?php
 						}
 					?>
+
+					<li>
+						<a href="restaurantMenu">Menu</a>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">

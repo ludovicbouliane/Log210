@@ -54,3 +54,7 @@ body{
 .icon-bar{
 	background-color:#666;
 }
+
+.table>tbody>tr.active>td{
+	background-color:#ccc;
+}

@@ -64,5 +64,5 @@
 ?>
 
 <script>
-	//fillRestaurantWithNoRestaurantManagerList();
+	fillRestaurantList();
 </script>

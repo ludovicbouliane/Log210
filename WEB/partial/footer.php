@@ -13,7 +13,8 @@
 
 			} else if(strpos($_SERVER["REQUEST_URI"], "Menu") !== false){
 		?>
-				<script type="text/javascript" src="/js/restaurantMenu.js"></script>				
+				<script type="text/javascript" src="/js/restaurantMenu.js"></script>
+				<script type="text/javascript" src="/js/Dish.js"></script>
 		<?php
 			} else if(strpos($_SERVER["REQUEST_URI"], "Restaurant") !== false){
 		?>
