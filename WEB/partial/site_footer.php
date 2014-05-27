@@ -3,5 +3,8 @@
 	require_once('footer.php');
 ?>
 <script>
-	document.getElementById('accountLink').innerHTML =	getUsername();
+	var username  = getUsername();
+	if(username !== ""){
+		document.getElementById('accountLink').innerHTML =	username;
+	}
 </script>

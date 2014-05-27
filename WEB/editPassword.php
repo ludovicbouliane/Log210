@@ -8,7 +8,7 @@
 	require_once("partial/site_header.php");
 ?>
 <div class="col-md-3"></div>
-<div class="col-md-6">
+<div class="col-md-6 content">
 	<h2>Modifier votre mot de passe</h2>
 
 	<div id="message">

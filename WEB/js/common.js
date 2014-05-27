@@ -160,3 +160,29 @@ function addNoneOption(){
 	noneOption.appendChild(none);	
 	return noneOption;
 }
+
+// fills a select with all restaurant name.
+//	Used in the deleteRestaurant and editRestaurant pages.
+function fillRestaurantList(){
+	var listRestaurateur = getAllRestaurant();
+
+	var selectContainer = document.getElementById('listRestaurant');
+
+	while (selectContainer.hasChildNodes()) {
+ 	   selectContainer.removeChild(selectContainer.lastChild);
+	}
+		
+	selectContainer.appendChild(addNoneOption());
+
+	for(var i=0 ; i<listRestaurateur.length ; i++){
+		var rest = listRestaurateur[i];
+		
+		var option = document.createElement("option");	
+		option.setAttribute("value",rest["Id"]);
+
+		var name = document.createTextNode(rest["Name"]);
+
+		option.appendChild(name);	
+		selectContainer.appendChild(option);
+	}
+}

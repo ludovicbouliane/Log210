@@ -10,7 +10,7 @@
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
 		
-		<div class="col-xs-12 login">
+		<div class="col-xs-12 content login">
 			<div id="message"></div>
 
 			<div class="row form_row">

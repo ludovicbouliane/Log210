@@ -11,7 +11,7 @@
 	
 	<div class="col-sm-2"></div>
 
-	<div class="col-sm-8 profil">
+	<div class="col-sm-8 content">
 		<h2> Ajouter un restaurant</h2>
 
 		<div id="message"></div>
@@ -68,7 +68,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurateur : </div>
 			<div class="col-sm-8">
-				<select id="listRestaurateur" class="form-control"> 
+				<select id="listRestaurantManager" class="form-control"> 
 				</select>
 			</div>
 		</div>
