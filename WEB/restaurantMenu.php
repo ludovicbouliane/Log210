@@ -9,7 +9,7 @@
 	require_once('partial/site_header.php');
 ?>
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	<div class="col-sm-8 content">
 		<h2>Gérer un menu</h2>
 
 		<div class="message"></div>
@@ -32,7 +32,7 @@
 
 		<div class="row form_row">
 			<div class="table-responsive">
-				<table class="table table-stripped table-hover">
+				<table class="table table-stripped table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>Nom du plat</th>
@@ -64,10 +64,21 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Description</div>
 			<div class="col-sm-8">
-				<textarea class="form-control" rows="3"></textarea>
+				<textarea class="form-control" rows="3" id="description" placeholder="Description"></textarea>
 			</div>
 		</div>
 
+		<div clas="row form_row">
+			<div class="col-sm-4">
+				<input type="submit" value="Ajouter un plat" class="btn btn-default" id="btn_add" onclick="addDish()" />
+			</div>
+			<div class="col-sm-4">
+				<input type="submit" value="Modifier le plat" class="btn btn-default" id="btn_edit" onclick="" disabled/>
+			</div>
+			<div class="col-sm-4">
+				<input type="submit" value="Supprimer le plat" class="btn btn-default" id="btn_delete" onclick="deleteDish()" disabled/>
+			</div>
+		</div>	
 	</div>
 	<div class="col-sm-2"></div>
 
@@ -79,8 +90,4 @@
 
 <script>
 	fillRestaurantList();
-	addDish();
-	addDish();
-	addDish();
-	addDish();
 </script>
