@@ -15,50 +15,50 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
 
-							<ul class="dropdown-menu">
-								<?php
-									if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
-									{
-								?>
-								<li>
-									<a href="addRestaurant">Ajouter un restaurant</a>
-								</li>
-								<li>
-									<a href="editRestaurant">Modifier un restaurant</a>
-								</li>
-								<li>
-									<a href="deleteRestaurant">Supprimer un restaurant</a>
-								</li>
-								<?php
-									}
-								?>
-							</ul>
-						</li>
-						<?php
-							if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
-							{
-						?>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurateur</a>
-							<ul class="dropdown-menu">
+						<ul class="dropdown-menu">
+							<?php
+								if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
+								{
+							?>
+							<li>
+								<a href="addRestaurant">Ajouter un restaurant</a>
+							</li>
+							<li>
+								<a href="editRestaurant">Modifier un restaurant</a>
+							</li>
+							<li>
+								<a href="deleteRestaurant">Supprimer un restaurant</a>
+							</li>
+							<?php
+								}
+							?>
+						</ul>
+					</li>
+					<?php
+						if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
+						{
+					?>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurateur</a>
+						<ul class="dropdown-menu">
 
-								<li>
-									<a href="addRestaurantManager">Ajouter un restaurateur</a>
-								</li>
-								<li>
-									<a href="editRestaurantManager">Modifier un restaurateur</a>
-								</li>
-								<li>
-									<a href="deleteRestaurantManager">Supprimer un restaurateur</a>
-								</li>
-							</ul>
-						</li>
-						<?php
-							}
-						?>
+							<li>
+								<a href="addRestaurantManager">Ajouter un restaurateur</a>
+							</li>
+							<li>
+								<a href="editRestaurantManager">Modifier un restaurateur</a>
+							</li>
+							<li>
+								<a href="deleteRestaurantManager">Supprimer un restaurateur</a>
+							</li>
+						</ul>
+					</li>
+					<?php
+						}
+					?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">

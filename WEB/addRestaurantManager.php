@@ -10,7 +10,7 @@
 ?>
 	<div class="col-sm-2"></div>
 
-	<div class="col-sm-8 content register">
+	<div class="col-sm-8 content">
 		<h2> Ajouter un restaurateur</h2>
 
 		<div id="message">	</div>
