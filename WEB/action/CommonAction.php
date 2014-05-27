@@ -31,12 +31,7 @@
 					header("location:index");
 					exit;
 				}
-			}
-
-			//if ($_SESSION["AccountType"] < $this->pageVisibility) {
-			//	header("location:index");
-			//	exit;
-			//}			
+			}	
 			
 			$this->executeAction();
 		}
