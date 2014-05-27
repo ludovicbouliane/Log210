@@ -6,16 +6,16 @@
 
 		<?php
 
-			if(strpos($_SERVER["REQUEST_URI"], "RestaurantManager.") !== false){
+			if(strpos($_SERVER["REQUEST_URI"], "RestaurantManager") !== false){
 		?>
 				<script type="text/javascript" src="/js/restaurantManager.js"></script>				
 		<?php
 
-			} else if(strpos($_SERVER["REQUEST_URI"], "Menu.") !== false){
+			} else if(strpos($_SERVER["REQUEST_URI"], "Menu") !== false){
 		?>
 				<script type="text/javascript" src="/js/restaurantMenu.js"></script>				
 		<?php
-			} else if(strpos($_SERVER["REQUEST_URI"], "Restaurant.") !== false){
+			} else if(strpos($_SERVER["REQUEST_URI"], "Restaurant") !== false){
 		?>
 				<script type="text/javascript" src="/js/restaurant.js"></script>				
 		<?php

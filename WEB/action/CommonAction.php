@@ -27,7 +27,7 @@
 			}
 
 			if(! in_array($_SESSION["AccountType"], $this->pageVisibility)){
-				if($_SESSION["AccountType"] !== $ADMIN_ACCOUNTTYPE){
+				if($_SESSION["AccountType"] !== CommonAction::$ADMIN_ACCOUNTTYPE){
 					header("location:index");
 					exit;
 				}

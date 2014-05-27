@@ -162,7 +162,7 @@ function fillRestaurantList(){
 function fillRestaurantInfos(){
 	var restaurantId = document.getElementById('listRestaurant').value;
 
-	fillRestaurateurList();
+	fillRestaurantManagerList();
 
 	if(restaurantId.length == 0){
 		document.getElementById("name").value = '';

@@ -65,7 +65,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="accountLink">Mon compte</a>
 						<ul class="dropdown-menu">
 							<?php
-								if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE)
+								if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE || $action->getAccountType() == CommonAction::$ADMIN_ACCOUNTTYPE)
 								{
 							?>
 								<li>
