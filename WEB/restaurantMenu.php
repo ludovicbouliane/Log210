@@ -73,7 +73,7 @@
 				<input type="submit" value="Ajouter un plat" class="btn btn-default" id="btn_add" onclick="addDish()" />
 			</div>
 			<div class="col-sm-4">
-				<input type="submit" value="Modifier le plat" class="btn btn-default" id="btn_edit" onclick="" disabled/>
+				<input type="submit" value="Modifier le plat" class="btn btn-default" id="btn_edit" onclick="editDish()" disabled/>
 			</div>
 			<div class="col-sm-4">
 				<input type="submit" value="Supprimer le plat" class="btn btn-default" id="btn_delete" onclick="deleteDish()" disabled/>

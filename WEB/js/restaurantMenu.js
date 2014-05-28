@@ -16,7 +16,36 @@ function addDish(){
 	listDishes.push(dish);
 
 	emptyDishInfo();
+	$('#name').focus();
 
+}
+
+function editDish(){
+	var activeRow = getActiveRow();
+	
+	activeRow.info = {
+		'Id' : activeRow.info["Id"],
+		'Name' : document.getElementById('name').value,
+		'Price' : document.getElementById('price').value,
+		'Description' : document.getElementById('description').value
+	};	
+
+	//Get back all dish
+	//And show then back
+	var temp = new Array();
+	var dish;
+	for (var i = 0; i < listDishes.length; i++) {
+		listDishes[i].deleteDish();
+		
+		dish = new Dish(dishTable);
+		dish.setInfo(listDishes[i].info);
+
+		temp.push(dish);
+
+	}
+
+	listDishes = temp;
+	console.log(listDishes);
 }
 
 //Deletes a dish
