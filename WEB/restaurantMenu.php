@@ -68,7 +68,7 @@
 			</div>
 		</div>
 
-		<div clas="row form_row">
+		<div class="row form_row">
 			<div class="col-sm-4">
 				<input type="submit" value="Ajouter un plat" class="btn btn-default" id="btn_add" onclick="addDish()" />
 			</div>
@@ -79,9 +79,14 @@
 				<input type="submit" value="Supprimer le plat" class="btn btn-default" id="btn_delete" onclick="deleteDish()" disabled/>
 			</div>
 		</div>	
+
+		<div class="row form_row">
+			<div class="col-sm-offset-4">
+				<input type="submit" value="Enregistrer le menu" class="btn btn-default" onclick="saveMenu()"/>
+			</div>
+		</div>
 	</div>
 	<div class="col-sm-2"></div>
-
 
 
 <?php
