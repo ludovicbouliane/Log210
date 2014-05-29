@@ -11,7 +11,7 @@
 
 	<div class="col-sm-2"></div>
 
-	<div class="col-sm-8 register">
+	<div class="col-sm-8 content register">
 		<h2> Créer un compte</h2>
 
 		<div id="message">	</div>

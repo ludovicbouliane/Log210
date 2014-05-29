@@ -6,7 +6,7 @@
 		private $error = '';
 
 		public function __construct(){
-			parent::__construct(CommonAction::$CLIENT_ACCOUNTTYPE);
+			parent::__construct(array(CommonAction::$CLIENT_ACCOUNTTYPE));
 		}
 				
 		protected function executeAction(){

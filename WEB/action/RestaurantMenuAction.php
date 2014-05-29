@@ -1,10 +1,10 @@
 <?php
 	require_once("action/CommonAction.php");
 	
-	class DeleteRestaurantAction extends CommonAction{
+	class RestaurantMenuAction extends CommonAction{
 
 		public function __construct(){
-			parent::__construct(array(CommonAction::$CONTRACTOR_ACCOUNTTYPE));
+			parent::__construct(array(CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE));
 		}
 				
 		protected function executeAction(){
