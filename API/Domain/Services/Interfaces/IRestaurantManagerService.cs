@@ -1,5 +1,6 @@
 ﻿using Domain.Response;
 using Model.ControllerModel;
+using Model.DomainModel;
 
 namespace Domain.Services.Interfaces
 {
@@ -7,5 +8,9 @@ namespace Domain.Services.Interfaces
     {
         IResponse GetAll();
         IResponse Create(RestaurantManagerWithAccount restaurantManagerWithAccount);
+        IResponse Update(RestaurantManager restaurantManager);
+        IResponse Delete(string restaurantManagerId);
+        IResponse GetRestaurantManagerById(string restaurantManagerId);
+        IResponse GetAllRestaurantManagerName();
     }
 }

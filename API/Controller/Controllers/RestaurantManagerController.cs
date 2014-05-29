@@ -35,5 +35,41 @@ namespace Controller.Controllers
             var response = _restaurantManagerService.GetAll();
             return ResponseMessage(response);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{restaurantManagerId}")]
+        public IHttpActionResult GetRestaurantManagerById(string restaurantManagerId)
+        {
+            var response = _restaurantManagerService.GetRestaurantManagerById(restaurantManagerId);
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("name")]
+        public IHttpActionResult GetAllRestaurantManagerName()
+        {
+            var response = _restaurantManagerService.GetAllRestaurantManagerName();
+            return ResponseMessage(response);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("")]
+        public IHttpActionResult Update([FromBody]RestaurantManager restaurantManager)
+        {
+            var response = _restaurantManagerService.Update(restaurantManager);
+            return ResponseMessage(response);
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("{restaurantManagerId}")]
+        public IHttpActionResult Delete(string restaurantManagerId)
+        {
+            var response = _restaurantManagerService.Delete(restaurantManagerId);
+            return ResponseMessage(response);
+        }
     }
 }

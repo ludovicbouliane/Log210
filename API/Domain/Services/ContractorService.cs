@@ -36,9 +36,10 @@ namespace Domain.Services
 
             var contractor = Mapper.Map<ContractorWithAccount, Contractor>(contractorWithAccount);
 
-            var accountId = _accountService.CreateAccount(contractorWithAccount.Account);
+            contractorWithAccount.Account.AccountType = "Contractor";
+            _accountService.CreateAccount(contractorWithAccount.Account);
             contractor.Id = ObjectId.GenerateNewId().ToString();
-            contractor.AccountId = accountId;
+            contractor.AccountUsername = contractorWithAccount.Account.Username;
 
             _contractorRepository.Insert(contractor);
 

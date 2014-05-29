@@ -34,14 +34,5 @@ namespace Controller.Controllers
             var response = _accountService.UpdatePassword(passwordUpdate);
             return ResponseMessage(response);
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("username/{accountId}")]
-        public IHttpActionResult GetUsernameByAccountId(string accountId)
-        {
-            var response = _accountService.GetUsernameByAccountId(accountId);
-            return ResponseMessage(response);
-        }
     }
 }

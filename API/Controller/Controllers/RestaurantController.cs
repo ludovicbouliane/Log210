@@ -40,7 +40,7 @@ namespace Controller.Controllers
         [Route("name")]
         public IHttpActionResult GetAllRestaurantName()
         {
-            var response = _restaurantService.GetAll();
+            var response = _restaurantService.GetAllRestaurantName();
             return ResponseMessage(response);
         }
 

@@ -5,7 +5,6 @@ using Domain.Response;
 using Domain.Services.Interfaces;
 using Model.ControllerModel;
 using Model.DomainModel;
-using MongoDB.Bson;
 
 namespace Domain.Services
 {
@@ -37,7 +36,7 @@ namespace Domain.Services
 
             if (userAccount != null)
             {
-                response.Set(HttpStatusCode.OK, BuildUserAccount(userAccount.Id));
+                response.Set(HttpStatusCode.OK, BuildUserAccount(userAccount.Username));
 
                 return response;
             }
@@ -46,28 +45,28 @@ namespace Domain.Services
             return response;
         }
 
-        private UserAccount BuildUserAccount(string accountId)
+        private UserAccount BuildUserAccount(string accountUsername)
         {
             var userAccount = new UserAccount();
 
-            var restaurantManager = _restaurantManagerRepository.GetSingle(a => a.AccountId == accountId);
+            var restaurantManager = _restaurantManagerRepository.GetSingle(a => a.AccountUsername == accountUsername);
             if (restaurantManager != null)
             {
-                userAccount.Id = restaurantManager.Id;
+                userAccount.Username = accountUsername;
                 userAccount.AccountType = "Restaurant Manager";
             }
 
-            var contractor = _contractorRepository.GetSingle(a => a.AccountId == accountId);
+            var contractor = _contractorRepository.GetSingle(a => a.AccountUsername == accountUsername);
             if (contractor != null)
             {
-                userAccount.Id = contractor.Id;
+                userAccount.Username = accountUsername;
                 userAccount.AccountType = "Contractor";
             }
 
-            var client = _clientRepository.GetSingle(a => a.AccountId == accountId);
+            var client = _clientRepository.GetSingle(a => a.AccountUsername == accountUsername);
             if (client != null)
             {
-                userAccount.Id = client.Id;
+                userAccount.Username = accountUsername;
                 userAccount.AccountType = "Client";
             }
 
@@ -78,7 +77,7 @@ namespace Domain.Services
         {
             var response = new Response.Response();
 
-            var account = _accountRepository.GetSingle(a => a.Id == passwordUpdate.Id);
+            var account = _accountRepository.GetSingle(a => a.Username == passwordUpdate.Username);
             if (account != null)
             {
                 account.Password = passwordUpdate.Password;
@@ -94,32 +93,12 @@ namespace Domain.Services
         public bool IsUsernameAlreadyTaken(string username)
         {
             var user = _accountRepository.GetSingle(a => a.Username == username);
-            if (user != null) return true;
-
-            return false;
+            return user != null;
         }
 
-        public string CreateAccount(Account account)
+        public void CreateAccount(Account account)
         {
-            account.Id = ObjectId.GenerateNewId().ToString();
             _accountRepository.Insert(account);
-
-            return account.Id;
-        }
-
-        public IResponse GetUsernameByAccountId(string accountId)
-        {
-            var response = new Response.Response();
-
-            var account = _accountRepository.GetSingle(a => a.Id == accountId);
-            if (account != null)
-            {
-                response.Set(HttpStatusCode.OK, account.Username);
-                return response;
-            }
-
-            response.Set(HttpStatusCode.NotFound, "No user found");
-            return response;
         }
     }
 }

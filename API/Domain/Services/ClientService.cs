@@ -38,9 +38,10 @@ namespace Domain.Services
 
             var client = Mapper.Map<ClientWithAccount, Client>(clientWithAccount);
 
-            var accountId = _accountService.CreateAccount(clientWithAccount.Account);
+            clientWithAccount.Account.AccountType = "Client";
+            _accountService.CreateAccount(clientWithAccount.Account);
             client.Id = ObjectId.GenerateNewId().ToString();
-            client.AccountId = accountId;
+            client.AccountUsername = clientWithAccount.Account.Username;
 
             _clientRepository.Insert(client);
 

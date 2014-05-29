@@ -13,14 +13,15 @@ namespace DataAccess.Repositories
 
                 var existingRestaurant = GetSingle(c => c.Id == restaurant.Id);
 
-                if (restaurant.Address != null) existingRestaurant.Address = restaurant.Address;
-                if (restaurant.City != null) existingRestaurant.City = restaurant.City;
-                if (restaurant.State != null) existingRestaurant.State = restaurant.State;
-                if (restaurant.Country != null) existingRestaurant.Country = restaurant.Country;
-                if (restaurant.ZipCode != null) existingRestaurant.ZipCode = restaurant.ZipCode;
+                if (restaurant.Address.Street != null) existingRestaurant.Address.Street = restaurant.Address.Street;
+                if (restaurant.Address.City != null) existingRestaurant.Address.City = restaurant.Address.City;
+                if (restaurant.Address.State != null) existingRestaurant.Address.State = restaurant.Address.State;
+                if (restaurant.Address.Country != null) existingRestaurant.Address.Country = restaurant.Address.Country;
+                if (restaurant.Address.ZipCode != null) existingRestaurant.Address.ZipCode = restaurant.Address.ZipCode;
                 if (restaurant.Name != null) existingRestaurant.Name = restaurant.Name;
                 if (restaurant.Telephone != null) existingRestaurant.Telephone = restaurant.Telephone;
                 if (restaurant.RestaurantManagerId != null) existingRestaurant.RestaurantManagerId = restaurant.RestaurantManagerId;
+                if (restaurant.ContractorId != null) existingRestaurant.ContractorId = restaurant.ContractorId;
 
                 collection.Save(existingRestaurant);
             }

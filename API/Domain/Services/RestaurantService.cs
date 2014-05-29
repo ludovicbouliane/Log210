@@ -77,7 +77,7 @@ namespace Domain.Services
             return response;
         }
 
-        public IResponse GetAll()
+        public IResponse GetAllRestaurantName()
         {
             var response = new Response.Response();
 

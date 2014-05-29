@@ -14,11 +14,11 @@ namespace DataAccess.Repositories
 
                 var existingClient = GetSingle(c => c.Id == client.Id);
 
-                if (client.Address != null) existingClient.Address = client.Address;
-                if (client.City != null) existingClient.City = client.City;
-                if (client.State != null) existingClient.State = client.State;
-                if (client.Country != null) existingClient.Country = client.Country;
-                if (client.ZipCode != null) existingClient.ZipCode = client.ZipCode;
+                if (client.Address.Street != null) existingClient.Address.Street = client.Address.Street;
+                if (client.Address.City != null) existingClient.Address.City = client.Address.City;
+                if (client.Address.State != null) existingClient.Address.State = client.Address.State;
+                if (client.Address.Country != null) existingClient.Address.Country = client.Address.Country;
+                if (client.Address.ZipCode != null) existingClient.Address.ZipCode = client.Address.ZipCode;
                 if (client.Telephone != null) existingClient.Telephone = client.Telephone;
 
                 if (client.BirthDate != DateTime.MinValue)

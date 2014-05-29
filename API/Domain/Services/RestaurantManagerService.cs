@@ -37,14 +37,62 @@ namespace Domain.Services
 
             var restaurantManager = Mapper.Map<RestaurantManagerWithAccount, RestaurantManager>(restaurantManagerWithAccount);
 
-            var accountId = _accountService.CreateAccount(restaurantManagerWithAccount.Account);
+            restaurantManagerWithAccount.Account.AccountType = "Restaurant Manager";
+            _accountService.CreateAccount(restaurantManagerWithAccount.Account);
             restaurantManager.Id = ObjectId.GenerateNewId().ToString();
-            restaurantManager.AccountId = accountId;
+            restaurantManager.AccountUsername = restaurantManagerWithAccount.Account.Username;
 
             _restaurantManagerRepository.Insert(restaurantManager);
 
             response.Set(HttpStatusCode.Created);
             return response;
+        }
+
+        public IResponse Update(RestaurantManager restaurantManager)
+        {
+            var response = new Response.Response();
+
+            var existingRestaurantManager = _restaurantManagerRepository.GetSingle(r => r.Id == restaurantManager.Id);
+            if (existingRestaurantManager == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No restaurant manager found");
+                return response;
+            }
+
+            _restaurantManagerRepository.Save(restaurantManager);
+
+            response.Set(HttpStatusCode.NoContent);
+            return response;
+        }
+
+        public IResponse Delete(string restaurantManagerId)
+        {
+            var response = new Response.Response();
+
+            _restaurantManagerRepository.Delete(restaurantManagerId);
+
+            response.Set(HttpStatusCode.OK);
+            return response;
+        }
+
+        public IResponse GetRestaurantManagerById(string restaurantManagerId)
+        {
+            var response = new Response.Response();
+            var restaurantManager = _restaurantManagerRepository.GetSingle(r => r.Id == restaurantManagerId);
+
+            if (restaurantManager == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No restaurant manager found");
+                return response;
+            }
+
+            response.Set(HttpStatusCode.OK, restaurantManager);
+            return response;
+        }
+
+        public IResponse GetAllRestaurantManagerName()
+        {
+            throw new NotImplementedException();
         }
 
         public IResponse GetAll()

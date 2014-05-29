@@ -52,6 +52,7 @@
     <Compile Include="ControllerModel\RestaurantName.cs" />
     <Compile Include="DomainModel\Account.cs" />
     <Compile Include="ControllerModel\PasswordUpdate.cs" />
+    <Compile Include="DomainModel\Address.cs" />
     <Compile Include="DomainModel\Client.cs" />
     <Compile Include="DomainModel\Contractor.cs" />
     <Compile Include="DomainModel\Restaurant.cs" />

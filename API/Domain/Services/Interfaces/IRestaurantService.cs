@@ -1,5 +1,4 @@
 ﻿using Domain.Response;
-using Model;
 using Model.DomainModel;
 
 namespace Domain.Services.Interfaces
@@ -10,6 +9,6 @@ namespace Domain.Services.Interfaces
         IResponse Update(Restaurant restaurant);
         IResponse Delete(string restaurantId);
         IResponse GetRestaurantById(string restaurantId);
-        IResponse GetAll();
+        IResponse GetAllRestaurantName();
     }
 }
