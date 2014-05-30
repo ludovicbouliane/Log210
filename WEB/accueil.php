@@ -8,7 +8,9 @@
 
 	require_once("partial/site_header.php");
 ?>
-	<h2>Bonjour</h2>
+	<div class="col-sm-8 content">
+		<h2>Bonjour</h2>
+	</div>
 <?php
 	require_once("partial/site_footer.php");
 ?>
