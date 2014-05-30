@@ -92,16 +92,20 @@ function register(){
 //Manage client account
 // Updates client information
 function updateClient(){
-	var userId = getUserId();
+	var username = getUsername();
+
+	var address = {
+		'Street' : 	document.getElementById('address').value,
+		'City' : 	document.getElementById('city').value,
+		'State' : 	document.getElementById('state').value,
+		'Country' : 	document.getElementById('country').value,
+		'ZipCode' : 	document.getElementById('zipCode').value,
+	};
 
 	var info = JSON.stringify({
 
-		'Id' : userId,
-		'Address' : 	document.getElementById('address').value,
-		'City' : 		document.getElementById('city').value,
-		'State' : 		document.getElementById('state').value,
-		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
+		'Username' : username,
+		'Address' : 	address,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});

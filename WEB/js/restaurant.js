@@ -2,16 +2,20 @@
 //Managing restaurant
 // creates a restaurant
 function addRestaurant(){
-	var info = JSON.stringify({
-		'ContractorId' :   		getUserId(),
-		'Name' : 				document.getElementById("name").value,
-		'Address' : 			document.getElementById('address').value,
+	var address = {
+		'Street' : 			document.getElementById('address').value,
 		'City' : 				document.getElementById('city').value,
 		'State' : 				document.getElementById('state').value,
 		'Country' : 			document.getElementById('country').value,
 		'ZipCode' : 			document.getElementById('zipCode').value,
-		'Telephone' : 			document.getElementById('phoneNumber').value,
-		'RestaurantManagerId' : document.getElementById('listRestaurateur').value
+	};
+
+	var info = JSON.stringify({
+		'Name' : 				      document.getElementById("name").value,
+		'Address' : 				  address,
+		'Telephone' : 				  document.getElementById('phoneNumber').value,
+		'RestaurantManagerUsername' : document.getElementById('listRestaurateur').value,
+		'ContractorUsername' :   	  getUsername()
 	});
 
 	$.ajax({
@@ -55,7 +59,7 @@ function updateRestaurant(){
 		'Country' : 			document.getElementById('country').value,
 		'ZipCode' : 			document.getElementById('zipCode').value,
 		'Telephone' : 			document.getElementById('phoneNumber').value,
-		'RestaurantManagerId' : document.getElementById('listRestaurateur').value
+		'RestaurantManagerUsername' : document.getElementById('listRestaurateur').value
 	});
 
 	$.ajax({
@@ -103,32 +107,6 @@ function deleteRestaurant(){
 		}
 
 	});
-}
-
-// fills a select with all restaurateur name.
-//	Used in the  addRestaurant and editRestaurant pages.
-function fillRestaurantManagerList(){
-	var listRestaurateur = getAllRestaurantManager();
-
-	var selectContainer = document.getElementById('listRestaurantManager');
-
-	while (selectContainer.hasChildNodes()) {
- 	   selectContainer.removeChild(selectContainer.lastChild);
-	}
-		
-	selectContainer.appendChild(addNoneOption());
-
-	for(var i=0 ; i<listRestaurateur.length ; i++){
-		var rest = listRestaurateur[i];
-		
-		var option = document.createElement("option");	
-		option.setAttribute("value",rest["Id"]);
-
-		var name = document.createTextNode(rest["FirstName"] + " " + rest["LastName"]);
-
-		option.appendChild(name);	
-		selectContainer.appendChild(option);
-	}
 }
 
 // fills all fields about a restaurant in the editRestaurant page.

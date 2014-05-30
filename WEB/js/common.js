@@ -164,3 +164,29 @@ function fillRestaurantList(){
 		selectContainer.appendChild(option);
 	}
 }
+
+// fills a select with all restaurateur name.
+//	Used in the  addRestaurant and editRestaurant pages.
+function fillRestaurantManagerList(){
+	var listRestaurateur = getAllRestaurantManager();
+
+	var selectContainer = document.getElementById('listRestaurantManager');
+
+	while (selectContainer.hasChildNodes()) {
+ 	   selectContainer.removeChild(selectContainer.lastChild);
+	}
+		
+	selectContainer.appendChild(addNoneOption());
+
+	for(var i=0 ; i<listRestaurateur.length ; i++){
+		var rest = listRestaurateur[i];
+		
+		var option = document.createElement("option");	
+		option.setAttribute("value",rest["Id"]);
+
+		var name = document.createTextNode(rest["FirstName"] + " " + rest["LastName"]);
+
+		option.appendChild(name);	
+		selectContainer.appendChild(option);
+	}
+}
