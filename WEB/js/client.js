@@ -50,15 +50,19 @@ function register(){
 		'Password' : encodePassword(document.getElementById('password').value)
 	};
 
-	var info = JSON.stringify({
-		'Account' : account,
-		'FirstName' :    document.getElementById('firstName').value,
-		'LastName' : 	document.getElementById('lastName').value,
-		'Address' : 	document.getElementById('address').value,
+	var address = {
+		'Street' : 	document.getElementById('address').value,
 		'City' : 	document.getElementById('city').value,
 		'State' : 	document.getElementById('state').value,
 		'Country' : 	document.getElementById('country').value,
 		'ZipCode' : 	document.getElementById('zipCode').value,
+	};
+
+	var info = JSON.stringify({
+		'Account' : account,
+		'FirstName' :    document.getElementById('firstName').value,
+		'LastName' : 	document.getElementById('lastName').value,
+		'Address' : 	address,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -71,6 +75,10 @@ function register(){
 		success : function(data){
 			var mess = new MessageBox();
 			mess.show(1,"Votre compte a été créé!!");
+
+		    setTimeout(function(){
+				authenticateUser( JSON.stringify(account));
+    		},2000); 
 		},
 		error : function(data){
 			var mess = new MessageBox();
@@ -119,10 +127,10 @@ function updatePassword(){
 
 	if(document.getElementById('newPassword').value == document.getElementById('confirmNewPassword').value){
 
-		var accountId = getUserInfos()["AccountId"];
+		var username = getUsername();
 	
 		var info = JSON.stringify({
-			'Id' : accountId,
+			'Username' : username,
 			'Password' : encodePassword(document.getElementById('newPassword').value)
 		});
 

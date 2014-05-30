@@ -8,10 +8,11 @@
 		}
 				
 		protected function executeAction(){
-			if(isset($_POST["Id"])){
+			if(isset($_POST["Username"])){
 				//Here we should get all information about the user
-				$_SESSION["Id"] = $_POST["Id"];
-				
+				$_SESSION["Username"] = $_POST["Username"];
+				setcookie("Username",$_POST["Username"]);
+
 				$role =  $_POST["AccountType"];
 				
 				if(strcmp($role,"Client") == 0){
@@ -31,8 +32,8 @@
 
 		public function getLastUsernameUsed(){
 			$username = '';
-			if(isset($_COOKIE["username"])){
-				$username = $_COOKIE["username"];
+			if(isset($_COOKIE["Username"])){
+				$username = $_COOKIE["Username"];
 			}
 
 			return $username;

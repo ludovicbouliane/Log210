@@ -45,40 +45,18 @@ function encodePassword(password){
 }
 
 //gets the userID
-function getUserId(){
-	var userId = '';
+function getUsername(){
+	var username = '';
 
 	$.ajax({
 		type:"POST",
 		url : 'profil.php',
 		async : false,
-		data : { 'getUserId' : 1},
-		success : function(data){
-			userId = data;
-		}
-	});
-
-	return userId;
-}
-
-
-function getUsername(){
-	return getUsernameByAccountId(getUserInfos()["AccountId"]);
-}
-
-// gets the username
-function getUsernameByAccountId(accountId){
-	var username = '';
-
-	$.ajax({
-		type:"GET",
-		url : API_URL + 'accounts/username/' + accountId,
-		async : false,
+		data : { 'getUsername' : 1},
 		success : function(data){
 			username = data;
 		}
 	});
-
 	return username;
 }
 
