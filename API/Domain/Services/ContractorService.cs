@@ -38,12 +38,26 @@ namespace Domain.Services
 
             contractorWithAccount.Account.AccountType = "Contractor";
             _accountService.CreateAccount(contractorWithAccount.Account);
-            contractor.Id = ObjectId.GenerateNewId().ToString();
-            contractor.AccountUsername = contractorWithAccount.Account.Username;
+            contractor.Username = contractorWithAccount.Account.Username;
 
             _contractorRepository.Insert(contractor);
 
             response.Set(HttpStatusCode.Created);
+            return response;
+        }
+
+        public IResponse GetContractorByUsername(string username)
+        {
+            var response = new Response.Response();
+            var contractor = _contractorRepository.GetSingle(c => c.Username == username);
+
+            if (contractor == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No contractor found");
+                return response;
+            }
+
+            response.Set(HttpStatusCode.OK, contractor);
             return response;
         }
     }

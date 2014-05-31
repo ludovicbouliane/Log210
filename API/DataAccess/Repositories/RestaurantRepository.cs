@@ -20,8 +20,7 @@ namespace DataAccess.Repositories
                 if (restaurant.Address.ZipCode != null) existingRestaurant.Address.ZipCode = restaurant.Address.ZipCode;
                 if (restaurant.Name != null) existingRestaurant.Name = restaurant.Name;
                 if (restaurant.Telephone != null) existingRestaurant.Telephone = restaurant.Telephone;
-                if (restaurant.RestaurantManagerId != null) existingRestaurant.RestaurantManagerId = restaurant.RestaurantManagerId;
-                if (restaurant.ContractorId != null) existingRestaurant.ContractorId = restaurant.ContractorId;
+                if (restaurant.ContractorUsername != null) existingRestaurant.ContractorUsername = restaurant.ContractorUsername;
 
                 collection.Save(existingRestaurant);
             }

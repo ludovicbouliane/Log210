@@ -10,5 +10,6 @@ namespace Domain.Services.Interfaces
         IResponse UpdatePassword(PasswordUpdate passwordUpdate);
         bool IsUsernameAlreadyTaken(string username);
         void CreateAccount(Account account);
+        void Delete(string username);
     }
 }

@@ -12,6 +12,7 @@ namespace WebService.Initializers
         {
             Mapper.CreateMap<ClientWithAccount, Client>();
             Mapper.CreateMap<RestaurantManagerWithAccount, RestaurantManager>();
+            Mapper.CreateMap<RestaurantManager, RestaurantManagerWithRestaurants>();
             Mapper.CreateMap<Restaurant, RestaurantName>();
             Mapper.CreateMap<ContractorWithAccount, Contractor>();
         }

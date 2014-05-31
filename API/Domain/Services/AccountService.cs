@@ -10,10 +10,16 @@ namespace Domain.Services
 {
     public class AccountService : IAccountService
     {
+        #region Fields
+
         private readonly IAccountRepository _accountRepository;
         private readonly IRestaurantManagerRepository _restaurantManagerRepository;
         private readonly IContractorRepository _contractorRepository;
         private readonly IClientRepository _clientRepository;
+
+        #endregion
+
+        #region Constructor
 
         public AccountService(IAccountRepository accountRepository, IRestaurantManagerRepository restaurantManagerRepository, IContractorRepository contractorRepository, IClientRepository clientRepository)
         {
@@ -28,11 +34,16 @@ namespace Domain.Services
             _clientRepository = clientRepository;
         }
 
+        #endregion
+
+        #region Methods
+
         public IResponse Authentificate(Account account)
         {
             var response = new Response.Response();
 
-            var userAccount = _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
+            var userAccount =
+                _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
 
             if (userAccount != null)
             {
@@ -40,7 +51,7 @@ namespace Domain.Services
 
                 return response;
             }
-            
+
             response.Set(HttpStatusCode.NotFound, "No user found");
             return response;
         }
@@ -49,21 +60,21 @@ namespace Domain.Services
         {
             var userAccount = new UserAccount();
 
-            var restaurantManager = _restaurantManagerRepository.GetSingle(a => a.AccountUsername == accountUsername);
+            var restaurantManager = _restaurantManagerRepository.GetSingle(a => a.Username == accountUsername);
             if (restaurantManager != null)
             {
                 userAccount.Username = accountUsername;
                 userAccount.AccountType = "Restaurant Manager";
             }
 
-            var contractor = _contractorRepository.GetSingle(a => a.AccountUsername == accountUsername);
+            var contractor = _contractorRepository.GetSingle(a => a.Username == accountUsername);
             if (contractor != null)
             {
                 userAccount.Username = accountUsername;
                 userAccount.AccountType = "Contractor";
             }
 
-            var client = _clientRepository.GetSingle(a => a.AccountUsername == accountUsername);
+            var client = _clientRepository.GetSingle(a => a.Username == accountUsername);
             if (client != null)
             {
                 userAccount.Username = accountUsername;
@@ -100,5 +111,12 @@ namespace Domain.Services
         {
             _accountRepository.Insert(account);
         }
+
+        public void Delete(string username)
+        {
+            _accountRepository.Delete(username);
+        }
+
+        #endregion
     }
 }

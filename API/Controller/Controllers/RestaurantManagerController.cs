@@ -38,19 +38,10 @@ namespace Controller.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("{restaurantManagerId}")]
-        public IHttpActionResult GetRestaurantManagerById(string restaurantManagerId)
+        [Route("{username}")]
+        public IHttpActionResult GetRestaurantManagerByUsername(string username)
         {
-            var response = _restaurantManagerService.GetRestaurantManagerById(restaurantManagerId);
-            return ResponseMessage(response);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("name")]
-        public IHttpActionResult GetAllRestaurantManagerName()
-        {
-            var response = _restaurantManagerService.GetAllRestaurantManagerName();
+            var response = _restaurantManagerService.GetRestaurantManagerByUsername(username);
             return ResponseMessage(response);
         }
 
@@ -65,10 +56,10 @@ namespace Controller.Controllers
 
         [HttpDelete]
         [AllowAnonymous]
-        [Route("{restaurantManagerId}")]
-        public IHttpActionResult Delete(string restaurantManagerId)
+        [Route("{username}")]
+        public IHttpActionResult Delete(string username)
         {
-            var response = _restaurantManagerService.Delete(restaurantManagerId);
+            var response = _restaurantManagerService.Delete(username);
             return ResponseMessage(response);
         }
     }

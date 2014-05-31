@@ -10,6 +10,6 @@ namespace Domain.Services.Interfaces
         IResponse Create(ClientWithAccount client);
         IResponse Update(Client client);
         IResponse GetAll();
-        IResponse GetClientById(string clientId);
+        IResponse GetClientByUsername(string username);
     }
 }

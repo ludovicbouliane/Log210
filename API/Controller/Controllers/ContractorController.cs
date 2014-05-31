@@ -26,5 +26,14 @@ namespace Controller.Controllers
             var response = _contractorService.Create(contractorWithAccount);
             return ResponseMessage(response);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{username}")]
+        public IHttpActionResult GetContractorByUsername(string username)
+        {
+            var response = _contractorService.GetContractorByUsername(username);
+            return ResponseMessage(response);
+        }
     }
 }
