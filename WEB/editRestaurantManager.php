@@ -15,6 +15,14 @@
 		<div id="message">	</div>
 
 		<div class="row form_row">
+			<div class="col-sm-4">Restaurateur : </div>
+			<div class="col-sm-8">
+				<select id="listRestaurantManager" class="form-control" onchange="fillRestaurantManagerInfos()"> 
+				</select>
+			</div>
+		</div>
+
+		<div class="row form_row">
 			<div class="col-sm-4">Prénom :</div>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
@@ -30,7 +38,8 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurant : </div>
 			<div class="col-sm-8">
-				<select id="listRestaurant" class="form-control"> 
+				<select id="listRestaurant" class="form-control" multiple="multiple"> 
+					<option value="">Aucun</option>
 				</select>
 			</div>
 		</div>
@@ -38,7 +47,7 @@
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-8">
-				<input type="submit" value="Ajouter" class="btn btn-default" onclick="editRestaurantManager()"/>
+				<input type="submit" value="Modifier" class="btn btn-default" onclick="editRestaurantManager()"/>
 			</div>
 		</div>
 		
@@ -49,5 +58,5 @@
 ?>
 
 <script>
-	fillRestaurantList();
+	fillRestaurantManagerList();
 </script>

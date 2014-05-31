@@ -43,7 +43,7 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurant : </div>
 			<div class="col-sm-8">
-				<select id="listRestaurant" class="form-control"> 
+				<select id="listRestaurant" class="form-control" multiple="multiple"> 
 				</select>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-8">
-				<input type="submit" value="Ajouter" class="btn btn-default" onclick="addReataurantManager()"/>
+				<input type="submit" value="Ajouter" class="btn btn-default" onclick="addRestaurantManager()"/>
 			</div>
 		</div>
 		
@@ -61,5 +61,5 @@
 ?>
 
 <script>
-	fillRestaurantList();
+	document.getElementById('listRestaurant').setAttribute('size',fillRestaurantList());
 </script>

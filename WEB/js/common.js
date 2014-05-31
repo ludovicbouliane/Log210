@@ -5,12 +5,12 @@ var API_URL = "http://log210.azurewebsites.net/api/";
 // gets all user informations
 function getUserInfos(){
 			
-	var userId = getUserId();
+	var username = getUsername();
 	var info = '';
 
 	$.ajax({
 		type:"GET",
-		url: API_URL + 'clients/'+ userId,
+		url: API_URL + 'clients/'+ username,
 		contentType:"application/json",
 		async : false
 		}).done(
@@ -93,6 +93,23 @@ function getAllRestaurant(){
 	return restaurant;
 }
 
+// gets all restaurant name and id
+function getAllRestaurantByContractor(){
+	var restaurant = '';
+
+	$.ajax({
+		type:"GET",
+		url: API_URL + 'restaurants/contractors/' + getUsername(),
+		contentType:"application/json",
+		async:false
+		}).done(
+			function(data){
+				restaurant = data;
+		}
+	);
+	return restaurant;
+}
+
 //gets all informations about a restaurant
 function getRestaurantInfos(restaurantId){
 
@@ -106,8 +123,8 @@ function getRestaurantInfos(restaurantId){
 		}).done(
 			function(data){
 				info = data;
-			}
-		);
+		}
+	);
 
 	return info;
 }
@@ -142,7 +159,7 @@ function addNoneOption(){
 // fills a select with all restaurant name.
 //	Used in the deleteRestaurant and editRestaurant pages.
 function fillRestaurantList(){
-	var listRestaurateur = getAllRestaurant();
+	var listRestaurateur = getAllRestaurantByContractor();
 
 	var selectContainer = document.getElementById('listRestaurant');
 
@@ -163,6 +180,8 @@ function fillRestaurantList(){
 		option.appendChild(name);	
 		selectContainer.appendChild(option);
 	}
+
+	return listRestaurateur.length+1;
 }
 
 // fills a select with all restaurateur name.
@@ -182,8 +201,8 @@ function fillRestaurantManagerList(){
 		var rest = listRestaurateur[i];
 		
 		var option = document.createElement("option");	
-		option.setAttribute("value",rest["Id"]);
-
+		option.setAttribute("value",rest["Username"]);
+		
 		var name = document.createTextNode(rest["FirstName"] + " " + rest["LastName"]);
 
 		option.appendChild(name);	

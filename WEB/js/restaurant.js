@@ -14,7 +14,7 @@ function addRestaurant(){
 		'Name' : 				      document.getElementById("name").value,
 		'Address' : 				  address,
 		'Telephone' : 				  document.getElementById('phoneNumber').value,
-		'RestaurantManagerUsername' : document.getElementById('listRestaurateur').value,
+		'RestaurantManagerUsername' : document.getElementById('listRestaurantManager').value,
 		'ContractorUsername' :   	  getUsername()
 	});
 
@@ -25,7 +25,7 @@ function addRestaurant(){
 		data: info,
 		success:function(data){
 
-			if(document.getElementById('listRestaurateur').value.length == 0){
+			if(document.getElementById('listRestaurantManager').value.length == 0){
 				var mess = new MessageBox();
 				mess.show(2,"Aucun restaurateur n'a été assigné pour le restaurant créé");
 			}
@@ -41,7 +41,7 @@ function addRestaurant(){
 			document.getElementById('country').value = '';
 			document.getElementById('zipCode').value = '';
 			document.getElementById('phoneNumber').value = '';
-			document.getElementById('listRestaurateur').value = '';
+			document.getElementById('listRestaurantManager').value = '';
 
 		}
 
@@ -59,7 +59,7 @@ function updateRestaurant(){
 		'Country' : 			document.getElementById('country').value,
 		'ZipCode' : 			document.getElementById('zipCode').value,
 		'Telephone' : 			document.getElementById('phoneNumber').value,
-		'RestaurantManagerUsername' : document.getElementById('listRestaurateur').value
+		'RestaurantManagerUsername' : document.getElementById('listRestaurantManager').value
 	});
 
 	$.ajax({
@@ -68,7 +68,7 @@ function updateRestaurant(){
 		contentType:"application/json",
 		data: info,
 		success:function(data){
-			if(document.getElementById('listRestaurateur').value.length == 0){
+			if(document.getElementById('listRestaurantManager').value.length == 0){
 				var mess = new MessageBox();
 				mess.show(2,"Aucun restaurateur n'a été assigné pour le restaurant mis à jour");
 			}
@@ -84,7 +84,7 @@ function updateRestaurant(){
 			document.getElementById('country').value = '';
 			document.getElementById('zipCode').value = '';
 			document.getElementById('phoneNumber').value = '';
-			document.getElementById('listRestaurateur').value = '';
+			document.getElementById('listRestaurantManager').value = '';
 
 			fillRestaurantList();
 		}
@@ -124,19 +124,20 @@ function fillRestaurantInfos(){
 		document.getElementById('country').value = '';
 		document.getElementById('zipCode').value = '';
 		document.getElementById('phoneNumber').value = '';
-		document.getElementById('listRestaurateur').value = '';
+		document.getElementById('listRestaurantManager').value = '';
 	}
 	else{
-		var info = getRestaurantInfos(restaurantId);
 
+		var info = getRestaurantInfos(restaurantId);
+		
 		document.getElementById("name").value = info["Name"];
-		document.getElementById('address').value = info["Address"];
-		document.getElementById('city').value = info["City"];
-		document.getElementById('state').value = info["State"];
-		document.getElementById('country').value = info["Country"];
-		document.getElementById('zipCode').value = info["ZipCode"];
+		document.getElementById('address').value = info["Address"]["Street"];
+		document.getElementById('city').value = info["Address"]["City"];
+		document.getElementById('state').value = info["Address"]["State"];
+		document.getElementById('country').value = info["Address"]["Country"];
+		document.getElementById('zipCode').value = info["Address"]["ZipCode"];
 		document.getElementById('phoneNumber').value = info["Telephone"];
-		document.getElementById('listRestaurateur').value = info["RestaurantManagerId"];
+		document.getElementById('listRestaurantManager').value = info["RestaurantManagerId"];
 		
 	}
 }

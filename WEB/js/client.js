@@ -168,11 +168,11 @@ function fillProfilInfo(){
 	document.getElementById('username').innerHTML = username;
 	document.getElementById('firstName').innerHTML = data["FirstName"];
 	document.getElementById('lastName').innerHTML= data["LastName"];
-	document.getElementById('address').value = data["Address"];
-	document.getElementById('city').value = data["City"];
-	document.getElementById('state').value = data["State"];
-	document.getElementById('country').value = data["Country"];
-	document.getElementById('zipCode').value = data["ZipCode"];
+	document.getElementById('address').value = data["Address"]["Street"];
+	document.getElementById('city').value = data["Address"]["City"];
+	document.getElementById('state').value = data["Address"]["State"];
+	document.getElementById('country').value = data["Address"]["Country"];
+	document.getElementById('zipCode').value = data["Address"]["ZipCode"];
 	document.getElementById('phoneNumber').value = data["Telephone"];
 	document.getElementById('birthDate').value = data["BirthDate"].substr(0,10);
 }
