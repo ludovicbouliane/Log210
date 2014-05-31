@@ -3,10 +3,10 @@ using Model.DomainModel;
 
 namespace Model.ControllerModel
 {
-    public class RestaurantManagerWithAccount
+    public class RestaurantManagerWithRestaurants
     {
-        public Account Account { get; set; }
-        public List<string> RestaurantIds { get; set; }
+        public string Username { get; set; }
+        public List<Restaurant> Restaurants { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }

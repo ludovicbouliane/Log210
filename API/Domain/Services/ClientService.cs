@@ -40,8 +40,7 @@ namespace Domain.Services
 
             clientWithAccount.Account.AccountType = "Client";
             _accountService.CreateAccount(clientWithAccount.Account);
-            client.Id = ObjectId.GenerateNewId().ToString();
-            client.AccountUsername = clientWithAccount.Account.Username;
+            client.Username = clientWithAccount.Account.Username;
 
             _clientRepository.Insert(client);
 
@@ -53,7 +52,7 @@ namespace Domain.Services
         {
             var response = new Response.Response();
 
-            var existingClient = _clientRepository.GetSingle(c => c.Id == client.Id);
+            var existingClient = _clientRepository.GetSingle(c => c.Username == client.Username);
             if (existingClient == null)
             {
                 response.Set(HttpStatusCode.NotFound, "No clients found");
@@ -83,10 +82,10 @@ namespace Domain.Services
             return response;
         }
 
-        public IResponse GetClientById(string clientId)
+        public IResponse GetClientByUsername(string username)
         {
             var response = new Response.Response();
-            var client = _clientRepository.GetSingle(c => c.Id == clientId);
+            var client = _clientRepository.GetSingle(c => c.Username == username);
 
             if (client == null)
             {

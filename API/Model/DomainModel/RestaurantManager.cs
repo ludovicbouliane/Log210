@@ -1,13 +1,19 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Model.DomainModel
 {
     public class RestaurantManager
     {
         [BsonId]
-        public string Id { get; set; }
-        public string AccountUsername { get; set; }
+        public string Username { get; set; }
+        public List<string> RestaurantIds { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public RestaurantManager()
+        {
+            RestaurantIds = new List<string>();
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Domain.Services.Interfaces
     public interface IContractorService
     {
         IResponse Create(ContractorWithAccount contractor);
+        IResponse GetContractorByUsername(string username);
     }
 }

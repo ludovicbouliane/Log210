@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using AutoMapper;
@@ -7,23 +8,36 @@ using Domain.Response;
 using Domain.Services.Interfaces;
 using Model.ControllerModel;
 using Model.DomainModel;
-using MongoDB.Bson;
 
 namespace Domain.Services
 {
     public class RestaurantManagerService : IRestaurantManagerService
     {
+        #region Fields
+
         private readonly IRestaurantManagerRepository _restaurantManagerRepository;
         private readonly IAccountService _accountService;
+        private readonly IRestaurantService _restaurantService;
 
-        public RestaurantManagerService(IRestaurantManagerRepository restaurantManagerRepository, IAccountService accountService)
+        #endregion
+
+        #region Constructor
+
+        public RestaurantManagerService(IRestaurantManagerRepository restaurantManagerRepository,
+            IAccountService accountService, IRestaurantService restaurantService)
         {
             if (restaurantManagerRepository == null) throw new ArgumentNullException("restaurantManagerRepository");
             if (accountService == null) throw new ArgumentNullException("accountService");
-            
+            if (restaurantService == null) throw new ArgumentNullException("restaurantService");
+
             _restaurantManagerRepository = restaurantManagerRepository;
             _accountService = accountService;
+            _restaurantService = restaurantService;
         }
+
+        #endregion
+
+        #region Methods
 
         public IResponse Create(RestaurantManagerWithAccount restaurantManagerWithAccount)
         {
@@ -35,12 +49,12 @@ namespace Domain.Services
                 return response;
             }
 
-            var restaurantManager = Mapper.Map<RestaurantManagerWithAccount, RestaurantManager>(restaurantManagerWithAccount);
+            var restaurantManager =
+                Mapper.Map<RestaurantManagerWithAccount, RestaurantManager>(restaurantManagerWithAccount);
 
             restaurantManagerWithAccount.Account.AccountType = "Restaurant Manager";
             _accountService.CreateAccount(restaurantManagerWithAccount.Account);
-            restaurantManager.Id = ObjectId.GenerateNewId().ToString();
-            restaurantManager.AccountUsername = restaurantManagerWithAccount.Account.Username;
+            restaurantManager.Username = restaurantManagerWithAccount.Account.Username;
 
             _restaurantManagerRepository.Insert(restaurantManager);
 
@@ -52,7 +66,8 @@ namespace Domain.Services
         {
             var response = new Response.Response();
 
-            var existingRestaurantManager = _restaurantManagerRepository.GetSingle(r => r.Id == restaurantManager.Id);
+            var existingRestaurantManager =
+                _restaurantManagerRepository.GetSingle(r => r.Username == restaurantManager.Username);
             if (existingRestaurantManager == null)
             {
                 response.Set(HttpStatusCode.NotFound, "No restaurant manager found");
@@ -65,20 +80,21 @@ namespace Domain.Services
             return response;
         }
 
-        public IResponse Delete(string restaurantManagerId)
+        public IResponse Delete(string username)
         {
             var response = new Response.Response();
 
-            _restaurantManagerRepository.Delete(restaurantManagerId);
+            _restaurantManagerRepository.Delete(username);
+            _accountService.Delete(username);
 
             response.Set(HttpStatusCode.OK);
             return response;
         }
 
-        public IResponse GetRestaurantManagerById(string restaurantManagerId)
+        public IResponse GetRestaurantManagerByUsername(string username)
         {
             var response = new Response.Response();
-            var restaurantManager = _restaurantManagerRepository.GetSingle(r => r.Id == restaurantManagerId);
+            var restaurantManager = _restaurantManagerRepository.GetSingle(r => r.Username == username);
 
             if (restaurantManager == null)
             {
@@ -86,13 +102,13 @@ namespace Domain.Services
                 return response;
             }
 
-            response.Set(HttpStatusCode.OK, restaurantManager);
-            return response;
-        }
+            var restaurantManagerWithRestaurant =
+                Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
+            restaurantManagerWithRestaurant.Restaurants =
+                _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
 
-        public IResponse GetAllRestaurantManagerName()
-        {
-            throw new NotImplementedException();
+            response.Set(HttpStatusCode.OK, restaurantManagerWithRestaurant);
+            return response;
         }
 
         public IResponse GetAll()
@@ -107,9 +123,22 @@ namespace Domain.Services
                 return response;
             }
 
-            response.Set(HttpStatusCode.OK, restaurantManagers);
+            var restaurantManagersWithRestaurant = new List<RestaurantManagerWithRestaurants>();
+
+            foreach (var restaurantManager in restaurantManagers)
+            {
+                var restaurantManagerWithRestaurant =
+                    Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
+                restaurantManagerWithRestaurant.Restaurants =
+                    _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
+                restaurantManagersWithRestaurant.Add(restaurantManagerWithRestaurant);
+            }
+
+            response.Set(HttpStatusCode.OK, restaurantManagersWithRestaurant);
 
             return response;
         }
+
+        #endregion
     }
 }

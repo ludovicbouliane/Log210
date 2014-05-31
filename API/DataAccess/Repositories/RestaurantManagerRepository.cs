@@ -11,10 +11,11 @@ namespace DataAccess.Repositories
             {
                 var collection = _database.GetCollection<RestaurantManager>(typeof(RestaurantManager).Name.ToLower() + "s");
 
-                var existingRestaurantManager = GetSingle(r => r.Id == restaurantManager.Id);
+                var existingRestaurantManager = GetSingle(r => r.Username == restaurantManager.Username);
 
                 if (restaurantManager.FirstName != null) existingRestaurantManager.FirstName = restaurantManager.FirstName;
                 if (restaurantManager.LastName != null) existingRestaurantManager.LastName = restaurantManager.LastName;
+                if (restaurantManager.RestaurantIds != null) existingRestaurantManager.RestaurantIds = restaurantManager.RestaurantIds;
 
                 collection.Save(existingRestaurantManager);
             }

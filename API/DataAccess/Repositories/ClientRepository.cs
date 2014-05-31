@@ -12,7 +12,7 @@ namespace DataAccess.Repositories
             {
                 var collection = _database.GetCollection<Client>(typeof(Client).Name.ToLower() + "s");
 
-                var existingClient = GetSingle(c => c.Id == client.Id);
+                var existingClient = GetSingle(c => c.Username == client.Username);
 
                 if (client.Address.Street != null) existingClient.Address.Street = client.Address.Street;
                 if (client.Address.City != null) existingClient.Address.City = client.Address.City;

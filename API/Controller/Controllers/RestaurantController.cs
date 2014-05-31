@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Http;
 using Domain.Services.Interfaces;
-using Model;
 using Model.DomainModel;
 
 namespace Controller.Controllers
@@ -28,7 +27,7 @@ namespace Controller.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("{restaurantId}")]
+        [Route("{restaurantManagerUsername}")]
         public IHttpActionResult GetRestaurantById(string restaurantId)
         {
             var response = _restaurantService.GetRestaurantById(restaurantId);
@@ -37,10 +36,37 @@ namespace Controller.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("contractors/{contractorUsername}")]
+        public IHttpActionResult GetRestaurantByContractorUsername(string contractorUsername)
+        {
+            var response = _restaurantService.GetRestaurantByContractorUsername(contractorUsername);
+            return ResponseMessage(response);
+        }
+
+        //[HttpGet]
+        //[AllowAnonymous]
+        //[Route("restaurantManagers/{restaurantManagerUsername}")]
+        //public IHttpActionResult GetRestaurantByRestaurantManagerUsername(string restaurantManagerUsername)
+        //{
+        //    var response = _restaurantService.GetRestaurantByRestaurantManagerUsername(restaurantManagerUsername);
+        //    return ResponseMessage(response);
+        //}
+
+        [HttpGet]
+        [AllowAnonymous]
         [Route("name")]
         public IHttpActionResult GetAllRestaurantName()
         {
             var response = _restaurantService.GetAllRestaurantName();
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("")]
+        public IHttpActionResult GetAllRestaurant()
+        {
+            var response = _restaurantService.GetAllRestaurant();
             return ResponseMessage(response);
         }
 
@@ -55,7 +81,7 @@ namespace Controller.Controllers
 
         [HttpDelete]
         [AllowAnonymous]
-        [Route("{restaurantId}")]
+        [Route("{restaurantManagerUsername}")]
         public IHttpActionResult Delete(string restaurantId)
         {
             var response = _restaurantService.Delete(restaurantId);

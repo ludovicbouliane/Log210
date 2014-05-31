@@ -1,4 +1,5 @@
-﻿using Domain.Response;
+﻿using System.Collections.Generic;
+using Domain.Response;
 using Model.DomainModel;
 
 namespace Domain.Services.Interfaces
@@ -10,5 +11,8 @@ namespace Domain.Services.Interfaces
         IResponse Delete(string restaurantId);
         IResponse GetRestaurantById(string restaurantId);
         IResponse GetAllRestaurantName();
+        IResponse GetAllRestaurant();
+        IResponse GetRestaurantByContractorUsername(string contractorUsername);
+        List<Restaurant> GetAllRestaurantsByRestaurantIds(IEnumerable<string> ids);
     }
 }

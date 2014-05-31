@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerModel\RestaurantManagerWithRestaurants.cs" />
     <Compile Include="ControllerModel\UserAccount.cs" />
     <Compile Include="ControllerModel\ClientWithAccount.cs" />
     <Compile Include="ControllerModel\ContractorWithAccount.cs" />

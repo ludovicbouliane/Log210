@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Http;
 using Domain.Services.Interfaces;
-using Model;
 using Model.ControllerModel;
 using Model.DomainModel;
 
@@ -29,10 +28,10 @@ namespace Controller.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("{clientId}")]
-        public IHttpActionResult GetClientById(string clientId)
+        [Route("{username}")]
+        public IHttpActionResult GetClientByUsername(string username)
         {
-            var response = _clientService.GetClientById(clientId);
+            var response = _clientService.GetClientByUsername(username);
             return ResponseMessage(response);
         }
 
