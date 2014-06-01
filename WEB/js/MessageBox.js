@@ -5,9 +5,14 @@ function MessageBox(){
 	this.MSG_TYPE_ERROR   = 3;
 
 	this.container = document.getElementById('message');
-	this.me = this;
+	var me = this;
 
 	this.show = function(msgType,message){
+		//Empties the div before adding content
+		while (this.container.hasChildNodes()) {
+		   this.container.removeChild(this.container.lastChild);
+		}
+
 		var msg = document.createTextNode(message);
 
 		if(msgType == this.MSG_TYPE_SUCCESS){
@@ -25,7 +30,7 @@ function MessageBox(){
 		$('#message').animate({
 			opacity:1	
 		},1000,function(){
-			setTimeout(this.me.hide,2000);	
+			setTimeout(me.hide,2000);	
 		});
 	}
 
@@ -33,10 +38,10 @@ function MessageBox(){
 		$('#message').animate({
 			opacity:0	
 		},1000,function(){
-			while (this.container.hasChildNodes()) {
-		 	   this.container.removeChild(this.container.lastChild);
+			while (me.container.hasChildNodes()) {
+		 	   me.container.removeChild(me.container.lastChild);
 			}
-			this.container.setAttribute("class","");
+			me.container.setAttribute("class","");
 		});
 	}	
 

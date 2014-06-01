@@ -50,15 +50,19 @@ function register(){
 		'Password' : encodePassword(document.getElementById('password').value)
 	};
 
-	var info = JSON.stringify({
-		'Account' : account,
-		'FirstName' :    document.getElementById('firstName').value,
-		'LastName' : 	document.getElementById('lastName').value,
-		'Address' : 	document.getElementById('address').value,
+	var address = {
+		'Street' : 	document.getElementById('address').value,
 		'City' : 	document.getElementById('city').value,
 		'State' : 	document.getElementById('state').value,
 		'Country' : 	document.getElementById('country').value,
 		'ZipCode' : 	document.getElementById('zipCode').value,
+	};
+
+	var info = JSON.stringify({
+		'Account' : account,
+		'FirstName' :    document.getElementById('firstName').value,
+		'LastName' : 	document.getElementById('lastName').value,
+		'Address' : 	address,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -71,6 +75,10 @@ function register(){
 		success : function(data){
 			var mess = new MessageBox();
 			mess.show(1,"Votre compte a été créé!!");
+
+		    setTimeout(function(){
+				authenticateUser( JSON.stringify(account));
+    		},2000); 
 		},
 		error : function(data){
 			var mess = new MessageBox();
@@ -84,16 +92,20 @@ function register(){
 //Manage client account
 // Updates client information
 function updateClient(){
-	var userId = getUserId();
+	var username = getUsername();
+
+	var address = {
+		'Street' : 	document.getElementById('address').value,
+		'City' : 	document.getElementById('city').value,
+		'State' : 	document.getElementById('state').value,
+		'Country' : 	document.getElementById('country').value,
+		'ZipCode' : 	document.getElementById('zipCode').value,
+	};
 
 	var info = JSON.stringify({
 
-		'Id' : userId,
-		'Address' : 	document.getElementById('address').value,
-		'City' : 		document.getElementById('city').value,
-		'State' : 		document.getElementById('state').value,
-		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
+		'Username' : username,
+		'Address' : 	address,
 		'Telephone' : 	document.getElementById('phoneNumber').value,
 		'BirthDate' : 	document.getElementById('birthDate').value
 	});
@@ -119,10 +131,10 @@ function updatePassword(){
 
 	if(document.getElementById('newPassword').value == document.getElementById('confirmNewPassword').value){
 
-		var accountId = getUserInfos()["AccountId"];
+		var username = getUsername();
 	
 		var info = JSON.stringify({
-			'Id' : accountId,
+			'Username' : username,
 			'Password' : encodePassword(document.getElementById('newPassword').value)
 		});
 
@@ -156,11 +168,11 @@ function fillProfilInfo(){
 	document.getElementById('username').innerHTML = username;
 	document.getElementById('firstName').innerHTML = data["FirstName"];
 	document.getElementById('lastName').innerHTML= data["LastName"];
-	document.getElementById('address').value = data["Address"];
-	document.getElementById('city').value = data["City"];
-	document.getElementById('state').value = data["State"];
-	document.getElementById('country').value = data["Country"];
-	document.getElementById('zipCode').value = data["ZipCode"];
+	document.getElementById('address').value = data["Address"]["Street"];
+	document.getElementById('city').value = data["Address"]["City"];
+	document.getElementById('state').value = data["Address"]["State"];
+	document.getElementById('country').value = data["Address"]["Country"];
+	document.getElementById('zipCode').value = data["Address"]["ZipCode"];
 	document.getElementById('phoneNumber').value = data["Telephone"];
 	document.getElementById('birthDate').value = data["BirthDate"].substr(0,10);
 }

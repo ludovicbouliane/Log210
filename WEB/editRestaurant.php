@@ -9,8 +9,6 @@
 	require_once('partial/site_header.php');
 
 ?>
-	
-	<div class="col-sm-2"></div>
 
 	<div class="col-sm-8 content">
 		<h2> Modifier un restaurant</h2>
@@ -89,8 +87,7 @@
 				<input type="submit" value="Modifier" class="btn btn-default" onclick="updateRestaurant()"/>
 			</div>
 		</div>
-
-	<div class="col-sm-2"></div>	
+	
 <?php
 	require_once('partial/site_footer.php');
 ?>

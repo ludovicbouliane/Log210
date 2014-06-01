@@ -8,8 +8,6 @@
 
 	require_once('partial/site_header.php');
 ?>
-	
-	<div class="col-sm-2"></div>
 
 	<div class="col-sm-8 content">
 		<h2> Ajouter un restaurant</h2>
@@ -80,7 +78,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2"></div>
 
 
 <?php

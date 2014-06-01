@@ -42,8 +42,8 @@
 			return $_SESSION["AccountType"] > CommonAction::$PUBLIC_ACCOUNTTYPE;
 		}
 
-		protected function getUserId(){
-			return $_SESSION["Id"];
+		protected function getUsername(){
+			return $_SESSION["Username"];
 		}
 
 		public function getAccountType(){

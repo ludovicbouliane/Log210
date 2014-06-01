@@ -7,8 +7,7 @@
 
 	require_once("partial/site_header.php");
 ?>
-<div class="col-md-3"></div>
-<div class="col-md-6 content">
+<div class="col-sm-8 content">
 	<h2>Modifier votre mot de passe</h2>
 
 	<div id="message">
@@ -41,7 +40,6 @@
 		<div class="col-sm-8">
 			<button class="btn btn-default" onclick="updatePassword()">Enregistrer</button>
 		</div>
-<div class="col-md-3"></div>
 <?php
 	require_once("partial/site_footer.php");
 ?>

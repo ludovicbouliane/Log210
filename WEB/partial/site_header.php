@@ -16,14 +16,27 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
+
+					<?php
+						if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE)
+						{
+					?>
+						<li>
+							<a href="">Restaurant</a>
+						</li>
+					<?php
+						}
+					?>
+
+					<?php
+						if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
+						{
+					?>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants</a>
 
 						<ul class="dropdown-menu">
-							<?php
-								if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
-								{
-							?>
+							
 							<li>
 								<a href="addRestaurant">Ajouter un restaurant</a>
 							</li>
@@ -33,15 +46,9 @@
 							<li>
 								<a href="deleteRestaurant">Supprimer un restaurant</a>
 							</li>
-							<?php
-								}
-							?>
 						</ul>
 					</li>
-					<?php
-						if($action->getAccountType() >= CommonAction::$CONTRACTOR_ACCOUNTTYPE)
-						{
-					?>
+					
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurateur</a>
 						<ul class="dropdown-menu">
@@ -59,11 +66,16 @@
 					</li>
 					<?php
 						}
+						
+						if($action->getAccountType() == CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE)
+						{
 					?>
-
 					<li>
 						<a href="restaurantMenu">Menu</a>
 					</li>
+					<?php
+						}
+					?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -92,3 +104,4 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-sm-2"></div>

@@ -13,8 +13,8 @@
 		}
 				
 		protected function executeAction(){
-			if(isset($_POST["getUserId"])){
-				$this->data = parent::getUserId();	
+			if(isset($_POST["getUsername"])){
+				$this->data = parent::getUsername();	
 			}
 			else if(isset($_POST["encode"])){
 				$this->data = sha1($_POST["Password"] . "log210");	
