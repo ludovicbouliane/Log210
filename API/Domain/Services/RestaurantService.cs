@@ -61,14 +61,9 @@ namespace Domain.Services
             return response;
         }
 
-        public IResponse Delete(string restaurantId)
+        public void Delete(string restaurantId)
         {
-            var response = new Response.Response();
-
             _restaurantRepository.Delete(restaurantId);
-
-            response.Set(HttpStatusCode.OK);
-            return response;
         }
 
         public IResponse GetRestaurantById(string restaurantId)
@@ -133,7 +128,7 @@ namespace Domain.Services
                 return response;
             }
 
-            response.Set(HttpStatusCode.OK, restaurants.Where(r => r.ContractorUsername == contractorUsername));
+            response.Set(HttpStatusCode.OK, restaurants.Where(r => r.ContractorUsername == contractorUsername).ToList());
             return response;
         }
 
