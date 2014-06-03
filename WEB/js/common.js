@@ -61,11 +61,11 @@ function getUsername(){
 }
 
 // gets the name and id of all restaurateur
-function getAllRestaurantManager(){
+function getAllRestaurantManagerByContractor(){
 	var restaurateur = '';
 	$.ajax({
 		type:"GET",
-		url: API_URL + 'restaurantManagers',
+		url: API_URL + 'restaurantManagers/contractors/' + getUsername(),
 		contentType:"application/json",
 		async:false
 		}).done(
@@ -73,24 +73,8 @@ function getAllRestaurantManager(){
 				restaurateur = data;
 			}
 		);
+		console.log(restaurateur);
 		return restaurateur;
-}
-
-// gets all restaurant name and id
-function getAllRestaurant(){
-	var restaurant = '';
-
-	$.ajax({
-		type:"GET",
-		url: API_URL + 'restaurants/name',
-		contentType:"application/json",
-		async:false
-		}).done(
-			function(data){
-				restaurant = data;
-			}
-		);
-	return restaurant;
 }
 
 // gets all restaurant name and id
@@ -107,6 +91,23 @@ function getAllRestaurantByContractor(){
 				restaurant = data;
 		}
 	);
+	return restaurant;
+}
+
+// gets all restaurant name and id
+function getAllRestaurant(){
+	var restaurant = '';
+
+	$.ajax({
+		type:"GET",
+		url: API_URL + 'restaurants/name',
+		contentType:"application/json",
+		async:false
+		}).done(
+			function(data){
+				restaurant = data;
+			}
+		);
 	return restaurant;
 }
 
@@ -187,7 +188,7 @@ function fillRestaurantList(){
 // fills a select with all restaurateur name.
 //	Used in the  addRestaurant and editRestaurant pages.
 function fillRestaurantManagerList(){
-	var listRestaurateur = getAllRestaurantManager();
+	var listRestaurateur = getAllRestaurantManagerByContractor();
 
 	var selectContainer = document.getElementById('listRestaurantManager');
 

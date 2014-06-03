@@ -10,7 +10,7 @@
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
 		
-		<div class="col-xs-12 content login">
+		<div class="col-xs-12 content login" id="loginForm">
 			<div id="message"></div>
 
 			<div class="row form_row">
@@ -18,7 +18,7 @@
 					Nom d'usager : 
 				</div>
 				<div class="col-lg-9">
-					<input type="text" class="form-control" id="username" placeholder="Nom d'usager" tabindex="1" value="<?php echo $action->getLastUsernameUsed(); ?>" required/>
+					<input type="text" class="form-control" id="username" placeholder="Nom d'usager" tabindex="1" value="<?php echo $action->getLastUsernameUsed(); ?>" name="username"/>
 				</div>
 			</div>
 			<div class="row form_row">
@@ -27,7 +27,7 @@
 				</div>
 				
 				<div class="col-lg-9">
-					<input type="password" class="form-control" id="password" placeholder="Mot de passe" tabindex="2" onkeyup="parseKeyUp()" required/>
+					<input type="password" class="form-control" id="password" placeholder="Mot de passe" tabindex="2" onkeyup="parseKeyUp()" name="password"/>
 				</div>
 			</div>
 			
@@ -46,3 +46,4 @@
 <?php
 	require_once("partial/footer.php");
 ?>
+<script type="text/javascript" src="/js/validator/indexValidator.js"></script>

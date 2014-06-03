@@ -11,7 +11,7 @@
 
 	<div class="col-sm-2"></div>
 
-	<div class="col-sm-8 content register">
+	<div class="col-sm-8 content register" id="registerForm">
 		<h2> Créer un compte</h2>
 
 		<div id="message">	</div>
@@ -19,74 +19,74 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Prénom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
+				<input type="text" class="form-control" id="firstName" placeholder="Prénom" name="firstName"/>
 			</div>
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="lastName" placeholder="Nom" required/>
+				<input type="text" class="form-control" id="lastName" placeholder="Nom" name="lastName"/>
 			</div>
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Adresse :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="address" placeholder="Adresse" required/>
+				<input type="text" class="form-control" id="address" placeholder="Adresse" name="address"/>
 			</div>
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-4">Ville :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="city" placeholder="Ville" required/>
+				<input type="text" class="form-control" id="city" placeholder="Ville" name="city"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Province :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="state" placeholder="Province" required/>
+				<input type="text" class="form-control" id="state" placeholder="Province" name="state"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Pays :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="country" placeholder="Pays" required/>
+				<input type="text" class="form-control" id="country" placeholder="Pays" name="country"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Code postal :</div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=7 class="form-control" id="zipCode" placeholder="Code postal" required/>
+				<input type="text" maxlength=7 class="form-control" id="zipCode" placeholder="Code postal" name="zipCode"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Numéro de téléphone <p>(555 555-5555)</p></div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=12 class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" value="555 555-5555" required/>
+				<input type="text" maxlength=12 class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" name="phoneNumber"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Date de naissance <p>(jj/mm/aaaa)</p></div>
 			<div class="col-sm-8">
-				<input type="text" maxlength=10 class="form-control" id="birthDate" placeholder="Date de naissance" value="2014-10-10" required/>
+				<input type="text" maxlength=10 class="form-control" id="birthDate" placeholder="Date de naissance" name="birthDate"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Nom d'usager</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" required/>
+				<input type="text" class="form-control" id="username" placeholder="Nom d'usager" name="username"/>
 			</div>
 		</div>
 		
 		<div class="row form_row">
 			<div class="col-sm-4">Mot de passe :</div>
 			<div class="col-sm-8">
-				<input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
+				<input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password"/>
 			</div>
 		</div>
 		
@@ -104,3 +104,5 @@
 <?php
 	require_once("partial/footer.php");
 ?>
+
+<script type="text/javascript" src="/js/validator/registerValidator.js"></script>

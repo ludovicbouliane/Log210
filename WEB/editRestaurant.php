@@ -73,15 +73,6 @@
 		</div>
 
 		<div class="row form_row">
-			<div class="col-sm-4">Restaurateur : </div>
-			<div class="col-sm-8">
-				<select id="listRestaurantManager" class="form-control"> 
-					<option value="">Aucun</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="row form_row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-8">
 				<input type="submit" value="Modifier" class="btn btn-default" onclick="updateRestaurant()"/>

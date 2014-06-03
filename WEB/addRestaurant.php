@@ -66,7 +66,8 @@
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurateur : </div>
 			<div class="col-sm-8">
-				<select id="listRestaurantManager" class="form-control"> 
+				<select id="listRestaurantManager" class="form-control" multiple="multiple">
+					<option>Aucune</option> 
 				</select>
 			</div>
 		</div>
