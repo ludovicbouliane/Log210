@@ -73,7 +73,6 @@ function getAllRestaurantManagerByContractor(){
 				restaurateur = data;
 			}
 		);
-		console.log(restaurateur);
 		return restaurateur;
 }
 

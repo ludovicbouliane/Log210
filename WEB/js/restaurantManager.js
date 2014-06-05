@@ -94,14 +94,16 @@ function fillRestaurantManagerInfos(){
 
 
 	var restaurantIds = new Array();
-
-	for (var i = 0; i < info["Restaurants"].length; i++) {
-		restaurantIds.push(info["Restaurants"][i]["Id"]);
+	
+	for (var i = 0; i < info["RestaurantIds"].length; i++) {
+		restaurantIds.push(info["RestaurantIds"]);
 	};
 
-	for (var i = 0; i < document.getElementById('listRestaurant').options.length; i++) {
+	console.log(restaurantIds.length);
 
-		if(restaurantIds.indexOf(document.getElementById('listRestaurant').options[i].value) != -1 ){
+	for (var i = 0; i < document.getElementById('listRestaurant').options.length; i++) {
+		if(restaurantIds.indexOf(document.getElementById('listRestaurant').options[i].value) > 0 )
+		{
 			document.getElementById('listRestaurant').options[i].selected = true;
 		}
 	};
