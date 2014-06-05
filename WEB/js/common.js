@@ -128,6 +128,24 @@ function getRestaurantInfos(restaurantId){
 
 	return info;
 }
+
+
+function getRestaurantManagerInfos(restaurantManagerId){
+	var info;
+
+	$.ajax({
+	type:"GET",
+	url: API_URL + 'restaurantManagers/' + restaurantManagerId,
+	contentType:"application/json",
+	async:false,
+	success:function(data){
+			info = data;
+		
+		}
+	});	
+
+	return info;
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Common setters
 //Notifies the system that the user is logged in
@@ -208,4 +226,16 @@ function fillRestaurantManagerList(){
 		option.appendChild(name);	
 		selectContainer.appendChild(option);
 	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// RestaurantManager modifier
+
+function updateRestaurantManager(info){
+	return $.ajax({
+	type:"POST",
+	url: API_URL + 'restaurantManagers',
+	contentType:"application/json",
+	data: info,
+	});
 }

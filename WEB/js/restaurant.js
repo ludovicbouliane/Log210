@@ -23,6 +23,7 @@ function addRestaurant(){
 		contentType:"application/json",
 		data: info,
 		success:function(data){
+			addRestaurantToRestaurantManager(document.getElementById("name").value);
 
 			if(document.getElementById('listRestaurantManager').value.length == 0){
 				var mess = new MessageBox();
@@ -49,7 +50,7 @@ function addRestaurant(){
 // Updates restaurant information
 function updateRestaurant(){
 	var address = {
-		'Street' : 			document.getElementById('address').value,
+		'Street' : 				document.getElementById('address').value,
 		'City' : 				document.getElementById('city').value,
 		'State' : 				document.getElementById('state').value,
 		'Country' : 			document.getElementById('country').value,
@@ -125,4 +126,42 @@ function fillRestaurantInfos(){
 		document.getElementById('phoneNumber').value = info["Telephone"];
 		
 	}
+}
+
+function addRestaurantToRestaurantManager(restaurantName){
+	var restaurantList = getAllRestaurantByContractor();
+
+	var restaurantId = '';
+
+	for (var i = 0; i < restaurantList.length; i++) {
+		if(restaurantList[i]["Name"] === restaurantName){
+			restaurantId = restaurantList[i]["Id"];
+			break;
+		}
+	}
+
+	var restaurantManagerList = getSelectedRestaurantManagerAssignedToRestaurant();
+
+	for (var i = 0; i < restaurantManagerList.length; i++) {
+
+		var managerInfos = getRestaurantManagerInfos(restaurantManagerList[i]);
+
+		managerInfos["RestaurantIds"].push(restaurantId);
+
+		updateRestaurantManager(JSON.stringify(managerInfos));
+	};
+
+}
+
+function getSelectedRestaurantManagerAssignedToRestaurant(){
+	
+	var optionsArray = new Array();
+
+	for (var i = 0; i < document.getElementById('listRestaurantManager').options.length; i++) {
+		if(document.getElementById('listRestaurantManager').options[i].selected && document.getElementById('listRestaurantManager').options[i].value !== ""){
+			optionsArray.push(document.getElementById('listRestaurantManager').options[i].value);
+		}
+	};
+
+	return optionsArray;
 }

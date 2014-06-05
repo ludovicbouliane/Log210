@@ -1,25 +1,17 @@
 
-//TODO add restaurant!!!!
 function addRestaurantManager(){
 	var account = {
 		'Username' : document.getElementById('username').value,
 		'Password' : encodePassword(document.getElementById('password').value)
 	};
-	
-	var optionsArray = getSelectedRestaurantAssignedToRestaurantManager;
 
-	var info = {
+	var info = JSON.stringify({
 		'Account' 	: 	account,
 		'FirstName' : 	document.getElementById("firstName").value,
-		'LastName'	:  	document.getElementById("lastName").value
-	};
+		'LastName'	:  	document.getElementById("lastName").value,
+		'RestaurantIds' : getSelectedRestaurantAssignedToRestaurantManager()
+	});
 
-	if(optionsArray.length > 0){
-		info["RestaurantIds"] = optionsArray;
-	}
-	
-	info = JSON.stringify(info);
-	
 	$.ajax({
 		type:"PUT",
 		url: API_URL + 'restaurantManagers',
@@ -44,30 +36,23 @@ function addRestaurantManager(){
 
 //TODO add restaurant!!!
 function editRestaurantManager(){
-	var info = {
+	var info = JSON.stringify({
 		'Username' 	: 	document.getElementById('listRestaurantManager').value,
 		'FirstName' : 	document.getElementById("firstName").value,
-		'LastName'	:  	document.getElementById("lastName").value
-	};
+		'LastName'	:  	document.getElementById("lastName").value,
+		'RestaurantIds' : getSelectedRestaurantAssignedToRestaurantManager()	
+	});
 
-	var optionsArray = getSelectedRestaurantAssignedToRestaurantManager();	
 
-	if(optionsArray.length > 0){
-		info["RestaurantIds"] = optionsArray;
-	}
-	
-	info = JSON.stringify(info);
-
-	$.ajax({
-		type:"POST",
-		url: API_URL + 'restaurantManagers',
-		contentType:"application/json",
-		data: info,
-		success:function(data){
+	updateRestaurantManager(info).success(
+		function(data){
 			var mess = new MessageBox();
 			mess.show(1,"Restaurateur mis à jour");
+
+			emptyRestaurantManagerInfos();
+			fillRestaurantManagerList();
 		}
-	});
+	);
 }
 
 function deleteRestaurantManager(){
@@ -86,45 +71,23 @@ function deleteRestaurantManager(){
 }
 
 function fillRestaurantManagerInfos(){
-	var info = getRestaurateurInfos();
+	var info = getRestaurantManagerInfos(document.getElementById('listRestaurantManager').value);
+
+	var listRestaurant = document.getElementById('listRestaurant');
 
 	document.getElementById('firstName').value = info["FirstName"];
 	document.getElementById('lastName').value = info["LastName"];
-	document.getElementById('listRestaurant').setAttribute('size',fillRestaurantList());
+	listRestaurant.setAttribute('size',fillRestaurantList());
 
 
-	var restaurantIds = new Array();
 	
-	for (var i = 0; i < info["RestaurantIds"].length; i++) {
-		restaurantIds.push(info["RestaurantIds"]);
-	};
-
-	console.log(restaurantIds.length);
-
-	for (var i = 0; i < document.getElementById('listRestaurant').options.length; i++) {
-		if(restaurantIds.indexOf(document.getElementById('listRestaurant').options[i].value) > 0 )
+	for (var i = 0; i < listRestaurant.options.length; i++) {
+		if(info["RestaurantIds"].indexOf(listRestaurant.options[i].value.trim()) >= 0 )
 		{
-			document.getElementById('listRestaurant').options[i].selected = true;
+			listRestaurant.options[i].selected = true;
 		}
 	};
 
-}
-
-function getRestaurateurInfos(){
-	var info;
-
-	$.ajax({
-	type:"GET",
-	url: API_URL + 'restaurantManagers/' + document.getElementById('listRestaurantManager').value,
-	contentType:"application/json",
-	async:false,
-	success:function(data){
-			info = data;
-		
-		}
-	});	
-
-	return info;
 }
 
 function getSelectedRestaurantAssignedToRestaurantManager(){
@@ -138,4 +101,11 @@ function getSelectedRestaurantAssignedToRestaurantManager(){
 	};
 
 	return optionsArray;
+}
+
+function emptyRestaurantManagerInfos(){
+	document.getElementById('firstName').value = '';
+	document.getElementById('lastName').value = '';
+	document.getElementById('lastName').value = '';
+	document.getElementById('listRestaurant').value = '';
 }
