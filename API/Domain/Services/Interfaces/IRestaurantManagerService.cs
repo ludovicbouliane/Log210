@@ -11,5 +11,7 @@ namespace Domain.Services.Interfaces
         IResponse Update(RestaurantManager restaurantManager);
         IResponse Delete(string username);
         IResponse GetRestaurantManagerByUsername(string username);
+        IResponse GetRestaurantManagerByContractorUsername(string contractorUsername);
+        IResponse DeleteRestaurant(string restaurantId);
     }
 }

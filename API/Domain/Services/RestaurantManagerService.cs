@@ -23,8 +23,7 @@ namespace Domain.Services
 
         #region Constructor
 
-        public RestaurantManagerService(IRestaurantManagerRepository restaurantManagerRepository,
-            IAccountService accountService, IRestaurantService restaurantService)
+        public RestaurantManagerService(IRestaurantManagerRepository restaurantManagerRepository, IAccountService accountService, IRestaurantService restaurantService)
         {
             if (restaurantManagerRepository == null) throw new ArgumentNullException("restaurantManagerRepository");
             if (accountService == null) throw new ArgumentNullException("accountService");
@@ -102,12 +101,58 @@ namespace Domain.Services
                 return response;
             }
 
-            var restaurantManagerWithRestaurant =
-                Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
-            restaurantManagerWithRestaurant.Restaurants =
-                _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
+            var restaurantManagerWithRestaurant = Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
+            restaurantManagerWithRestaurant.Restaurants = _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
 
             response.Set(HttpStatusCode.OK, restaurantManagerWithRestaurant);
+            return response;
+        }
+
+        public IResponse GetRestaurantManagerByContractorUsername(string contractorUsername)
+        {
+            var response = new Response.Response();
+
+            var restaurants = _restaurantService.GetRestaurantByContractorUsername(contractorUsername).Content as IList<Restaurant>;
+
+            if (restaurants == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No restaurant manager found");
+                return response;
+            }
+
+            var restaurantManagers = _restaurantManagerRepository.GetAll();
+            var contractorRestaurantManagers = new List<RestaurantManager>();
+
+            foreach (var restaurantManager in restaurantManagers)
+            {
+                foreach (var restaurant in restaurants)
+                {
+                    if (restaurantManager.RestaurantIds.Contains(restaurant.Id) && !contractorRestaurantManagers.Contains(restaurantManager))
+                    {
+                        contractorRestaurantManagers.Add(restaurantManager);
+                    }
+                }
+            }
+
+            response.Set(HttpStatusCode.OK, contractorRestaurantManagers);
+            return response;
+        }
+
+        public IResponse DeleteRestaurant(string restaurantId)
+        {
+            var response = new Response.Response();
+
+            var restaurantManagers = _restaurantManagerRepository.GetAll();
+
+            foreach (var restaurantManager in restaurantManagers.Where(r => r.RestaurantIds.Contains(restaurantId)))
+            {
+                restaurantManager.RestaurantIds.Remove(restaurantId);
+                Update(restaurantManager);
+            }
+
+            _restaurantService.Delete(restaurantId);
+
+            response.Set(HttpStatusCode.OK);
             return response;
         }
 

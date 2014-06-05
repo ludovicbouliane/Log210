@@ -8,7 +8,7 @@ namespace Domain.Services.Interfaces
     {
         IResponse Create(Restaurant restaurant);
         IResponse Update(Restaurant restaurant);
-        IResponse Delete(string restaurantId);
+        void Delete(string restaurantId);
         IResponse GetRestaurantById(string restaurantId);
         IResponse GetAllRestaurantName();
         IResponse GetAllRestaurant();

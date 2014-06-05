@@ -27,7 +27,7 @@ namespace Controller.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("{restaurantManagerUsername}")]
+        [Route("{restaurantId}")]
         public IHttpActionResult GetRestaurantById(string restaurantId)
         {
             var response = _restaurantService.GetRestaurantById(restaurantId);
@@ -42,15 +42,6 @@ namespace Controller.Controllers
             var response = _restaurantService.GetRestaurantByContractorUsername(contractorUsername);
             return ResponseMessage(response);
         }
-
-        //[HttpGet]
-        //[AllowAnonymous]
-        //[Route("restaurantManagers/{restaurantManagerUsername}")]
-        //public IHttpActionResult GetRestaurantByRestaurantManagerUsername(string restaurantManagerUsername)
-        //{
-        //    var response = _restaurantService.GetRestaurantByRestaurantManagerUsername(restaurantManagerUsername);
-        //    return ResponseMessage(response);
-        //}
 
         [HttpGet]
         [AllowAnonymous]
@@ -76,15 +67,6 @@ namespace Controller.Controllers
         public IHttpActionResult Update([FromBody]Restaurant restaurant)
         {
             var response = _restaurantService.Update(restaurant);
-            return ResponseMessage(response);
-        }
-
-        [HttpDelete]
-        [AllowAnonymous]
-        [Route("{restaurantManagerUsername}")]
-        public IHttpActionResult Delete(string restaurantId)
-        {
-            var response = _restaurantService.Delete(restaurantId);
             return ResponseMessage(response);
         }
     }
