@@ -22,7 +22,7 @@
 						{
 					?>
 						<li>
-							<a href="">Restaurant</a>
+							<a href="restaurant">Restaurant</a>
 						</li>
 					<?php
 						}
@@ -79,7 +79,11 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="accountLink">Mon compte</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<?php
+								echo $action->getUsername();
+							?>
+						</a>
 						<ul class="dropdown-menu">
 							<?php
 								if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE || $action->getAccountType() == CommonAction::$ADMIN_ACCOUNTTYPE)

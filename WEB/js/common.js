@@ -94,12 +94,29 @@ function getAllRestaurantByContractor(){
 }
 
 // gets all restaurant name and id
-function getAllRestaurant(){
+function getAllRestaurantName(){
 	var restaurant = '';
 
 	$.ajax({
 		type:"GET",
 		url: API_URL + 'restaurants/name',
+		contentType:"application/json",
+		async:false
+		}).done(
+			function(data){
+				restaurant = data;
+			}
+		);
+	return restaurant;
+}
+
+// gets all restaurant name and id
+function getAllRestaurant(){
+	var restaurant = '';
+
+	$.ajax({
+		type:"GET",
+		url: API_URL + 'restaurants',
 		contentType:"application/json",
 		async:false
 		}).done(

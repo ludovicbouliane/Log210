@@ -45,46 +45,66 @@ function authenticateUser(info){
 // Creates the account of a user.
 //  If successfull a message will b
 function register(){
-	var account = {
-		'Username' : document.getElementById('username').value,
-		'Password' : encodePassword(document.getElementById('password').value)
-	};
+	if(document.getElementById('username').value.trim().length == 0 ||
+		document.getElementById('password').value.trim().length == 0 ||
+		document.getElementById('address').value.trim().length == 0 ||
+		document.getElementById('city').value.trim().length == 0 ||
+		document.getElementById('state').value.trim().length == 0 ||		
+		document.getElementById('country').value.trim().length == 0 ||
+		document.getElementById('zipCode').value.trim().length == 0 ||
+		document.getElementById('firstName').value.trim().length == 0 ||
+		document.getElementById('lastName').value.trim().length == 0 ||
+		document.getElementById('phoneNumber').value.trim().length == 0 ||
+		document.getElementById('birthDate').value.trim().length == 0)
+	{
+		var mess = new MessageBox();
+		mess.show(3,"Tous les champs sont obligatoires");
+	}
+	else{
+		
+		var account = {
+			'Username' : document.getElementById('username').value,
+			'Password' : encodePassword(document.getElementById('password').value)
+		};
 
-	var address = {
-		'Street' : 	document.getElementById('address').value,
-		'City' : 	document.getElementById('city').value,
-		'State' : 	document.getElementById('state').value,
-		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
-	};
+		var address = {
+			'Street' : 	document.getElementById('address').value,
+			'City' : 	document.getElementById('city').value,
+			'State' : 	document.getElementById('state').value,
+			'Country' : 	document.getElementById('country').value,
+			'ZipCode' : 	document.getElementById('zipCode').value,
+		};
 
-	var info = JSON.stringify({
-		'Account' : account,
-		'FirstName' :    document.getElementById('firstName').value,
-		'LastName' : 	document.getElementById('lastName').value,
-		'Address' : 	address,
-		'Telephone' : 	document.getElementById('phoneNumber').value,
-		'BirthDate' : 	document.getElementById('birthDate').value
-	});
+		var info = JSON.stringify({
+			'Account' : account,
+			'FirstName' :    document.getElementById('firstName').value,
+			'LastName' : 	document.getElementById('lastName').value,
+			'Address' : 	address,
+			'Telephone' : 	document.getElementById('phoneNumber').value,
+			'BirthDate' : 	document.getElementById('birthDate').value
+		});
 
-	$.ajax({
-		type:"PUT",
-		url: API_URL + 'clients',
-		contentType:"application/json",
-		data: info,
-		success : function(data){
-			var mess = new MessageBox();
-			mess.show(1,"Votre compte a été créé!!");
+		$.ajax({
+			type:"PUT",
+			url: API_URL + 'clients',
+			contentType:"application/json",
+			data: info,
+			success : function(data){
+				var mess = new MessageBox();
+				mess.show(1,"Votre compte a été créé!!");
 
-		    setTimeout(function(){
-				authenticateUser( JSON.stringify(account));
-    		},2000); 
-		},
-		error : function(data){
-			var mess = new MessageBox();
-			mess.show(3,"Création du compte impossible");
-		}
-	});	
+			    setTimeout(function(){
+					authenticateUser( JSON.stringify(account));
+	    		},2000); 
+			},
+			error : function(data){
+				var mess = new MessageBox();
+				mess.show(3,"Création du compte impossible");
+			}
+		});	
+	}
+
+
 }
 
 
@@ -92,45 +112,67 @@ function register(){
 //Manage client account
 // Updates client information
 function updateClient(){
-	var username = getUsername();
-
-	var address = {
-		'Street' : 	document.getElementById('address').value,
-		'City' : 	document.getElementById('city').value,
-		'State' : 	document.getElementById('state').value,
-		'Country' : 	document.getElementById('country').value,
-		'ZipCode' : 	document.getElementById('zipCode').value,
-	};
-
-	var info = JSON.stringify({
-
-		'Username' : username,
-		'Address' : 	address,
-		'Telephone' : 	document.getElementById('phoneNumber').value,
-		'BirthDate' : 	document.getElementById('birthDate').value
-	});
 	
-	$.ajax({
-		type:"POST",
-		url: API_URL + 'clients',
-		contentType:"application/json",
-		data: info,
-		success:function(data){
-			var mess = new MessageBox();
-			mess.show(1,"Votre compte a été mis à jour");	
-		},
-		error : function(data){
-			var mess = new MessageBox();
-			mess.show(3,"Mis à jour du compte impossible");
-		}
-	});
+	
+	if(	document.getElementById('address').value.trim().length == 0 ||
+		document.getElementById('city').value.trim().length == 0 ||
+		document.getElementById('state').value.trim().length == 0 ||		
+		document.getElementById('country').value.trim().length == 0 ||
+		document.getElementById('zipCode').value.trim().length == 0 ||
+		document.getElementById('phoneNumber').value.trim().length == 0 ||
+		document.getElementById('birthDate').value.trim().length == 0)
+	{
+		var mess = new MessageBox();
+		mess.show(3,"Tous les champs sont obligatoires");
+	}
+	else{
+		var username = getUsername();
+
+		var address = {
+			'Street' : 	document.getElementById('address').value,
+			'City' : 	document.getElementById('city').value,
+			'State' : 	document.getElementById('state').value,
+			'Country' : 	document.getElementById('country').value,
+			'ZipCode' : 	document.getElementById('zipCode').value,
+		};
+
+		var info = JSON.stringify({
+
+			'Username' : username,
+			'Address' : 	address,
+			'Telephone' : 	document.getElementById('phoneNumber').value,
+			'BirthDate' : 	document.getElementById('birthDate').value
+		});
+
+		$.ajax({
+			type:"POST",
+			url: API_URL + 'clients',
+			contentType:"application/json",
+			data: info,
+			success:function(data){
+				var mess = new MessageBox();
+				mess.show(1,"Votre compte a été mis à jour");	
+			},
+			error : function(data){
+				var mess = new MessageBox();
+				mess.show(3,"Mis à jour du compte impossible");
+			}
+		});
+	}
 }
 
 // Updates the password of the user
 function updatePassword(){
 
-	if(document.getElementById('newPassword').value == document.getElementById('confirmNewPassword').value){
 
+	if(	document.getElementById('password').value.trim().length == 0 ||
+		document.getElementById('newPassword').value.trim().length == 0 ||
+		document.getElementById('confirmNewPassword').value.trim().length == 0)
+	{
+		var mess = new MessageBox();
+		mess.show(3,"Tous les champs sont obligatoires");
+	}
+	else{
 		var username = getUsername();
 	
 		var info = JSON.stringify({
