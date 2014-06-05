@@ -73,7 +73,7 @@ function updateRestaurant(){
 			var mess = new MessageBox();
 			mess.show(1,"Restaurant mis à jour");
 
-			fillRestaurantList();
+			fillRestaurantList(getAllRestaurantByContractor());
 			//In fact this lines empties the form because no restaurant is selected.
 			fillRestaurantInfos();
 		}
@@ -92,7 +92,7 @@ function deleteRestaurant(){
 			
 			var mess = new MessageBox();
 			mess.show(1,"Le restaurant a été supprimé");
-			fillRestaurantList();
+			fillRestaurantList(getAllRestaurantByContractor());
 		}
 
 	});

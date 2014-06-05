@@ -13,7 +13,7 @@
 		<div class="col-xs-12 content login" id="loginForm">
 			<div id="message"></div>
 
-			<div class="row form_row">
+			<div class="row form_row form-group">
 				<div class="col-lg-3">
 					Nom d'usager : 
 				</div>
@@ -21,7 +21,7 @@
 					<input type="text" class="form-control" id="username" placeholder="Nom d'usager" tabindex="1" value="<?php echo $action->getLastUsernameUsed(); ?>" name="username"/>
 				</div>
 			</div>
-			<div class="row form_row">
+			<div class="row form_row form-group">
 				<div class="col-lg-3">
 					Mot de passe : 
 				</div>

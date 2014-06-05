@@ -61,5 +61,5 @@
 ?>
 
 <script>
-	document.getElementById('listRestaurant').setAttribute('size',fillRestaurantList());
+	document.getElementById('listRestaurant').setAttribute('size',fillRestaurantList(getAllRestaurantByContractor()));
 </script>

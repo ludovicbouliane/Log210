@@ -34,5 +34,5 @@
 	require_once('partial/site_footer.php');
 ?>
 <script type="text/javascript">
-	window.onload = fillRestaurantList();
+	window.onload = fillRestaurantList(getAllRestaurantByContractor());
 </script>

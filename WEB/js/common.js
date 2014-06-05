@@ -176,8 +176,7 @@ function addNoneOption(){
 
 // fills a select with all restaurant name.
 //	Used in the deleteRestaurant and editRestaurant pages.
-function fillRestaurantList(){
-	var listRestaurateur = getAllRestaurantByContractor();
+function fillRestaurantList(listRestaurant){
 
 	var selectContainer = document.getElementById('listRestaurant');
 
@@ -187,8 +186,8 @@ function fillRestaurantList(){
 		
 	selectContainer.appendChild(addNoneOption());
 
-	for(var i=0 ; i<listRestaurateur.length ; i++){
-		var rest = listRestaurateur[i];
+	for(var i=0 ; i<listRestaurant.length ; i++){
+		var rest = listRestaurant[i];
 		
 		var option = document.createElement("option");	
 		option.setAttribute("value",rest["Id"]);
@@ -199,7 +198,7 @@ function fillRestaurantList(){
 		selectContainer.appendChild(option);
 	}
 
-	return listRestaurateur.length+1;
+	return listRestaurant.length+1;
 }
 
 // fills a select with all restaurateur name.

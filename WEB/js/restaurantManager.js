@@ -18,9 +18,15 @@ function addRestaurantManager(){
 		contentType:"application/json",
 		data: info,
 		success:function(data){
-			var mess = new MessageBox();
-			mess.show(1,"Restaurateur créé");
-			
+
+			if(document.getElementById('listRestaurant').value.length == 0){
+				var mess = new MessageBox();
+				mess.show(2,"Aucun restaurant n'a été assigné pour le restaurateur créé");
+			}
+			else{
+				var mess = new MessageBox();
+				mess.show(1,"Restaurateur créé");
+			}			
 
 			document.getElementById("username").value = '';
 			document.getElementById('password').value= '';
@@ -77,7 +83,7 @@ function fillRestaurantManagerInfos(){
 
 	document.getElementById('firstName').value = info["FirstName"];
 	document.getElementById('lastName').value = info["LastName"];
-	listRestaurant.setAttribute('size',fillRestaurantList());
+	listRestaurant.setAttribute('size',fillRestaurantList(getAllRestaurantByContractor()));
 
 
 	
