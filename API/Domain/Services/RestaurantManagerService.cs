@@ -48,12 +48,13 @@ namespace Domain.Services
                 return response;
             }
 
-            var restaurantManager =
-                Mapper.Map<RestaurantManagerWithAccount, RestaurantManager>(restaurantManagerWithAccount);
+            var restaurantManager = Mapper.Map<RestaurantManagerWithAccount, RestaurantManager>(restaurantManagerWithAccount);
 
             restaurantManagerWithAccount.Account.AccountType = "Restaurant Manager";
             _accountService.CreateAccount(restaurantManagerWithAccount.Account);
             restaurantManager.Username = restaurantManagerWithAccount.Account.Username;
+
+            RemoveInexistingRestaurantIds(restaurantManager);
 
             _restaurantManagerRepository.Insert(restaurantManager);
 
@@ -61,17 +62,28 @@ namespace Domain.Services
             return response;
         }
 
+        private void RemoveInexistingRestaurantIds(RestaurantManager restaurantManager)
+        {
+            var idsToRemove = restaurantManager.RestaurantIds.Where(restaurantId => _restaurantService.GetRestaurantById(restaurantId).HttpStatusCode == HttpStatusCode.NotFound).ToList();
+
+            foreach (var idToRemove in idsToRemove)
+            {
+                restaurantManager.RestaurantIds.Remove(idToRemove);
+            }
+        }
+
         public IResponse Update(RestaurantManager restaurantManager)
         {
             var response = new Response.Response();
 
-            var existingRestaurantManager =
-                _restaurantManagerRepository.GetSingle(r => r.Username == restaurantManager.Username);
+            var existingRestaurantManager = _restaurantManagerRepository.GetSingle(r => r.Username == restaurantManager.Username);
             if (existingRestaurantManager == null)
             {
                 response.Set(HttpStatusCode.NotFound, "No restaurant manager found");
                 return response;
             }
+
+            RemoveInexistingRestaurantIds(restaurantManager);
 
             _restaurantManagerRepository.Save(restaurantManager);
 
@@ -101,10 +113,7 @@ namespace Domain.Services
                 return response;
             }
 
-            var restaurantManagerWithRestaurant = Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
-            restaurantManagerWithRestaurant.Restaurants = _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
-
-            response.Set(HttpStatusCode.OK, restaurantManagerWithRestaurant);
+            response.Set(HttpStatusCode.OK, restaurantManager);
             return response;
         }
 
@@ -112,29 +121,15 @@ namespace Domain.Services
         {
             var response = new Response.Response();
 
-            var restaurants = _restaurantService.GetRestaurantByContractorUsername(contractorUsername).Content as IList<Restaurant>;
+            var restaurantManagers = _restaurantManagerRepository.GetAll();
 
-            if (restaurants == null)
+            if (restaurantManagers == null)
             {
                 response.Set(HttpStatusCode.NotFound, "No restaurant manager found");
                 return response;
             }
 
-            var restaurantManagers = _restaurantManagerRepository.GetAll();
-            var contractorRestaurantManagers = new List<RestaurantManager>();
-
-            foreach (var restaurantManager in restaurantManagers)
-            {
-                foreach (var restaurant in restaurants)
-                {
-                    if (restaurantManager.RestaurantIds.Contains(restaurant.Id) && !contractorRestaurantManagers.Contains(restaurantManager))
-                    {
-                        contractorRestaurantManagers.Add(restaurantManager);
-                    }
-                }
-            }
-
-            response.Set(HttpStatusCode.OK, contractorRestaurantManagers);
+            response.Set(HttpStatusCode.OK, restaurantManagers.Where(rm => rm.ContractorUsername == contractorUsername).ToList());
             return response;
         }
 
@@ -172,10 +167,8 @@ namespace Domain.Services
 
             foreach (var restaurantManager in restaurantManagers)
             {
-                var restaurantManagerWithRestaurant =
-                    Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
-                restaurantManagerWithRestaurant.Restaurants =
-                    _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
+                var restaurantManagerWithRestaurant = Mapper.Map<RestaurantManager, RestaurantManagerWithRestaurants>(restaurantManager);
+                restaurantManagerWithRestaurant.Restaurants = _restaurantService.GetAllRestaurantsByRestaurantIds(restaurantManager.RestaurantIds);
                 restaurantManagersWithRestaurant.Add(restaurantManagerWithRestaurant);
             }
 
