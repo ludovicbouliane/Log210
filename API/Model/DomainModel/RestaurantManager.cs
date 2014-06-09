@@ -7,6 +7,7 @@ namespace Model.DomainModel
     {
         [BsonId]
         public string Username { get; set; }
+        public string ContractorUsername { get; set; }
         public List<string> RestaurantIds { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
