@@ -3,15 +3,16 @@ function Dish(parent){
 	this.parent = parent;
 	this.active = false;
 	this.info;
+	var nameCol, priceCol, descCol;
 	var dish = this;
 
 
 	this.setInfo = function(info){
 		this.info = info;
 
-		this.addColumn(this.info['Name']);
-		this.addColumn(this.info['Price']);
-		this.addColumn(this.info['Description']);
+		nameCol = this.addColumn(this.info['Name']);
+		priceCol = this.addColumn(this.info['Price']);
+		descCol = this.addColumn(this.info['Description']);
 
 		this.parent.appendChild(this.row);
 	}
@@ -22,6 +23,8 @@ function Dish(parent){
 		
 		column.appendChild(cell);
 		this.row.appendChild(column);
+
+		return column;
 	}
 
 	this.row.onclick = function(event){
@@ -37,6 +40,12 @@ function Dish(parent){
 			emptyDishInfo(dish.info);	
 		}
 		activateButton();
+	}
+
+	this.updateRow = function(){
+		nameCol.innerHTML = this.info['Name'];
+		priceCol.innerHTML = this.info['Price'];
+		descCol.innerHTML = this.info['Description'];
 	}
 
 	this.deleteDish = function(){

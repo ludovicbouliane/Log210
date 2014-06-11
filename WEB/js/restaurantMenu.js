@@ -1,5 +1,6 @@
 var dishTable = document.getElementById('dishList');
 var listDishes = new Array();
+var menuId = '';
 
 // Adds a dish
 function addDish(){
@@ -30,22 +31,7 @@ function editDish(){
 		'Description' : document.getElementById('description').value
 	};	
 
-	//Get back all dish
-	//And show then back
-	var temp = new Array();
-	var dish;
-	for (var i = 0; i < listDishes.length; i++) {
-		listDishes[i].deleteDish();
-		
-		dish = new Dish(dishTable);
-		dish.setInfo(listDishes[i].info);
-
-		temp.push(dish);
-
-	}
-
-	listDishes = temp;
-	console.log(listDishes);
+	activeRow.updateRow();
 }
 
 //Deletes a dish
@@ -58,9 +44,6 @@ function deleteDish(){
 		emptyDishInfo();
 	}
 }
-
-
-
 
 //Desactivate all rows of the dishes table
 function desactivateAllRows(){
@@ -124,4 +107,22 @@ function activateButton(){
 		document.getElementById('btn_edit').disabled = true;
 		document.getElementById('btn_delete').disabled = true;
 	}
+}
+
+
+function saveMenu(){
+	if(menuId == ''){
+		addmenu();
+	}
+	else{
+		editMenu();
+	}
+}
+
+function addMenu(){
+
+}
+
+function editMenu(){
+
 }
