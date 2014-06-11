@@ -18,7 +18,6 @@ function addDish(){
 
 	emptyDishInfo();
 	$('#name').focus();
-
 }
 
 function editDish(){
@@ -109,7 +108,6 @@ function activateButton(){
 	}
 }
 
-
 function saveMenu(){
 	if(menuId == ''){
 		addmenu();
@@ -120,9 +118,51 @@ function saveMenu(){
 }
 
 function addMenu(){
+	var info = {
+		"RestaurantId" : document.getElementById('listRestaurant').value,
+		"Name" : document.getElementById('menuName').value,
+		"Dishes" : new Array();
+	};
 
+	for (var i = 0; i < listDishes.length; i++) {
+		info["Dishes"].push(listDishes[i].info);
+	};
+
+	info = JSON.stringify(info);
+
+	$.ajax({
+		type:"PUT",
+		url: API_URL + 'menu',
+		contentType:"application/json",
+		data: info,
+		success:function(data){
+			var mess = new MessageBox();
+			mess.show(1,"Mon message");
+		}
+
+	});
 }
 
 function editMenu(){
+	var info = {
+		"MenuId" : document.getElementById('MenuId').value,
+		"Name" : document.getElementById('menuName').value,
+		"Dishes" : new Array();
+	};
 
+	for (var i = 0; i < listDishes.length; i++) {
+		info["Dishes"].push(listDishes[i].info);
+	};
+
+	$.ajax({
+		type:"POST",
+		url: API_URL + 'menu',
+		contentType:"application/json",
+		data: info,
+		success:function(data){
+			var mess = new MessageBox();
+			mess.show(1,"Mon message");
+		}
+
+	});
 }
