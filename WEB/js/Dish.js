@@ -1,18 +1,27 @@
 function Dish(parent){
+	return new Dish(parent,false);
+}
+
+function Dish(parent,hasQuantity){
 	this.row = document.createElement("tr");
 	this.parent = parent;
 	this.active = false;
 	this.info;
-	var nameCol, priceCol, descCol;
+	this.hasQuantity = hasQuantity;
+	this.nameCol, this.priceCol, this.descCol, this.qteInput;
 	var dish = this;
 
 
 	this.setInfo = function(info){
 		this.info = info;
 
-		nameCol = this.addColumn(this.info['Name']);
-		priceCol = this.addColumn(this.info['Price']);
-		descCol = this.addColumn(this.info['Description']);
+		if(this.hasQuantity){
+			this.qteInput = this.addQteColumn();			
+		}
+
+		this.nameCol = this.addColumn(this.info['Name']);
+		this.priceCol = this.addColumn(this.info['Price']);
+		this.descCol = this.addColumn(this.info['Description']);
 
 		this.parent.appendChild(this.row);
 	}
@@ -27,19 +36,36 @@ function Dish(parent){
 		return column;
 	}
 
+	this.addQteColumn = function(){
+		var column = document.createElement('td');
+		var input = document.createElement("input");		
+		
+		input.setAttribute("type","text");
+		input.setAttribute("value","0");
+		input.setAttribute("placeholder","0");
+		input.setAttribute("class","form-control dishQte");
+
+		column.appendChild(input);
+		this.row.appendChild(column);
+
+		return input;
+	}
+
 	this.row.onclick = function(event){
-		desactivateAllRows();
-		if(dish.active === false){
-			dish.row.setAttribute("class","active");
-			dish.active = true;
-			fillDishInfo(dish.info);
+		if(!hasQuantity){
+			desactivateAllRows();
+			if(dish.active === false){
+				dish.row.setAttribute("class","active");
+				dish.active = true;
+				fillDishInfo(dish.info);
+			}
+			else{
+				dish.row.setAttribute("class","");	
+				dish.active = false;
+				emptyDishInfo(dish.info);	
+			}
+			activateButton();
 		}
-		else{
-			dish.row.setAttribute("class","");	
-			dish.active = false;
-			emptyDishInfo(dish.info);	
-		}
-		activateButton();
 	}
 
 	this.updateRow = function(){
@@ -55,5 +81,13 @@ function Dish(parent){
 	this.desactivateRow = function(){
 		dish.row.setAttribute("class","");
 		this.active = false;		
+	}
+
+	this.getQuantity = function(){
+		return this.qteInput.value;
+	}
+
+	this.getQteInput = function(){
+		return this.qteInput;
 	}
 }

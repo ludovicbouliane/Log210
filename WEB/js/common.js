@@ -163,6 +163,47 @@ function getRestaurantManagerInfos(restaurantManagerId){
 
 	return info;
 }
+
+//If null is returned no menu exist for this restaurant
+function getMenuFromRestaurantId(restaurantId){
+	var menu = null;
+
+	$.ajax({
+		type:"GET",
+		url: API_URL + 'menus/restaurant/' + restaurantId,
+		contentType:"application/json",
+		async:false,
+		success:function(data){
+			menu = data;
+		},
+		error: function(data){
+
+		}
+	});
+
+	return menu;
+}
+
+function getDishesFromMenuId(menuId){
+	var dishes = null;
+
+	$.ajax({
+		type:"GET",
+		url: API_URL + 'menus/menu/' + menuId,
+		contentType:"application/json",
+		async:false,
+		success:function(data){
+			dishes = data;
+		},
+		error: function(data){
+
+		}
+	});
+
+	return dishes;
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Common setters
 //Notifies the system that the user is logged in

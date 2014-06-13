@@ -9,18 +9,23 @@
 	require_once('partial/site_header.php')
 ?>
 	<div class="col-sm-8">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Qte</th>
-					<th>Nom</th>
-					<th>Description</th>
-					<th>Prix</th>
-				</tr>
-			</thead>
-			<tbody id="dishesTable">
-			</tbody>
-		</table>
+		<div class="row form_row">
+			<div class="table-responsive">
+				<table class="table table-stripped table-hover table-bordered">
+					<thead>
+					<tr>
+						<col width="75">
+						<th class="qteHeader">Qte</th>
+						<th>Nom</th>
+						<th>Prix</th>
+						<th>Description</th>
+					</tr>
+					</thead>
+					<tbody id="dishesTable">
+					</tbody>
+				</table>
+			</div>	
+		</div>
 
 		<div class="col-sm-offset-8 col-xs-offset-6">
 			<div class="row">
@@ -65,3 +70,59 @@
 
 <?php
 	require_once('partial/site_footer.php');
+?>
+
+<script type="text/javascript">
+	var restaurantId = '';
+	var menu = '';
+	var dishes = [];
+
+	var TPS = 0.05;
+	var TVQ = 0.09975;
+	
+	function updateTotal(){
+		var subtotal = 0;
+		for (var i = 0; i < dishes.length; i++) {
+			subtotal += dishes[i].getQuantity() * dishes[i].info["Price"];
+		};
+
+		var tempTps = subtotal * TPS;
+		var tempTvq = subtotal * TVQ;
+		var total = subtotal + tempTps + tempTvq;
+
+		document.getElementById('subTotal').innerHTML = subtotal.toFixed(2);
+		document.getElementById('tps').innerHTML = tempTps.toFixed(2);
+		document.getElementById('tvq').innerHTML = tempTvq.toFixed(2);
+		document.getElementById('total').innerHTML = total.toFixed(2);
+	}
+	
+	function fillDishTable(){
+		if(window.location.search.indexOf('?Id=') == 0){
+			restaurantId = window.location.search.substring(4);
+			
+			menu = getMenuFromRestaurantId(restaurantId);
+
+			if(menu === null){
+				window.location="restaurant";
+			}
+			else{
+				dishes = getDishesFromMenuId(menu["Id"]);
+
+				var dish;
+				for (var i = 0; i < dishes.length; i++) {
+					dish = new Dish(document.getElementById("dishesTable"),true);
+					dish.setInfo(dishes[i]);
+					var input = dish.getQteInput();
+					input.onchange = function(){
+						updateTotal();
+					}
+					dishes[i] = dish;
+				};
+			}
+		}
+	}
+
+	window.onload=fillDishTable();
+
+
+</script>
