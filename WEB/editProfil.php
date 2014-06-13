@@ -84,6 +84,14 @@
 				<input type="text" maxlength=10 class="form-control" id="birthDate" placeholder="Date de naissance" name="birthDate"/>
 			</div>
 		</div>
+
+		<div class="row form_row form-group">
+			<div class="col-sm-4">Adresse courriel :</div>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="email" placeholder="Adresse courriel" name="email"/>
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-8">

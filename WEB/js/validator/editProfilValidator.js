@@ -68,6 +68,16 @@ $(document).ready(function() {
                         message: 'La date n\'est pas valide'
                     }
                 }
+            },
+            email:{
+                validators:{
+                    notEmpty:{
+                        message : 'L\'adresse courriel est obligatoire'
+                    },
+                    emailAddress: {
+                        message: 'L\'adresse courriel n\'est pas valide'
+                    }
+                }
             }
         }
     });

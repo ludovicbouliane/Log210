@@ -83,6 +83,16 @@ $(document).ready(function() {
                     }
                 }
             },
+            email:{
+                validators:{
+                    notEmpty:{
+                        message : 'L\'adresse courriel est obligatoire'
+                    },
+                    emailAddress: {
+                        message: 'L\'adresse courriel n\'est pas valide'
+                    }
+                }
+            },
             username: {
                 validators: {
                     notEmpty: {

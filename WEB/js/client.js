@@ -55,6 +55,7 @@ function register(){
 		document.getElementById('firstName').value.trim().length == 0 ||
 		document.getElementById('lastName').value.trim().length == 0 ||
 		document.getElementById('phoneNumber').value.trim().length == 0 ||
+		document.getElementById('email').value.trim().length == 0 ||
 		document.getElementById('birthDate').value.trim().length == 0)
 	{
 		var mess = new MessageBox();
@@ -79,6 +80,7 @@ function register(){
 			'Account' : account,
 			'FirstName' :    document.getElementById('firstName').value,
 			'LastName' : 	document.getElementById('lastName').value,
+			'Email' : document.getElementById('email').value,
 			'Address' : 	address,
 			'Telephone' : 	document.getElementById('phoneNumber').value,
 			'BirthDate' : 	document.getElementById('birthDate').value
@@ -120,6 +122,7 @@ function updateClient(){
 		document.getElementById('country').value.trim().length == 0 ||
 		document.getElementById('zipCode').value.trim().length == 0 ||
 		document.getElementById('phoneNumber').value.trim().length == 0 ||
+		document.getElementById('email').value.trim().length == 0 ||
 		document.getElementById('birthDate').value.trim().length == 0)
 	{
 		var mess = new MessageBox();
@@ -139,6 +142,7 @@ function updateClient(){
 		var info = JSON.stringify({
 
 			'Username' : username,
+			'Email' : document.getElementById('email').value,
 			'Address' : 	address,
 			'Telephone' : 	document.getElementById('phoneNumber').value,
 			'BirthDate' : 	document.getElementById('birthDate').value
@@ -217,4 +221,5 @@ function fillProfilInfo(){
 	document.getElementById('zipCode').value = data["Address"]["ZipCode"];
 	document.getElementById('phoneNumber').value = data["Telephone"];
 	document.getElementById('birthDate').value = data["BirthDate"].substr(0,10);
+	document.getElementById('email').value = data["Email"];
 }
