@@ -53,6 +53,7 @@ function Dish(parent){
 	}
 
 	this.desactivateRow = function(){
-		dish.row.setAttribute("class","");		
+		dish.row.setAttribute("class","");
+		this.active = false;		
 	}
 }

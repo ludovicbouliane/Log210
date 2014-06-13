@@ -17,6 +17,7 @@ function addRestaurantManager(){
 
 		var info = JSON.stringify({
 			'Account' 	: 	account,
+			'ContractorUsername' : getUsername(),
 			'FirstName' : 	document.getElementById("firstName").value,
 			'LastName'	:  	document.getElementById("lastName").value,
 			'RestaurantIds' : getSelectedRestaurantAssignedToRestaurantManager()

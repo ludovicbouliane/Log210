@@ -153,7 +153,7 @@ function onRestaurantChanged(){
 			document.getElementById('menuName').value = menu["Name"];			
 
 			emptyDishList();
-
+			
 			var dishes = getDishesFromMenuId(menu["Id"]);
 
 			for (var i = 0; i < dishes.length; i++) {
@@ -203,7 +203,7 @@ function addMenu(){
 
 	$.ajax({
 		type:"PUT",
-		url: API_URL + 'menu',
+		url: API_URL + 'menus',
 		contentType:"application/json",
 		data: info,
 		success:function(data){
@@ -216,7 +216,7 @@ function addMenu(){
 
 function editMenu(){
 	var info = {
-		"MenuId" : document.getElementById('MenuId').value,
+		"MenuId" : menuId,
 		"Name" : document.getElementById('menuName').value,
 		"Dishes" : new Array()
 	};
@@ -229,7 +229,7 @@ function editMenu(){
 
 	$.ajax({
 		type:"POST",
-		url: API_URL + 'menu',
+		url: API_URL + 'menus',
 		contentType:"application/json",
 		data: info,
 		success:function(data){
@@ -249,7 +249,7 @@ function getMenuFromRestaurantId(restaurantId){
 
 	$.ajax({
 		type:"GET",
-		url: API_URL + 'restaurants/menu/' + restaurantId,
+		url: API_URL + 'menus/restaurant/' + restaurantId,
 		contentType:"application/json",
 		async:false,
 		success:function(data){
@@ -268,7 +268,7 @@ function getDishesFromMenuId(menuId){
 
 	$.ajax({
 		type:"GET",
-		url: API_URL + 'menu/dish/' + menuId,
+		url: API_URL + 'menus/menu/' + menuId,
 		contentType:"application/json",
 		async:false,
 		success:function(data){
