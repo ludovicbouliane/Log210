@@ -14,6 +14,7 @@ namespace DataAccess.Repositories
 
                 var existingClient = GetSingle(c => c.Username == client.Username);
 
+                if (client.Email != null) existingClient.Email = client.Email;
                 if (client.Address.Street != null) existingClient.Address.Street = client.Address.Street;
                 if (client.Address.City != null) existingClient.Address.City = client.Address.City;
                 if (client.Address.State != null) existingClient.Address.State = client.Address.State;
