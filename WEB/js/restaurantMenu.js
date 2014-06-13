@@ -8,8 +8,6 @@ var menuId = '';
 // Takes value of the interface and calls add Dish
 function newDish(){
 
-	desactivateAllRows();
-
 	var info = {
 		'Id' : "1",
 		'Name' : document.getElementById('name').value,
@@ -17,11 +15,33 @@ function newDish(){
 		'Description' : document.getElementById('description').value
 	};	
 
-	addDish(info);
-	emptyDishInfo();
+	var dishShouldBeAdded = false;
 
-	$('#name').focus();
-	activateButton();
+	if(info["Name"].trim() === ''){
+		var mess = new MessageBox();
+		mess.show(3,"Le plat doit avoir un nom");
+	}
+	else if(info["Price"].trim() === ''){
+		var mess = new MessageBox();
+		mess.show(3,"Le plat doit avoir un prix");
+	}
+	else if(info["Description"].trim() === ''){
+		var mess = new MessageBox();
+		mess.show(2,"Le plat ajouté n'avait pas de description");
+		dishShouldBeAdded = true;
+	}
+	else{
+		dishShouldBeAdded = true;
+	}
+
+	if(dishShouldBeAdded){
+		desactivateAllRows();
+		addDish(info);
+		emptyDishInfo();
+
+		$('#name').focus();
+		activateButton();
+	}
 }
 
 // Adds a dish to the interface and to the list of dishes
