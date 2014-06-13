@@ -9,7 +9,7 @@
 	require_once('partial/site_header.php');
 ?>
 
-	<div class="col-sm-8 content">
+	<div class="col-sm-8 content" id="editRestaurantManagerForm">
 		<h2> Modifier un restaurateur</h2>
 
 		<div id="message">	</div>
@@ -22,16 +22,16 @@
 			</div>
 		</div>
 
-		<div class="row form_row">
+		<div class="row form_row form-group">
 			<div class="col-sm-4">Prénom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="firstName" placeholder="Prénom" required/>
+				<input type="text" class="form-control" id="firstName" placeholder="Prénom" name="firstName"/>
 			</div>
 		</div>
-		<div class="row form_row">
+		<div class="row form_row form-group">
 			<div class="col-sm-4">Nom :</div>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="lastName" placeholder="Nom" required/>
+				<input type="text" class="form-control" id="lastName" placeholder="Nom" name="lastName"/>
 			</div>
 		</div>
 		
@@ -56,6 +56,8 @@
 <?php
 	require_once("partial/site_footer.php");
 ?>
+
+<script type="text/javascript" src="/js/validator/editRestaurantManagerValidator.js"></script>
 
 <script>
 	fillRestaurantManagerList();

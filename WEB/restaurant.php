@@ -49,7 +49,7 @@
 		td = document.createElement('td');
 		var a = document.createElement('a');
 		text = document.createTextNode('Voir le menu');
-		a.setAttribute('href','menu?id=' + restaurant[i]["Id"])
+		a.setAttribute('href','menu?Id=' + restaurant[i]["Id"])
 		a.appendChild(text);
 		td.appendChild(a);
 		tr.appendChild(td);		

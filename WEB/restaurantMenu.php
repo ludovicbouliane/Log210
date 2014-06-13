@@ -11,12 +11,12 @@
 	<div class="col-sm-8 content">
 		<h2>Gérer un menu</h2>
 
-		<div class="message"></div>
+		<div id="message"></div>
 
 		<div class="row form_row">
 			<div class="col-sm-4">Restaurant : </div>
 			<div class="col-sm-8">
-				<select id="listRestaurant" class="form-control"> 
+				<select id="listRestaurant" class="form-control" onchange="onRestaurantChanged()"> 
 				</select>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 
 		<div class="row form_row">
 			<div class="col-sm-4">
-				<input type="submit" value="Ajouter un plat" class="btn btn-default" id="btn_add" onclick="addDish()" />
+				<input type="submit" value="Ajouter un plat" class="btn btn-default" id="btn_add" onclick="newDish()" />
 			</div>
 			<div class="col-sm-4">
 				<input type="submit" value="Modifier le plat" class="btn btn-default" id="btn_edit" onclick="editDish()" disabled/>
@@ -81,7 +81,7 @@
 
 		<div class="row form_row">
 			<div class="col-sm-offset-4">
-				<input type="submit" value="Enregistrer le menu" class="btn btn-default" onclick="saveMenu()"/>
+				<input type="submit" value="Enregistrer le menu" class="btn btn-default" onclick="onSaveMenuClick()"/>
 			</div>
 		</div>
 	</div>
