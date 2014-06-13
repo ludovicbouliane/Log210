@@ -23,6 +23,16 @@ Thumbs.db
 *.lib
 *.sbr
 obj/
+WebService/bin/
+WebService/obj/
+Model/bin/
+Model/obj/
+Domain/bin/
+Domain/obj/
+DataAccess/bin/
+DataAccess/obj/
+Controller/bin/
+Controller/obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*

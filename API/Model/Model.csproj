@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerModel\MenuUpdateWithDishes.cs" />
+    <Compile Include="ControllerModel\MenuInsertWithDishes.cs" />
     <Compile Include="ControllerModel\RestaurantManagerWithRestaurants.cs" />
     <Compile Include="ControllerModel\UserAccount.cs" />
     <Compile Include="ControllerModel\ClientWithAccount.cs" />
@@ -56,6 +58,8 @@
     <Compile Include="DomainModel\Address.cs" />
     <Compile Include="DomainModel\Client.cs" />
     <Compile Include="DomainModel\Contractor.cs" />
+    <Compile Include="DomainModel\Dish.cs" />
+    <Compile Include="DomainModel\Menu.cs" />
     <Compile Include="DomainModel\Restaurant.cs" />
     <Compile Include="DomainModel\RestaurantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

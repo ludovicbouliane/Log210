@@ -63,13 +63,17 @@
   <ItemGroup>
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\ContractorRepository.cs" />
+    <Compile Include="Repositories\DishRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAccountRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContractorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDishRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IMenuRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRestaurantManagerRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRepository.cs" />
     <Compile Include="Repositories\Interfaces\IClientRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\RestaurantManagerRepository.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
