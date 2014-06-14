@@ -28,6 +28,12 @@
 		?>
 				<script type="text/javascript" src="/js/restaurant.js"></script>				
 		<?php
+			} else if(strpos($_SERVER["REQUEST_URI"], "order") !== false){
+		?>
+				<script type="text/javascript" src="/js/Order.js"></script>
+				<script type="text/javascript" src="/js/OrderTable.js"></script>
+				<script type="text/javascript" src="/js/OrderRow.js"></script>
+		<?php
 			} else{
 		?>
 				<script type="text/javascript" src="/js/client.js"></script>		

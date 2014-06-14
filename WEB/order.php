@@ -14,10 +14,11 @@
 				<table class="table table-stripped table-hover table-bordered">
 					<thead>
 					<tr>
-						<col width="75">
+						<col width="*">
+						<col width="*">
+						<col width="100">
 						<th>Id de commande</th>
 						<th>Status</th>
-						<th></th>
 						<th></th>
 					</tr>
 					</thead>
