@@ -1,5 +1,4 @@
-var dishTable = document.getElementById('dishList');
-var listDishes = new Array();
+var dishTable = new DishTable(document.getElementById('dishList'),false);
 var menuId = '';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,22 +45,18 @@ function newDish(){
 
 // Adds a dish to the interface and to the list of dishes
 function addDish(info){
-
-	var dish = new Dish(dishTable);	
-	dish.setInfo(info);
-
-	listDishes.push(dish);
+	dishTable.addRow(info);
 }
 
 function editDish(){
-	var activeRow = getActiveRow();
-	
-	activeRow.info = {
-		'Id' : activeRow.info["Id"],
+	var activeRow = dishTable.getActiveRow();
+
+	activeRow.dish.updateInfo({
+		'Id' : activeRow.dish.getId(),
 		'Name' : document.getElementById('name').value,
 		'Price' : document.getElementById('price').value,
 		'Description' : document.getElementById('description').value
-	};	
+	});	
 
 	activeRow.updateRow();
 }
@@ -80,47 +75,11 @@ function deleteDish(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dish table methods
 
-//Desactivate all rows of the dishes table
-function desactivateAllRows(){
-	for (var i = 0; i < listDishes.length; i++) {
-		listDishes[i].desactivateRow();
-	}
-}
-
-// Returns true if a dish is active in the table of dishes
-function isOneRowActive(){
-	var anyActive = false;
-	for (var i = 0; i < listDishes.length; i++) {
-		if(listDishes[i].active === true){
-			anyActive = true;
-			break;
-		}
-	}	
-
-	return anyActive;
-}
-
-// Gets the active row in the table of dishes. If none is selected 
-//	and this is called, null will be returned. If used properlly this 
-//	method never should return null.
-function getActiveRow(){
-	var activeRow = null;
-
-	for (var i = 0; i < listDishes.length; i++) {
-		if(listDishes[i].active === true){
-			activeRow = listDishes[i];
-			break;
-		}
-	}	
-
-	return activeRow;
-}
-
 // If no row is active in the table the user can't modify or delete a dish.
 // else the user can add, edit or delete a dish.
 function activateButton(){
 
-	if(isOneRowActive()){
+	if(dishTable.isOneRowActive()){
 		document.getElementById('btn_edit').disabled = false;
 		document.getElementById('btn_delete').disabled = false;
 	}
@@ -130,6 +89,9 @@ function activateButton(){
 	}
 }
 
+function desactivateAllRows(){
+	dishTable.desactivateAllRows();
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +104,7 @@ function onRestaurantChanged(){
 
 	if(restaurantId == ''){
 		emptyMenuPage();
-		emptyDishList();
+		emptyDishTable();
 		activateButton();
 	}
 	else{
@@ -152,7 +114,7 @@ function onRestaurantChanged(){
 			menuId = menu["Id"];
 			document.getElementById('menuName').value = menu["Name"];			
 
-			emptyDishList();
+			emptyDishTable();
 			
 			var dishes = getDishesFromMenuId(menu["Id"]);
 
@@ -195,8 +157,13 @@ function addMenu(){
 		"Dishes" : new Array()
 	};
 
-	for (var i = 0; i < listDishes.length; i++) {
-		info["Dishes"].push(listDishes[i].info);
+	for (var i = 0; i < dishTable.rows.length; i++) {
+		info["Dishes"].push({
+			"Id" : dishTable.rows[i].dish.getId(),
+			"Name" : dishTable.rows[i].dish.getName(),
+			"Price" : dishTable.rows[i].dish.getPrice(),
+			"Description" : dishTable.rows[i].dish.getDescription()
+		});
 	};
 
 	info = JSON.stringify(info);
@@ -221,8 +188,13 @@ function editMenu(){
 		"Dishes" : new Array()
 	};
 
-	for (var i = 0; i < listDishes.length; i++) {
-		info["Dishes"].push(listDishes[i].info);
+	for (var i = 0; i < dishTable.rows.length; i++) {
+		info["Dishes"].push({
+			"Id" : dishTable.rows[i].dish.getId(),
+			"Name" : dishTable.rows[i].dish.getName(),
+			"Price" : dishTable.rows[i].dish.getPrice(),
+			"Description" : dishTable.rows[i].dish.getDescription()
+		});
 	};
 
 	info =  JSON.stringify(info);
@@ -252,10 +224,10 @@ function emptyDishInfo(){
 }
 
 // Fills all fields for a dish
-function fillDishInfo(info){
-	document.getElementById('name').value = info["Name"];
-	document.getElementById('price').value = info["Price"];
-	document.getElementById('description').value = info["Description"];
+function fillDishInfo(dish){
+	document.getElementById('name').value = dish.getName();
+	document.getElementById('price').value = dish.getPrice();
+	document.getElementById('description').value = dish.getDescription();
 }
 
 function emptyMenuPage(){
@@ -263,9 +235,6 @@ function emptyMenuPage(){
 	emptyDishInfo();
 }
 
-function emptyDishList(){
-	for (var i = 0; i < listDishes.length; i++) {
-		listDishes[i].deleteDish();
-	};
-	listDishes = [];
+function emptyDishTable(){
+	dishTable.emptyTable();
 }

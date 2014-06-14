@@ -16,6 +16,8 @@
 			} else if(strpos(strtoupper($_SERVER["REQUEST_URI"]), "MENU") !== false ){
 		?>
 				<script type="text/javascript" src="/js/Dish.js"></script>
+				<script type="text/javascript" src="/js/DishTable.js"></script>
+				<script type="text/javascript" src="/js/DishRow.js"></script>
 				<?php
 					if(strpos($_SERVER["REQUEST_URI"], "restaurantMenu") !== false){
 				?>

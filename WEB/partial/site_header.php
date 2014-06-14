@@ -73,6 +73,9 @@
 					<li>
 						<a href="restaurantMenu">Menu</a>
 					</li>
+					<li>
+						<a href="order">Commande</a>
+					</li>
 					<?php
 						}
 					?>
