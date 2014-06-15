@@ -83,7 +83,7 @@
 	function updateTotal(){
 		var subtotal = 0;
 		for (var i = 0; i < dishes.length; i++) {
-			subtotal += dishes[i].getQuantity() * dishes[i].info["Price"];
+			subtotal += dishes[i].getQuantity() * dishes[i].dish.getPrice();
 		};
 
 		var tempTps = subtotal * TPS;
@@ -108,15 +108,15 @@
 			else{
 				dishes = getDishesFromMenuId(menu["Id"]);
 
-				var dish;
+				var dishTable = new DishTable(document.getElementById("dishesTable"),true);
 				for (var i = 0; i < dishes.length; i++) {
-					dish = new Dish(document.getElementById("dishesTable"),true);
-					dish.setInfo(dishes[i]);
-					var input = dish.getQteInput();
+					var row = dishTable.addRow(dishes[i]);
+					var input = row.getQteInput();
 					input.onchange = function(){
 						updateTotal();
 					}
-					dishes[i] = dish;
+
+					dishes[i] = row;
 				};
 			}
 		}

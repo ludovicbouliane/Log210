@@ -40,10 +40,12 @@ function DishTable(tableContainer,hasQte){
 	}
 
 	this.addRow = function(info){
-		var row = new DishRow(this.tableContainer);
+		var row = new DishRow(this.tableContainer,this.hasQuantity);
 		row.setInfo(info);
 
 		this.rows.push(row);
+
+		return row;
 	}
 
 	this.emptyTable = function(){
