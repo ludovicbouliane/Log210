@@ -2,7 +2,7 @@
 	// This Class is used to communication between php and javascript
 	//  An ajax request must have a unique action identifier like "getUserId"
 	//	 to respect standards.
-	require_once("action/CommonAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/CommonAction.php");
 	
 	class ProfilAction extends CommonAction{
 

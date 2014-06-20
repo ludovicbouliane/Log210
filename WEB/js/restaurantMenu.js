@@ -1,6 +1,19 @@
 var dishTable = new DishTable(document.getElementById('dishList'),false);
 var menuId = '';
 
+window.onload = function(){
+	var restaurantIds = getRestaurantManagerInfos(getUsername())["RestaurantIds"];
+
+	var listRestaurant = new Array();
+	for (var i = 0; i < restaurantIds.length; i++) {
+		listRestaurant.push(getRestaurantInfos(restaurantIds[i]));
+	};
+
+	fillRestaurantList(listRestaurant);
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Local dish modification method
 

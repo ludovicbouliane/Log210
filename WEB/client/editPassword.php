@@ -1,11 +1,11 @@
 <?php
 	$titre = "Modifier le mot de passe";
-	require_once("action/EditPasswordAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/EditPasswordAction.php");
 	
 	$action = new EditPasswordAction();
 	$action->execute();
 
-	require_once("partial/site_header.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");
 ?>
 <div class="col-sm-8 content" id="editPasswordForm">
 	<h2>Modifier votre mot de passe</h2>
@@ -41,7 +41,7 @@
 			<input type="submit" value="Enregistrer" class="btn btn-default" onclick="updatePassword()"/>
 		</div>
 <?php
-	require_once("partial/site_footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
 ?>
 
 <script type="text/javascript" src="/js/validator/editPasswordValidator.js"></script>

@@ -8,8 +8,8 @@
 		
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/css/bootstrapValidator.min.css" rel="stylesheet">
-		<link href="css/common.css" rel="stylesheet" />
-		<link href="css/global.css" rel="stylesheet">
+		<link href="/css/common.css" rel="stylesheet" />
+		<link href="/css/global.css" rel="stylesheet">
 		
 		
 	</head>

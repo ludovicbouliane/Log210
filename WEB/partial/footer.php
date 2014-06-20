@@ -7,33 +7,37 @@
 		<script type="text/javascript" src="/js/common.js"></script>
 
 		<?php
-
+			// Manage restaurant manager pages
 			if(strpos($_SERVER["REQUEST_URI"], "RestaurantManager") !== false){
 		?>
 				<script type="text/javascript" src="/js/restaurantManager.js"></script>				
 		<?php
-
+			// for all pages related to the menu
 			} else if(strpos(strtoupper($_SERVER["REQUEST_URI"]), "MENU") !== false ){
 		?>
-				<script type="text/javascript" src="/js/Dish.js"></script>
-				<script type="text/javascript" src="/js/DishTable.js"></script>
-				<script type="text/javascript" src="/js/DishRow.js"></script>
+				<script type="text/javascript" src="/js/dish/Dish.js"></script>
+				<script type="text/javascript" src="/js/dish/DishTable.js"></script>
+				<script type="text/javascript" src="/js/dish/DishRow.js"></script>
 				<?php
+					// for the page managning the menu of a restaurant
 					if(strpos($_SERVER["REQUEST_URI"], "restaurantMenu") !== false){
 				?>
 					<script type="text/javascript" src="/js/restaurantMenu.js"></script>
 				<?php
 					}
-			} else if(strpos($_SERVER["REQUEST_URI"], "Restaurant") !== false){
+			// manage restaurant pages		
+			} else if(strpos($_SERVER["REQUEST_URI"], "restaurant") !== false){
 		?>
 				<script type="text/javascript" src="/js/restaurant.js"></script>				
 		<?php
+			// prepare order page
 			} else if(strpos($_SERVER["REQUEST_URI"], "order") !== false){
 		?>
-				<script type="text/javascript" src="/js/Order.js"></script>
-				<script type="text/javascript" src="/js/OrderTable.js"></script>
-				<script type="text/javascript" src="/js/OrderRow.js"></script>
+				<script type="text/javascript" src="/js/order/Order.js"></script>
+				<script type="text/javascript" src="/js/order/OrderTable.js"></script>
+				<script type="text/javascript" src="/js/order/OrderRow.js"></script>
 		<?php
+			//any other page
 			} else{
 		?>
 				<script type="text/javascript" src="/js/client.js"></script>		

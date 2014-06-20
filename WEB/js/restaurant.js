@@ -1,3 +1,39 @@
+window.onload = function(){
+	var restaurant = getAllRestaurant();
+	var tbody = document.getElementById('allRestaurant');
+
+	var tr ;
+	var td ;
+	var text;
+
+	for (var i = 0; i < restaurant.length; i++) {
+		if(getMenuFromRestaurantId(restaurant[i]["Id"]) !== null){
+			tr = document.createElement('tr');
+			td = document.createElement('td');
+			text = document.createTextNode(restaurant[i]["Name"]);
+			td.appendChild(text);
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			text = document.createTextNode(restaurant[i]["Address"]["City"]);
+			td.appendChild(text);
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			var a = document.createElement('a');			
+
+			text = document.createTextNode('Voir le menu');
+			a.setAttribute('href','menu?Id=' + restaurant[i]["Id"])
+
+			a.appendChild(text);
+			td.appendChild(a);
+			tr.appendChild(td);		
+
+			tbody.appendChild(tr);
+		}
+	};
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Managing restaurant
 // creates a restaurant

@@ -1,12 +1,12 @@
 <?php
 	$titre = "Menu";
 	
-	require_once("action/RestaurantMenuAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/RestaurantMenuAction.php");
 
 	$action = new RestaurantMenuAction();
 	$action->execute();
 
-	require_once('partial/site_header.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');
 ?>
 	<div class="col-sm-8 content">
 		<h2>Gérer un menu</h2>
@@ -88,16 +88,5 @@
 
 
 <?php
-	require_once('partial/site_footer.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_footer.php');
 ?>
-
-<script>
-	var restaurantIds = getRestaurantManagerInfos(getUsername())["RestaurantIds"];
-
-	var listRestaurant = new Array();
-	for (var i = 0; i < restaurantIds.length; i++) {
-		listRestaurant.push(getRestaurantInfos(restaurantIds[i]));
-	};
-
-	fillRestaurantList(listRestaurant);
-</script>

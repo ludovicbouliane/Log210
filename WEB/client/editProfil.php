@@ -1,11 +1,11 @@
 <?php
 	$titre = "Profil";
-	require_once("action/EditProfilAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/EditProfilAction.php");
 	
 	$action = new EditProfilAction();
 	$action->execute();
 	
-	require_once("partial/site_header.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");
 
 ?>
 	<div class="col-sm-8 content" id="editProfilForm">
@@ -101,7 +101,7 @@
 	</div>
 
 <?php
-	require_once("partial/site_footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
 ?>
 
 <script type="text/javascript" src="/js/validator/editProfilValidator.js"></script>

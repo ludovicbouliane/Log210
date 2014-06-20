@@ -1,12 +1,12 @@
 <?php
 	$titre = "Commandes";
 	
-	require_once("action/OrderAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/PrepareOrderAction.php");
 
-	$action = new OrderAction();
+	$action = new PrepareOrderAction();
 	$action->execute();
 
-	require_once("partial/site_header.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");
 ?>
 	<div class="col-sm-8">
 		<div class="row form_row">
@@ -30,5 +30,5 @@
 
 	</div>
 <?php
-	require_once("partial/site_footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
 ?>

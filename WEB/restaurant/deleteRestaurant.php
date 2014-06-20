@@ -1,12 +1,12 @@
 <?php
 	$titre = "Supprimer un restaurant";
 	
-	require_once("action/DeleteRestaurantAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/DeleteRestaurantAction.php");
 
 	$action = new DeleteRestaurantAction();
 	$action->execute();
 
-	require_once('partial/site_header.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');
 
 ?>
 	<div class="col-sm-8 content">
@@ -31,7 +31,7 @@
 	</div>
 	
 <?php
-	require_once('partial/site_footer.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_footer.php');
 ?>
 <script type="text/javascript">
 	window.onload = fillRestaurantList(getAllRestaurantByContractor());

@@ -1,27 +1,18 @@
 <?php
-	$titre = "Modifier un restaurant";
+	$titre = "Ajouter un restaurant";
 	
-	require_once("action/EditRestaurantAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/AddRestaurantAction.php");
 
-	$action = new EditRestaurantAction();
+	$action = new AddRestaurantAction();
 	$action->execute();
 
-	require_once('partial/site_header.php');
-
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');
 ?>
 
-	<div class="col-sm-8 content" id="editRestaurantForm">
-		<h2> Modifier un restaurant</h2>
+	<div class="col-sm-8 content" id="addRestaurantForm">
+		<h2> Ajouter un restaurant</h2>
 
 		<div id="message"></div>
-
-		<div class="row form_row form-group">
-			<div class="col-sm-4">Restaurant : </div>
-			<div class="col-sm-8">
-				<select id="listRestaurant" class="form-control" onchange="fillRestaurantInfos()"> 
-				</select>
-			</div>
-		</div>
 
 		<div class="row form_row form-group">
 			<div class="col-sm-4">Nom :</div>
@@ -72,18 +63,28 @@
 			</div>
 		</div>
 
+		<div class="row form_row form-group">
+			<div class="col-sm-4">Restaurateur : </div>
+			<div class="col-sm-8">
+				<select id="listRestaurantManager" class="form-control" multiple="multiple">
+					<option>Aucune</option> 
+				</select>
+			</div>
+		</div>
+
 		<div class="row form_row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-8">
-				<input type="submit" value="Modifier" class="btn btn-default" onclick="updateRestaurant()"/>
+				<input type="submit" value="Ajouter" class="btn btn-default" onclick="addRestaurant()"/>
 			</div>
 		</div>
-	
-<?php
-	require_once('partial/site_footer.php');
-?>
+	</div>
 
-<script type="text/javascript" src="/js/validator/editRestaurantValidator.js"></script>
-<script type="text/javascript">
-	window.onload = fillRestaurantList(getAllRestaurantByContractor());
+
+<?php
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_footer.php');
+?>
+<script type="text/javascript" src="/js/validator/addRestaurantValidator.js"></script>
+<script>
+	window.onload = fillRestaurantManagerList();
 </script>

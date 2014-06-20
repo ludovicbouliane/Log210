@@ -30,6 +30,6 @@
 /***********************************
  *	Menu page
 ***********************************/
-.money{
-	text-align: right;
+.money span{
+	float: right;
 }

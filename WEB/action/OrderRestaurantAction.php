@@ -1,7 +1,7 @@
 <?php
-	require_once("action/CommonAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/CommonAction.php");
 	
-	class RestaurantAction extends CommonAction{
+	class OrderRestaurantAction extends CommonAction{
 
 		public function __construct(){
 			parent::__construct(array(CommonAction::$CLIENT_ACCOUNTTYPE));

@@ -1,12 +1,12 @@
 <?php
 	$titre = "Modifier un restaurateur";
 	
-	require_once("action/EditRestaurantManagerAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/EditRestaurantManagerAction.php");
 
 	$action = new EditRestaurantManagerAction();
 	$action->execute();
 
-	require_once('partial/site_header.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');
 ?>
 
 	<div class="col-sm-8 content" id="editRestaurantManagerForm">
@@ -54,11 +54,11 @@
 	</div>
 
 <?php
-	require_once("partial/site_footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
 ?>
 
 <script type="text/javascript" src="/js/validator/editRestaurantManagerValidator.js"></script>
 
 <script>
-	fillRestaurantManagerList();
+	window.onload = fillRestaurantManagerList();
 </script>

@@ -33,7 +33,7 @@ function encodePassword(password){
 
 	$.ajax({
 		type:"POST",
-		url : 'profil.php',
+		url : '/profil.php',
 		async : false,
 		data : info,
 		success : function(data){
@@ -50,7 +50,7 @@ function getUsername(){
 
 	$.ajax({
 		type:"POST",
-		url : 'profil.php',
+		url : '/profil.php',
 		async : false,
 		data : { 'getUsername' : 1},
 		success : function(data){
@@ -211,7 +211,7 @@ function setIsLoggedIn(info){
 
 	$.ajax({
 		type : 'POST',
-		url : 'index.php',
+		url : '/index.php',
 		data: info,
 		success : function(data){
 				window.location.href = 'accueil.php';

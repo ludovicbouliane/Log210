@@ -12,7 +12,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="accueil" class="navbar-brand">Accueil</a>
+				<a href="/accueil" class="navbar-brand">Accueil</a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1"> 
 				<ul class="nav navbar-nav">
@@ -22,7 +22,7 @@
 						{
 					?>
 						<li>
-							<a href="restaurant">Restaurant</a>
+							<a href="/order/restaurant">Commander</a>
 						</li>
 					<?php
 						}
@@ -38,13 +38,13 @@
 						<ul class="dropdown-menu">
 							
 							<li>
-								<a href="addRestaurant">Ajouter un restaurant</a>
+								<a href="/restaurant/addRestaurant">Ajouter un restaurant</a>
 							</li>
 							<li>
-								<a href="editRestaurant">Modifier un restaurant</a>
+								<a href="/restaurant/editRestaurant">Modifier un restaurant</a>
 							</li>
 							<li>
-								<a href="deleteRestaurant">Supprimer un restaurant</a>
+								<a href="/restaurant/deleteRestaurant">Supprimer un restaurant</a>
 							</li>
 						</ul>
 					</li>
@@ -54,13 +54,13 @@
 						<ul class="dropdown-menu">
 
 							<li>
-								<a href="addRestaurantManager">Ajouter un restaurateur</a>
+								<a href="/restaurantManager/addRestaurantManager">Ajouter un restaurateur</a>
 							</li>
 							<li>
-								<a href="editRestaurantManager">Modifier un restaurateur</a>
+								<a href="/restaurantManager/editRestaurantManager">Modifier un restaurateur</a>
 							</li>
 							<li>
-								<a href="deleteRestaurantManager">Supprimer un restaurateur</a>
+								<a href="/restaurantManager/deleteRestaurantManager">Supprimer un restaurateur</a>
 							</li>
 						</ul>
 					</li>
@@ -71,10 +71,10 @@
 						{
 					?>
 					<li>
-						<a href="restaurantMenu">Menu</a>
+						<a href="/restaurant/restaurantMenu">Menu</a>
 					</li>
 					<li>
-						<a href="order">Commande</a>
+						<a href="/order/prepareOrder">Commande</a>
 					</li>
 					<?php
 						}
@@ -93,13 +93,13 @@
 								{
 							?>
 								<li>
-									<a href="editProfil">Modifier mon profil</a>
+									<a href="/client/editProfil">Modifier mon profil</a>
 								</li>
 							<?php
 								}
 							?>
 							<li>
-								<a href="editPassword">Modifier le mot de passe</a>
+								<a href="/client/editPassword">Modifier le mot de passe</a>
 							</li>
 							<li class="divider"></li>
 							<li>
