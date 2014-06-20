@@ -57,7 +57,7 @@
 		</div>
 		<div class="row form_row">
 			<div class="col-sm-offset-8">
-				<input type="submit" value="Passer une commande" class="btn btn-default" onclick=""/>
+				<input type="submit" value="Passer une commande" class="btn btn-default" onclick="createOrder()"/>
 			</div>
 		</div>
 	</div>
@@ -66,57 +66,13 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_footer.php');
 ?>
 
+<script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/js/orderMenu.js"></script>
+
 <script type="text/javascript">
-	var restaurantId = '';
-	var menu = '';
-	var dishes = [];
-
-	var TPS = 0.05;
-	var TVQ = 0.09975;
-	
-	function updateTotal(){
-		var subtotal = 0;
-		for (var i = 0; i < dishes.length; i++) {
-			subtotal += dishes[i].getQuantity() * dishes[i].dish.getPrice();
-		};
-
-		var tempTps = subtotal * TPS;
-		var tempTvq = subtotal * TVQ;
-		var total = subtotal + tempTps + tempTvq;
-
-		document.getElementById('subTotal').innerHTML = subtotal.toFixed(2);
-		document.getElementById('tps').innerHTML = tempTps.toFixed(2);
-		document.getElementById('tvq').innerHTML = tempTvq.toFixed(2);
-		document.getElementById('total').innerHTML = total.toFixed(2);
+	window.onload= function(){
+		fillDishTable();
+		$('.spinner').spinner({min : 0});
+		$('.spinner').value = 0;
 	}
-	
-	function fillDishTable(){
-		if(window.location.search.indexOf('?Id=') == 0){
-			restaurantId = window.location.search.substring(4);
-			
-			menu = getMenuFromRestaurantId(restaurantId);
-
-			if(menu === null){
-				window.location="restaurant";
-			}
-			else{
-				dishes = getDishesFromMenuId(menu["Id"]);
-
-				var dishTable = new DishTable(document.getElementById("dishesTable"),true);
-				for (var i = 0; i < dishes.length; i++) {
-					var row = dishTable.addRow(dishes[i]);
-					var input = row.getQteInput();
-					input.onchange = function(){
-						updateTotal();
-					}
-
-					dishes[i] = row;
-				};
-			}
-		}
-	}
-
-	window.onload=fillDishTable();
-
-
 </script>

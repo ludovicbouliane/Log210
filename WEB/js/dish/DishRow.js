@@ -41,12 +41,10 @@ function DishRow(parent,hasQuantity){
 	this.addQteColumn = function(){
 		var column = document.createElement('td');
 		var input = document.createElement("input");		
-		
-		input.setAttribute("type","text");
-		input.setAttribute("value","0");
-		input.setAttribute("placeholder","0");
-		input.setAttribute("class","form-control dishQte");
 
+		input.setAttribute("class","spinner");
+		input.setAttribute("value","0");
+	
 		column.appendChild(input);
 		this.row.appendChild(column);
 
@@ -86,7 +84,13 @@ function DishRow(parent,hasQuantity){
 	}
 
 	this.getQuantity = function(){
-		return this.qteInput.value;
+		var qte = 0;
+
+		if(isNaN(this.qteInput.value) === false){
+			qte = this.qteInput.value;
+		}
+
+		return qte;
 	}
 
 	this.getQteInput = function(){

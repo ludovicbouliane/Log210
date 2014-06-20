@@ -10,6 +10,14 @@
 		<link href="/css/bootstrapValidator.min.css" rel="stylesheet">
 		<link href="/css/common.css" rel="stylesheet" />
 		<link href="/css/global.css" rel="stylesheet">
+
+		<?php
+			if(strpos($_SERVER["REQUEST_URI"], "order/menu") !== false){
+				?>
+				<link href="/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+				<?php
+			}
+		?>
 		
 		
 	</head>
