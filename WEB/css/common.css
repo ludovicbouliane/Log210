@@ -31,6 +31,21 @@ body{
 	overflow-y:auto;
 }
 
+.left{
+	text-align: left;
+}
+
+.right{
+	text-align: right;
+}
+.center{
+	text-align: center;
+}
+
+.splitter{
+	border:1px solid #777;
+	margin-bottom:10px;
+}
 /****************************
  * Overwrite bootstrap value
 *****************************/

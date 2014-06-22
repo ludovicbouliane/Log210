@@ -1,9 +1,6 @@
 var restaurantId = '';
 var menu = '';
 var dishes = [];
-
-var TPS = 0.05;
-var TVQ = 0.09975;
 	
 function updateTotal(){
 
@@ -58,7 +55,7 @@ function createOrder(){
 	};
 
 	for (var i = 0; i < dishes.length; i++) {
-		if(dishes[i].getQuantity() !== 0 && dishes[i].getQuantity() !== NaN){
+		if(dishes[i].getQuantity() !== 0 && dishes[i].getQuantity() !== "0"){
 			orderInfo["dishes"].push({
 				"Id" : dishes[i].dish.getId(),
 				"Name" : dishes[i].dish.getName(),
