@@ -84,10 +84,10 @@ function DishRow(parent,hasQuantity){
 	}
 
 	this.getQuantity = function(){
-		var qte = 0;
+		var qte = this.qteInput.value;
 
-		if(isNaN(this.qteInput.value) === false){
-			qte = this.qteInput.value;
+		if(isNaN(qte) === true){
+			qte = 0;
 		}
 
 		return qte;

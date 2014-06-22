@@ -12,6 +12,8 @@ function updateTotal(){
 		subtotal += dishes[i].getQuantity() * dishes[i].dish.getPrice();
 	};
 
+
+
 	var tempTps = subtotal * TPS;
 	var tempTvq = subtotal * TVQ;
 	var total = subtotal + tempTps + tempTvq;
@@ -38,7 +40,7 @@ function fillDishTable(){
 			for (var i = 0; i < dishes.length; i++) {
 				var row = dishTable.addRow(dishes[i]);
 				var input = row.getQteInput();
-				input.onchange = function(){
+				input.onkeyup = function(){
 					updateTotal();
 				}
 
@@ -57,9 +59,18 @@ function createOrder(){
 
 	for (var i = 0; i < dishes.length; i++) {
 		if(dishes[i].getQuantity() !== 0 && dishes[i].getQuantity() !== NaN){
-			orderInfo["dishes"].push(dishes[i]);
+			orderInfo["dishes"].push({
+				"Id" : dishes[i].dish.getId(),
+				"Name" : dishes[i].dish.getName(),
+				"Price" : dishes[i].dish.getPrice(),
+				"Description" : dishes[i].dish.getDescription(),
+				"Quantity" : dishes[i].getQuantity()
+
+			});
 		}
 	};
 
-	console.log(orderInfo);
-}
+	document.cookie = "order=" + JSON.stringify(orderInfo);
+
+	window.location = "orderSummary";
+ }

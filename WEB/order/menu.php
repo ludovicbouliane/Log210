@@ -74,5 +74,9 @@
 		fillDishTable();
 		$('.spinner').spinner({min : 0});
 		$('.spinner').value = 0;
+
+		$('.ui-spinner-button').click(function() {
+   			updateTotal();
+		});
 	}
 </script>
