@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Http;
 using Domain.Services.Interfaces;
-using Model.DomainModel;
 using Model.ControllerModel;
 
 namespace Controller.Controllers

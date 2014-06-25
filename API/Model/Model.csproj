@@ -37,6 +37,7 @@
       <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ControllerModel\MenuUpdateWithDishes.cs" />
     <Compile Include="ControllerModel\MenuInsertWithDishes.cs" />
+    <Compile Include="ControllerModel\OrderStatus.cs" />
     <Compile Include="ControllerModel\RestaurantManagerWithRestaurants.cs" />
     <Compile Include="ControllerModel\UserAccount.cs" />
     <Compile Include="ControllerModel\ClientWithAccount.cs" />
@@ -60,8 +62,10 @@
     <Compile Include="DomainModel\Contractor.cs" />
     <Compile Include="DomainModel\Dish.cs" />
     <Compile Include="DomainModel\Menu.cs" />
+    <Compile Include="DomainModel\Order.cs" />
     <Compile Include="DomainModel\Restaurant.cs" />
     <Compile Include="DomainModel\RestaurantManager.cs" />
+    <Compile Include="Enum\OrderStatusType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
