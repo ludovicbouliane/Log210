@@ -16,8 +16,3 @@ function OrderTable(tableContainer){
 		this.rows = [];
 	}
 }
-
-/**
-	var orderTable = new OrderTable(document.getElementById('OrderTable'))
-	orderTable.addRow({"Id" : "fapwesiuhrfe398" , "Status" : ""})
-*/

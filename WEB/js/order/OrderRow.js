@@ -12,13 +12,17 @@ function OrderRow(parent){
 	this.setInfo = function(info){
 		this.order = new Order(info);
 
-		this.idCol 			 = this.addColumn(this.order.getId());
-		this.statusCol 		 = this.addColumn(this.order.getStatus());
-		this.changeStatusBtn = this.addColumnWithButton(this.order.getStatus());
+		//Validate that the order ain't finished
+		if(this.order.getStatus() !== 3){
+			this.idCol 			 = this.addColumn(this.order.getId());
 
-		this.changeStatusBtn.onclick = this.onChangeStatusButtonPressed;		
+			this.statusCol 		 = this.addColumn(this.getStatusText(this.order.getStatus()));
+			this.changeStatusBtn = this.addColumnWithButton(this.order.getStatus());
 
-		this.parent.appendChild(this.row);
+			this.changeStatusBtn.onclick = this.onChangeStatusButtonPressed;		
+
+			this.parent.appendChild(this.row);
+		}
 	}
 
 	this.addColumn = function(text){
@@ -52,26 +56,53 @@ function OrderRow(parent){
 
 	this.onChangeStatusButtonPressed = function(){
 		orderRow.order.changeStatus();
-		//TODO call the APi
+		
 
 		var status = orderRow.order.getStatus();
 
-		var btnContent = orderRow.getButtonContentByStatus(status);
-		orderRow.changeStatusBtn.setAttribute("value",btnContent);
-		orderRow.statusCol.innerHTML = status;
+		if(status === 3){
+			orderRow.deleteRow();
+		}
+		else{
+			var btnContent = orderRow.getButtonContentByStatus(status);
+			orderRow.changeStatusBtn.setAttribute("value",btnContent);
+			orderRow.statusCol.innerHTML = orderRow.getStatusText(status);
+		}
+	}
+
+
+	this.deleteRow = function(){
+		this.row.parentNode.removeChild(this.row);
 	}
 	
 
 	this.getButtonContentByStatus = function(status){
 		var content = null;
 
-		if(status == ""){
+		if(status === 1){
 			content = "Préparer";
 		}
-		else if(status == "En préparation"){
+		else if(status === 2){
 			content = "Terminer";
 		}
 
 		return content;
+	}
+
+	this.getStatusText = function(status){
+		var statusText = "";
+		switch(status){
+			case 1:
+				statusText = "En attente"; 
+				break;
+			case 2:
+				statusText = "En préparation";
+				break;
+			case 3:
+				statusText = "Terminé";
+				break;
+		}
+
+		return statusText;
 	}
 }

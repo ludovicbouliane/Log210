@@ -11,11 +11,16 @@ function Order(info){
 	}
 
 	this.changeStatus =function(){
-		if(this.status == ""){
-			this.status = "En préparation";
+		if(this.status ===1){
+			this.status = 2;
 		}
-		else if(this.status == "En préparation"){
-			this.status = "Prête";
+		else if(this.status === 2){
+			this.status = 3;
 		}
+
+		if(!updateOrderStatus(this.id,this.status)){
+			this.status -= 1;
+		}
+
 	}
 }

@@ -45,6 +45,7 @@
 					<script type="text/javascript" src="/js/order/Order.js"></script>
 					<script type="text/javascript" src="/js/order/OrderTable.js"></script>
 					<script type="text/javascript" src="/js/order/OrderRow.js"></script>
+					<script type="text/javascript" src="/js/prepareOrder.js"></script>
 		<?php
 				}
 			//any other page
