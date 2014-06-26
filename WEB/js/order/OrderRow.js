@@ -69,7 +69,7 @@ function OrderRow(parent){
 			content = "Préparer";
 		}
 		else if(status == "En préparation"){
-			content = "Complèter";
+			content = "Terminer";
 		}
 
 		return content;

@@ -15,7 +15,7 @@ function Order(info){
 			this.status = "En préparation";
 		}
 		else if(this.status == "En préparation"){
-			this.status = "Envoyé";
+			this.status = "Prête";
 		}
 	}
 }
