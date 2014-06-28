@@ -1,4 +1,6 @@
 var order = null;
+var lastShippingAdresse = '1';
+
 window.onload = function(){
 	var cookies = document.cookie.split(";");
 
@@ -28,7 +30,32 @@ window.onload = function(){
 	document.getElementById('tvq').innerHTML = tempTvq.toFixed(2);
 	document.getElementById('total').innerHTML = total.toFixed(2);
 
+	$("input[name=shippingAddress]:radio").change(function () {
+		switch(lastShippingAdresse){
+			case '2':
+				document.getElementById("prefAddress").setAttribute("class","hide");
+				break;
+			case '3':
+				document.getElementById("newAddress").setAttribute("class","hide");
+				break;
+		}	
+
+		lastShippingAdresse = $("input[name=shippingAddress]:checked").val();
+		console.log(lastShippingAdresse);
+		switch(lastShippingAdresse){
+			case '2':
+				document.getElementById("prefAddress").setAttribute("class","show");
+				break;
+			case '3':
+				document.getElementById("newAddress").setAttribute("class","show");
+				break;
+		}	
+
+	});
 }
+
+
+
 
 function addOrderLine(orderLine){
 	var row  = document.createElement("div");

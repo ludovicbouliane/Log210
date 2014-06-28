@@ -12,7 +12,7 @@
 		<link href="/css/global.css" rel="stylesheet">
 
 		<?php
-			if(strpos($_SERVER["REQUEST_URI"], "order/menu") !== false){
+			if(strpos($_SERVER["REQUEST_URI"], "order/menu") !== false || strpos($_SERVER["REQUEST_URI"], "order/orderSummary") !== false){
 				?>
 				<link href="/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
 				<?php
