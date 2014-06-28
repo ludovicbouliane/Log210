@@ -10,6 +10,12 @@
 ?>
 	<div class="col-sm-8">
 		<div class="row form_row">
+			<h3>Préparer une commande</h3>
+			<label>Sélection de restaurant :</label>
+			<select id="listRestaurant" onchange="restaurantChanged()"></select>
+		</div>
+
+		<div class="row form_row">
 			<div class="table-responsive">
 				<table class="table table-stripped table-hover table-bordered">
 					<thead>

@@ -3,10 +3,12 @@ function OrderTable(tableContainer){
 	this.tableContainer = tableContainer;
 
 	this.addRow = function(info){
-		var row = new OrderRow(this.tableContainer);
-		row.setInfo(info);
+		if(info["Status"] !== 3){
+			var row = new OrderRow(this.tableContainer);
+			row.setInfo(info);
 
-		this.rows.push(row);
+			this.rows.push(row);
+		}
 	}
 
 	this.emptyTable = function(){

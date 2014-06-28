@@ -13,16 +13,16 @@ function OrderRow(parent){
 		this.order = new Order(info);
 
 		//Validate that the order ain't finished
-		if(this.order.getStatus() !== 3){
-			this.idCol 			 = this.addColumn(this.order.getId());
+		
+		this.idCol 			 = this.addColumn(this.order.getId());
 
-			this.statusCol 		 = this.addColumn(this.getStatusText(this.order.getStatus()));
-			this.changeStatusBtn = this.addColumnWithButton(this.order.getStatus());
+		this.statusCol 		 = this.addColumn(this.getStatusText(this.order.getStatus()));
+		this.changeStatusBtn = this.addColumnWithButton(this.order.getStatus());
 
-			this.changeStatusBtn.onclick = this.onChangeStatusButtonPressed;		
+		this.changeStatusBtn.onclick = this.onChangeStatusButtonPressed;		
 
-			this.parent.appendChild(this.row);
-		}
+		this.parent.appendChild(this.row);
+
 	}
 
 	this.addColumn = function(text){
@@ -72,7 +72,7 @@ function OrderRow(parent){
 
 
 	this.deleteRow = function(){
-		this.row.parentNode.removeChild(this.row);
+		this.parent.removeChild(this.row);
 	}
 	
 

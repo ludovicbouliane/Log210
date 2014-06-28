@@ -1,13 +1,32 @@
-window.onload = function(){
-	var orderTable = new OrderTable(document.getElementById('OrderTable'));
+var orderTable = null;
 
-	var order = getAllOrder();
-	
-	for (var i = 0; i < order.length; i++) {
-		orderTable.addRow(order[i]);
+window.onload = function(){
+
+	var restaurantIds = getRestaurantManagerInfos(getUsername())["RestaurantIds"];
+	var restaurants = [];
+	for (var i = 0; i < restaurantIds.length; i++) {
+		restaurants.push(getRestaurantInfos(restaurantIds[i]));
 	};
+
+	fillRestaurantList(restaurants);
+
+	orderTable = new OrderTable(document.getElementById('OrderTable'));
+
+	
 }
 
+function restaurantChanged(){
+	orderTable.emptyTable();
+
+	if(document.getElementById("listRestaurant").value !== ""){
+		orderTable.emptyTable();
+		var order = getAllOrder();
+		
+		for (var i = 0; i < order.length; i++) {
+			orderTable.addRow(order[i]);
+		};
+	}
+}
 
 function getOrdersByRestaurantManager(){
 
