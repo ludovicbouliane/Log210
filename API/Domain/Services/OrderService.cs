@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using DataAccess.Repositories.Interfaces;
 using Domain.Response;
@@ -22,6 +23,23 @@ namespace Domain.Services
         public IResponse Create(Order order)
         {
             throw new System.NotImplementedException();
+        }
+
+        public IResponse GetAll()
+        {
+            var response = new Response.Response();
+
+            var orders = _orderRepository.GetAll();
+
+            if (!orders.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No order found");
+                return response;
+            }
+
+            response.Set(HttpStatusCode.OK, orders);
+
+            return response;
         }
 
         public IResponse UpdateStatus(OrderStatus orderStatus)

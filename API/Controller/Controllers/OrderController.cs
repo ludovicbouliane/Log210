@@ -24,5 +24,14 @@ namespace Controller.Controllers
             var response = _orderService.UpdateStatus(orderStatus);
             return ResponseMessage(response);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("")]
+        public IHttpActionResult GetAll()
+        {
+            var response = _orderService.GetAll();
+            return ResponseMessage(response);
+        }
     }
 }
