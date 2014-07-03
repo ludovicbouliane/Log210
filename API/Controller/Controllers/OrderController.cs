@@ -33,5 +33,14 @@ namespace Controller.Controllers
             var response = _orderService.GetAll();
             return ResponseMessage(response);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("status/{restaurantId}")]
+        public IHttpActionResult GetAllOrderStatusByRestaurantId(string restaurantId)
+        {
+            var response = _orderService.GetAllOrderStatusByRestaurantId(restaurantId);
+            return ResponseMessage(response);
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using AutoMapper;
 using DataAccess.Repositories.Interfaces;
 using Domain.Response;
 using Domain.Services.Interfaces;
@@ -22,7 +24,34 @@ namespace Domain.Services
 
         public IResponse Create(Order order)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public IResponse GetAllOrderStatusByRestaurantId(string restaurantId)
+        {
+            var response = new Response.Response();
+
+            var orders = _orderRepository.GetAll();
+
+            if (!orders.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No order found");
+                return response;
+            }
+
+            var restaurantOrders = orders.Where(o => o.RestaurantId == restaurantId);
+            var restaurantOrderStatuses = new List<OrderStatus>();
+
+            foreach (var restaurantOrder in restaurantOrders)
+            {
+                var orderStatus = Mapper.Map<Order, OrderStatus>(restaurantOrder);
+                orderStatus.OrderId = restaurantOrder.Id;
+                restaurantOrderStatuses.Add(orderStatus);
+            }
+
+            response.Set(HttpStatusCode.OK, restaurantOrderStatuses);
+
+            return response;
         }
 
         public IResponse GetAll()

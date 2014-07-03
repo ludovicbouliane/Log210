@@ -13,7 +13,7 @@ namespace DataAccess.Repositories
 
                 var existingClient = GetSingle(c => c.Id == order.Id);
 
-                if (order.Status != null) existingClient.Status = order.Status;
+                existingClient.Status = order.Status;
 
                 collection.Save(existingClient);
             }

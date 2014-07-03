@@ -9,5 +9,6 @@ namespace Domain.Services.Interfaces
         IResponse Create(Order order);
         IResponse GetAll();
         IResponse UpdateStatus(OrderStatus orderStatus);
+        IResponse GetAllOrderStatusByRestaurantId(string restaurantId);
     }
 }

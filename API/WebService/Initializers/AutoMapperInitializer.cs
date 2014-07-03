@@ -15,6 +15,7 @@ namespace WebService.Initializers
             Mapper.CreateMap<RestaurantManager, RestaurantManagerWithRestaurants>();
             Mapper.CreateMap<Restaurant, RestaurantName>();
             Mapper.CreateMap<ContractorWithAccount, Contractor>();
+            Mapper.CreateMap<Order, OrderStatus>();
         }
     }
 }

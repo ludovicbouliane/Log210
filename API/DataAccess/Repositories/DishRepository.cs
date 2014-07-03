@@ -1,10 +1,5 @@
 ﻿using DataAccess.Repositories.Interfaces;
 using Model.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
@@ -20,7 +15,7 @@ namespace DataAccess.Repositories
                 var existingDish = GetSingle(c => c.Id == dish.Id);
                 if (dish.Name != null) existingDish.Name = dish.Name;
                 if (dish.Description != null) existingDish.Description = dish.Description;
-                if (dish.Price != null) existingDish.Price = dish.Price;
+                existingDish.Price = dish.Price;
 
                 collection.Save(existingDish);
             }
