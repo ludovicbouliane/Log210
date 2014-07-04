@@ -52,6 +52,15 @@ window.onload = function(){
 		}	
 
 	});
+
+	var select = document.getElementById('timeHour');
+	for (var i = 0; i < 24; i++) {
+		var option = document.createElement("option");
+		option.setAttribute("value",i);
+		var text = document.createTextNode(i);
+		option.appendChild(text);
+		select.appendChild(option);
+	};
 }
 
 
