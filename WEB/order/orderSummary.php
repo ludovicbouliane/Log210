@@ -1,9 +1,9 @@
 <?php
 	$titre = "Résumé de la commande";
 	
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/OrderSummaryAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 
-	$action = new OrderSummaryAction();
+	$action = new GenericAction(array(CommonAction::$CLIENT_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");

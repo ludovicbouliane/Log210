@@ -1,9 +1,11 @@
 <?php
 	$titre = "Accueil";
 	
-	require_once("action/AccueilAction.php");
+	require_once("action/GenericAction.php");
 
-	$action = new AccueilAction();
+	$action = new GenericAction(array(CommonAction::$CLIENT_ACCOUNTTYPE,
+									  CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE,
+									  CommonAction::$CONTRACTOR_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once("partial/site_header.php");

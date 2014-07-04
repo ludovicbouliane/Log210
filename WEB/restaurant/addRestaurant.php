@@ -1,9 +1,9 @@
 <?php
 	$titre = "Ajouter un restaurant";
 	
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/AddRestaurantAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 
-	$action = new AddRestaurantAction();
+	$action = new GenericAction(array(CommonAction::$CONTRACTOR_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');

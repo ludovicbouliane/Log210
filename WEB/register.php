@@ -1,8 +1,11 @@
 <?php
 	$titre = "S'inscrire";
-	require_once("action/RegisterAction.php");
+	require_once("action/GenericAction.php");
 	
-	$action = new RegisterAction();
+	$action = new GenericAction(array(CommonAction::$PUBLIC_ACCOUNTTYPE,
+									  CommonAction::$CLIENT_ACCOUNTTYPE,
+									  CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE,
+									  CommonAction::$CONTRACTOR_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once("partial/header.php");

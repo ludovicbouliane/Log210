@@ -1,9 +1,9 @@
 <?php
 	$titre = "Supprimer un restaurant";
 	
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/DeleteRestaurantAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 
-	$action = new DeleteRestaurantAction();
+	$action = new GenericAction(array(CommonAction::$CONTRACTOR_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');

@@ -1,8 +1,10 @@
 <?php
 	$titre = "Modifier le mot de passe";
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/EditPasswordAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 	
-	$action = new EditPasswordAction();
+	$action = new GenericAction(array(CommonAction::$CLIENT_ACCOUNTTYPE,
+							   		  CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE,
+									  CommonAction::$CONTRACTOR_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");

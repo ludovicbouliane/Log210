@@ -1,9 +1,9 @@
 <?php
 	$titre = "Modifier un restaurant";
 	
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/EditRestaurantAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 
-	$action = new EditRestaurantAction();
+	$action = new GenericAction(array(CommonAction::$CONTRACTOR_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');

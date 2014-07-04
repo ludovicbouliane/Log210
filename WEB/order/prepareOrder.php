@@ -1,9 +1,9 @@
 <?php
 	$titre = "Commandes";
 	
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/PrepareOrderAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 
-	$action = new PrepareOrderAction();
+	$action = new GenericAction(array(CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");

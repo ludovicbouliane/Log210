@@ -1,9 +1,9 @@
 <?php
 	$titre = "Menu";
 	
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/RestaurantMenuAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 
-	$action = new RestaurantMenuAction();
+	$action = new GenericAction(array(CommonAction::$RESTAURANTMANAGER_ACCOUNTTYPE));
 	$action->execute();
 
 	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php');

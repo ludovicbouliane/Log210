@@ -1,8 +1,8 @@
 <?php
 	$titre = "Profil";
-	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/EditProfilAction.php");
+	require_once($_SERVER['DOCUMENT_ROOT'] ."/action/GenericAction.php");
 	
-	$action = new EditProfilAction();
+	$action = new GenericAction(array(CommonAction::$CLIENT_ACCOUNTTYPE));
 	$action->execute();
 	
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");

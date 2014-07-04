@@ -21,9 +21,18 @@
 						if($action->getAccountType() == CommonAction::$CLIENT_ACCOUNTTYPE)
 						{
 					?>
-						<li>
-							<a href="/order/restaurant">Commander</a>
-						</li>
+						<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Commande</a>
+
+						<ul class="dropdown-menu">
+							
+							<li>
+								<a href="/client/addPredefinedAddress">Ajouter des adresses prédéfinies</a>
+							</li>
+							<li>
+								<a href="/order/restaurant">Commander</a>
+							</li>
+					</ul>
 					<?php
 						}
 					?>
