@@ -63,9 +63,6 @@ window.onload = function(){
 	};
 }
 
-
-
-
 function addOrderLine(orderLine){
 	var row  = document.createElement("div");
 
@@ -87,5 +84,8 @@ function addOrderLine(orderLine){
 	row.appendChild(priceDiv);
 
 	document.getElementById("orderContent").appendChild(row);
+}
 
+function confirmOrder(){
+		
 }

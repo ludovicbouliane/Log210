@@ -13,7 +13,12 @@
 				<script type="text/javascript" src="/js/restaurantManager.js"></script>				
 		<?php
 			// for all pages related to the menu
-			} 
+			}
+			else if(strpos($_SERVER["REQUEST_URI"], "addPredefinedAddress") !== false){
+		?>
+				<script type="text/javascript" src="/js/addPredefinedAddress.js"></script>
+		<?php
+			}
 			else if(strpos(strtoupper($_SERVER["REQUEST_URI"]), "MENU") !== false ){
 		?>
 				<script type="text/javascript" src="/js/dish/Dish.js"></script>

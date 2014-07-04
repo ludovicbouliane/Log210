@@ -7,6 +7,7 @@
 
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_header.php");
 ?>
+
 <div class="col-sm-8 content" id="addPredefinedAddressForm">
 	<h2>Ajouter une adresse prédéfinie</h2>
 
@@ -52,6 +53,12 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-8">
+			<input type="submit" value="Ajouter" class="btn btn-default" onclick="addPredefinedAddress()"/>
+		</div>
+	</div>
 </div>
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
