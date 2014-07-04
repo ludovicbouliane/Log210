@@ -1,5 +1,5 @@
 function Order(info){
-	this.id = info["Id"];
+	this.id = info["OrderId"];
 	this.status = info["Status"];
 
 	this.getId = function(){

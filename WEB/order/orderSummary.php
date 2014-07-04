@@ -59,7 +59,17 @@
 		<div class="row form_row">
 			<h4>Date et heure de livraison</h4>
 			Date : <input type="text" id="date">
-			Heure : <input type="text" id="timeHour"><input type="text" id="timeMinute">
+			Heure : 
+			<select id="timeHour">
+			</select>
+			Minute : 
+			<select id="timeMinute">
+				<option value="0">0</option>
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="45">45</option>
+			</select>
+
 		</div>
 			<div class="row form_row">
 				<h4>Adresse de livraison</h4>
@@ -138,6 +148,4 @@
 
 <script>
 	$("#date").datepicker();
-	$("#timeHour").spinner({min:0,max:23});
-	$("#timeMinute").spinner({min:0,max:59});
 </script>

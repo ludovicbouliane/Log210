@@ -20,7 +20,7 @@ function restaurantChanged(){
 
 	if(document.getElementById("listRestaurant").value !== ""){
 		orderTable.emptyTable();
-		var order = getAllOrder();
+		var order = getOrderStatusByRestaurant(document.getElementById('listRestaurant').value);
 		
 		for (var i = 0; i < order.length; i++) {
 			orderTable.addRow(order[i]);
@@ -28,8 +28,22 @@ function restaurantChanged(){
 	}
 }
 
-function getOrdersByRestaurantManager(){
+function getOrderStatusByRestaurant(restaurantId){
+	var orders = [];
 
+	$.ajax({
+		type:"GET",
+		url: API_URL + 'orders/status/' + restaurantId,
+		contentType:"application/json",
+		async:false,
+		success:function(data){
+			
+			orders = data;
+		}
+
+	});
+
+	return orders;
 }
 
 function getAllOrder(){
