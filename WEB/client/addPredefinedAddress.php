@@ -11,10 +11,12 @@
 <div class="col-sm-8 content" id="addPredefinedAddressForm">
 	<h2>Ajouter une adresse prédéfinie</h2>
 
-	<div class="row form_row">
+	<div id="message"></div>
+
+	<div class="row form_row form-group">
 		<div class="col-sm-4">Nom :</div>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="name" placeholder="Nom" name="name"/>
+			<input type="text" class="form-control" id="name" placeholder="Nom" name="addressName"/>
 		</div>
 	</div>
 
@@ -63,3 +65,5 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
 ?>
+
+<script type="text/javascript" src="/js/validator/addPredefinedAddressValidator.js"></script>

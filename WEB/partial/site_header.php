@@ -30,7 +30,7 @@
 								<a href="/client/addPredefinedAddress">Ajouter des adresses prédéfinies</a>
 							</li>
 							<li>
-								<a href="/order/restaurant">Commander</a>
+								<a href="/order/restaurant">Nouvelle commande</a>
 							</li>
 					</ul>
 					<?php
