@@ -9,6 +9,8 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] .'/partial/site_header.php')
 ?>
 	<div class="col-sm-8">
+		<div id="message"></div>
+
 		<div class="row form_row">
 			<div class="table-responsive">
 				<table class="table table-stripped table-hover table-bordered">

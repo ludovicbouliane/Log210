@@ -67,7 +67,14 @@ function createOrder(){
 		}
 	};
 
-	document.cookie = "order=" + JSON.stringify(orderInfo);
+	if(orderInfo["dishes"].length != 0){
 
-	window.location = "orderSummary";
+		document.cookie = "order=" + JSON.stringify(orderInfo);
+
+		window.location = "orderSummary";
+	}
+	else{
+		var mess = new MessageBox();
+		mess.show(3,"La commande ne contient aucun aliment");
+	}
  }

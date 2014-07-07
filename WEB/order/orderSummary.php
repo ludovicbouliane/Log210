@@ -14,6 +14,8 @@
 
 		<h4>Restaurant : <span id="restaurantName"></span></h4>
 
+		<div id="message"> </div>
+
 		<div class="splitter"></div>
 
 		<div class="form_row" id="orderContent">
@@ -58,7 +60,7 @@
 		<div class="col-xs-12">
 		<div class="row form_row">
 			<h4>Date et heure de livraison</h4>
-			Date : <input type="text" id="date">
+			Date : <input type="text" id="date" value="<?php ?>">
 			Heure : 
 			<select id="timeHour">
 			</select>
@@ -136,7 +138,7 @@
 
 			<div class="row form_row">
 				<div class="col-sm-offset-8">
-					<input type="sunmit" value="Confirmer la commande" class="btn btn-default">
+					<input type="sunmit" value="Confirmer la commande" class="btn btn-default" onclick="confirmOrder()">
 				</div>
 			</div>
 		</div>
@@ -147,5 +149,4 @@
 <script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.min.js"></script>
 
 <script>
-	$("#date").datepicker();
 </script>

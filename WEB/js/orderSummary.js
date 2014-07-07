@@ -41,7 +41,7 @@ window.onload = function(){
 		}	
 
 		lastShippingAdresse = $("input[name=shippingAddress]:checked").val();
-		console.log(lastShippingAdresse);
+
 		switch(lastShippingAdresse){
 			case '2':
 				document.getElementById("prefAddress").setAttribute("class","show");
@@ -61,6 +61,15 @@ window.onload = function(){
 		option.appendChild(text);
 		select.appendChild(option);
 	};
+
+	$("#date").datepicker();
+	var d = new Date();
+    $("#date").datepicker("setDate",(d.getMonth()+1) +"/"+d.getDate() + "/" + d.getFullYear());
+
+    //Adding an hour to now time for delievery
+    d = new Date(d.getTime() + 1*60*60*1000); 
+    
+   	document.getElementById("timeHour").value = d.getHours();
 }
 
 function addOrderLine(orderLine){
@@ -87,5 +96,31 @@ function addOrderLine(orderLine){
 }
 
 function confirmOrder(){
-		
+	var message = new MessageBox();
+
+	if(order === null){
+		message.show(3,"Veillez activer les cookies de votre furteur");
+	}
+	else {
+		if(document.getElementById("date").value.trim().length !== 0){
+			order["date"] = document.getElementById("date").value;
+			order["hour"] =	document.getElementById("timeHour").value;
+			order["minute"] =	document.getElementById("timeMinute").value;
+
+			switch(lastShippingAdresse){
+				case '1':
+					console.log('1');
+					break;
+				case '2':
+					console.log('2');
+					break;
+				case '3':
+					console.log('3');
+					break;
+			}
+		}
+		else{
+			message.show(3,"Please turn on cookies of your browser");		
+		}
+	}
 }
