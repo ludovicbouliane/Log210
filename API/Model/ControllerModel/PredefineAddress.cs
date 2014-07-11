@@ -9,6 +9,7 @@ namespace Model.ControllerModel
 {
     public class PredefineAddress
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public Address Address { get; set; }
     }

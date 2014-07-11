@@ -11,5 +11,8 @@ namespace Domain.Services.Interfaces
         IResponse Update(Client client);
         IResponse GetAll();
         IResponse GetClientByUsername(string username);
+        IResponse AddPredefinedAddress(ClientPredefinedAddress clientPredefinedAddress);
+        IResponse GetAllPredefinedAddress(string username);
+        IResponse GetAddressDetail(string AddressId);
     }
 }

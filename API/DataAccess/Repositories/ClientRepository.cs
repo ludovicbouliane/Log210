@@ -21,6 +21,7 @@ namespace DataAccess.Repositories
                 if (client.Address.Country != null) existingClient.Address.Country = client.Address.Country;
                 if (client.Address.ZipCode != null) existingClient.Address.ZipCode = client.Address.ZipCode;
                 if (client.Telephone != null) existingClient.Telephone = client.Telephone;
+                if (client.AddressList != null) existingClient.AddressList = client.AddressList;
 
                 if (client.BirthDate != DateTime.MinValue)
                 {
