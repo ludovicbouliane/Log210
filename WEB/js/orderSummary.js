@@ -203,7 +203,7 @@ function getPredefinedAddresses(){
 	$.ajax({
 		type:"GET",
 		contentType:"application/json",
-		url : API_URL + 'clients/predefAddress/' + getUsername(),
+		url : API_URL + 'clients/predefinedAddress/' + getUsername(),
 		success : function(data){
 			var listPrefAddresses = data;
 
@@ -219,9 +219,9 @@ function getPredefinedAddresses(){
 				var address = listPrefAddresses[i];
 				
 				var option = document.createElement("option");	
-				option.setAttribute("value",address["AddressId"]);
+				option.setAttribute("value",address["Id"]);
 				
-				var name = document.createTextNode(rest["Name"]);
+				var name = document.createTextNode(address["Name"]);
 
 				option.appendChild(name);	
 				selectContainer.appendChild(option);
@@ -235,7 +235,8 @@ function getPredefinedAddressInfo(){
 	$.ajax({
 		type:"GET",
 		contentType:"application/json",
-		url : API_URL + 'clients/predefAddress/' + document.getElementById('listPreferedAddresses').value,
+		async : false,
+		url : API_URL + 'clients/predefinedAddress/address/' + document.getElementById('listPreferedAddresses').value,
 		success : function(data){
 			address = data;
 		}

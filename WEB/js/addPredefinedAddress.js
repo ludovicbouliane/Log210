@@ -19,12 +19,12 @@ function addPredefinedAddress(){
 			"City" : document.getElementById("city").value,
 			"State" : document.getElementById("state").value,
 			"Country" : document.getElementById("country").value,
-			"ZipCode" : document.getElementById("zipCode").value
+			"ZipCode" : document.getElementById("zipCode").value}
 		});
 		
 		$.ajax({
-			type:"PUT",
-			url: API_URL + 'accounts/address',
+			type:"POST",
+			url: API_URL + 'clients/predefinedAddress',
 			contentType:"application/json",
 			data: info,
 			success:function(data){
