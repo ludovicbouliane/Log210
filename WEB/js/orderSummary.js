@@ -2,7 +2,7 @@ var order = null;
 var lastShippingAdresse = '1';
 
 window.onload = function(){
-	//getPredefinedAddresses();
+	getPredefinedAddresses();
 	
 	order = retrieveOrderFromCookies();
 
@@ -13,29 +13,6 @@ window.onload = function(){
 	addOnChangeListenerToAddressRadio();
 
 	initDeliveryTime();
-}
-
-function addOrderLine(orderLine){
-	var row  = document.createElement("div");
-
-	var qteDiv = document.createElement("div");
-	var nameDiv = document.createElement("div");
-	var priceDiv = document.createElement("div");
-
-	qteDiv.appendChild(document.createTextNode(orderLine["Quantity"]));
-	nameDiv.appendChild(document.createTextNode(orderLine["Name"]));
-	priceDiv.appendChild(document.createTextNode((orderLine["Quantity"]*orderLine["Price"]).toFixed(2) + " $"));
-
-	row.setAttribute("class", "row");
-	qteDiv.setAttribute("class","col-xs-3 center");
-	nameDiv.setAttribute("class","col-xs-3");	
-	priceDiv.setAttribute("class","col-xs-4 col-sm-3 col-md-2 col-xl-2 right");
-
-	row.appendChild(qteDiv);
-	row.appendChild(nameDiv);
-	row.appendChild(priceDiv);
-
-	document.getElementById("orderContent").appendChild(row);
 }
 
 function confirmOrder(){
@@ -57,7 +34,7 @@ function confirmOrder(){
 					order["Address"] = getUserInfos()["Address"];
 					break;
 				case '2':
-					order["Address"] = getPredefinedAddress(document.getElementById('').value);
+					order["Address"] = getPredefinedAddressInfo()["Address"];
 					break;
 				case '3':
 					if(	document.getElementById("address").value.trim().length == 0 ||
@@ -91,57 +68,8 @@ function confirmOrder(){
 	}
 }
 
-function finalizeOrder(confirmedOrder){
-
-	confirmedOrder = JSON.stringify(confirmedOrder);
-
-	$.ajax({
-		type:"PUT",
-		url : API_URL + 'orders',
-		contentType:"application/json",
-		data : confirmedOrder,
-		success : function(data){
-			if(confirm("Numéro de confirmation : " + data)){
-				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-				window.location = "/order/restaurant";
-			}
-			else{
-				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";	
-				window.location = "/order/restaurant";
-			}
-		}
-	});
-}
-
-function getPredefinedAddresses(){
-	$.ajax({
-		type:"GET",
-		url : API_URL + 'clients/predefAddress/' + getUsername(),
-		success : function(data){
-			var listPrefAddresses = data;
-
-			var selectContainer = document.getElementById('listPreferedAddresses');
-
-			while (selectContainer.hasChildNodes()) {
-		 	   selectContainer.removeChild(selectContainer.lastChild);
-			}
-				
-			selectContainer.appendChild(addNoneOption());
-
-			for(var i=0 ; i<listPrefAddresses.length ; i++){
-				var address = listPrefAddresses[i];
-				
-				var option = document.createElement("option");	
-				option.setAttribute("value",address["Id"]);
-				
-				var name = document.createTextNode(rest["Name"]);
-
-				option.appendChild(name);	
-				selectContainer.appendChild(option);
-			}
-		}
-	});
-}
+/////////////////////////////////////////////////////////
+// Initialization
 
 function retrieveOrderFromCookies(){
 	var cookies = document.cookie.split(";");
@@ -156,6 +84,29 @@ function retrieveOrderFromCookies(){
 	};
 
 	return tempOrder;
+}
+
+function addOrderLine(orderLine){
+	var row  = document.createElement("div");
+
+	var qteDiv = document.createElement("div");
+	var nameDiv = document.createElement("div");
+	var priceDiv = document.createElement("div");
+
+	qteDiv.appendChild(document.createTextNode(orderLine["Quantity"]));
+	nameDiv.appendChild(document.createTextNode(orderLine["Name"]));
+	priceDiv.appendChild(document.createTextNode((orderLine["Quantity"]*orderLine["Price"]).toFixed(2) + " $"));
+
+	row.setAttribute("class", "row");
+	qteDiv.setAttribute("class","col-xs-3 center");
+	nameDiv.setAttribute("class","col-xs-3");	
+	priceDiv.setAttribute("class","col-xs-4 col-sm-3 col-md-2 col-xl-2 right");
+
+	row.appendChild(qteDiv);
+	row.appendChild(nameDiv);
+	row.appendChild(priceDiv);
+
+	document.getElementById("orderContent").appendChild(row);
 }
 
 function computeTotal(){
@@ -225,3 +176,70 @@ function initDeliveryTime(){
 
 /////////////////////////////////////////////////////////
 // Api calls
+
+function finalizeOrder(confirmedOrder){
+
+	confirmedOrder = JSON.stringify(confirmedOrder);
+
+	$.ajax({
+		type:"PUT",
+		url : API_URL + 'orders',
+		contentType:"application/json",
+		data : confirmedOrder,
+		success : function(data){
+			if(confirm("Numéro de confirmation : " + data)){
+				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+				window.location = "/order/restaurant";
+			}
+			else{
+				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";	
+				window.location = "/order/restaurant";
+			}
+		}
+	});
+}
+
+function getPredefinedAddresses(){
+	$.ajax({
+		type:"GET",
+		contentType:"application/json",
+		url : API_URL + 'clients/predefAddress/' + getUsername(),
+		success : function(data){
+			var listPrefAddresses = data;
+
+			var selectContainer = document.getElementById('listPreferedAddresses');
+
+			while (selectContainer.hasChildNodes()) {
+		 	   selectContainer.removeChild(selectContainer.lastChild);
+			}
+				
+			selectContainer.appendChild(addNoneOption());
+
+			for(var i=0 ; i<listPrefAddresses.length ; i++){
+				var address = listPrefAddresses[i];
+				
+				var option = document.createElement("option");	
+				option.setAttribute("value",address["AddressId"]);
+				
+				var name = document.createTextNode(rest["Name"]);
+
+				option.appendChild(name);	
+				selectContainer.appendChild(option);
+			}
+		}
+	});
+}
+
+function getPredefinedAddressInfo(){
+	var address = null;
+	$.ajax({
+		type:"GET",
+		contentType:"application/json",
+		url : API_URL + 'clients/predefAddress/' + document.getElementById('listPreferedAddresses').value,
+		success : function(data){
+			address = data;
+		}
+	});
+
+	return address;
+}
