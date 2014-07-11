@@ -49,15 +49,16 @@ function fillDishTable(){
 
 function createOrder(){
 	var orderInfo ={
-		"restaurantId" : restaurantId,
-		"menuId" : menu["Id"],
-		"dishes" : []
+		"Username" : getUsername(),
+		"RestaurantId" : restaurantId,
+		"MenuId" : menu["Id"],
+		"Dishes" : []
 	};
 
 	for (var i = 0; i < dishes.length; i++) {
 		if(dishes[i].getQuantity() !== 0 && dishes[i].getQuantity() !== "0"){
-			orderInfo["dishes"].push({
-				"Id" : dishes[i].dish.getId(),
+			orderInfo["Dishes"].push({
+				"DishId" : dishes[i].dish.getId(),
 				"Name" : dishes[i].dish.getName(),
 				"Price" : dishes[i].dish.getPrice(),
 				"Description" : dishes[i].dish.getDescription(),
@@ -67,7 +68,7 @@ function createOrder(){
 		}
 	};
 
-	if(orderInfo["dishes"].length != 0){
+	if(orderInfo["Dishes"].length != 0){
 
 		document.cookie = "order=" + JSON.stringify(orderInfo);
 

@@ -6,7 +6,7 @@ window.onload = function(){
 	
 	order = retrieveOrderFromCookies();
 
-	document.getElementById("restaurantName").innerHTML = getRestaurantInfos(order["restaurantId"])["Name"];
+	document.getElementById("restaurantName").innerHTML = getRestaurantInfos(order["RestaurantId"])["Name"];
 
 	computeTotal();
 
@@ -46,18 +46,18 @@ function confirmOrder(){
 	}
 	else {
 		if(document.getElementById("date").value.trim().length !== 0){
-			order["date"] = document.getElementById("date").value;
-			order["hour"] =	document.getElementById("timeHour").value;
-			order["minute"] =	document.getElementById("timeMinute").value;
+			order["DeliveryTime"] = document.getElementById("date").value + ' ' +
+									document.getElementById("timeHour").value + ':' +
+									document.getElementById("timeMinute").value;
 
 			var addressComplete = true;
 
 			switch(lastShippingAdresse){
 				case '1':
-					order["address"] = getUserInfos()["Address"];
+					order["Address"] = getUserInfos()["Address"];
 					break;
 				case '2':
-					order["predefAddress"];
+					order["Address"] = getPredefinedAddress(document.getElementById('').value);
 					break;
 				case '3':
 					if(	document.getElementById("address").value.trim().length == 0 ||
@@ -70,12 +70,12 @@ function confirmOrder(){
 						message.show(3,"L'adresse fournit n'est pas complète");
 					}
 					else{
-						order["address"] = {
-						"Street" : document.getElementById("address").value,
-						"City" : document.getElementById("city").value,
-						"State" : document.getElementById("state").value,
-						"Country" : document.getElementById("country").value,
-						"ZipCode" : document.getElementById("zipCode").value
+						order["Address"] = {
+							"Street" : document.getElementById("address").value,
+							"City" : document.getElementById("city").value,
+							"State" : document.getElementById("state").value,
+							"Country" : document.getElementById("country").value,
+							"ZipCode" : document.getElementById("zipCode").value
 						};	
 					}
 					break;
@@ -92,20 +92,25 @@ function confirmOrder(){
 }
 
 function finalizeOrder(confirmedOrder){
-	var confirmationNumber = null;
+
 	confirmedOrder = JSON.stringify(confirmedOrder);
 
 	$.ajax({
-		type:"POST",
+		type:"PUT",
 		url : API_URL + 'orders',
-		async : false,
-		data : confirmationNumber,
+		contentType:"application/json",
+		data : confirmedOrder,
 		success : function(data){
-			window.alert("Numéro de confirmation : " + data);
+			if(confirm("Numéro de confirmation : " + data)){
+				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+				window.location = "/order/restaurant";
+			}
+			else{
+				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";	
+				window.location = "/order/restaurant";
+			}
 		}
 	});
-
-	return confirmationNumber;
 }
 
 function getPredefinedAddresses(){
@@ -146,7 +151,6 @@ function retrieveOrderFromCookies(){
 	for (var i = 0; i < cookies.length; i++) {
 		if(cookies[i].indexOf("order=") === 0){
 			tempOrder = JSON.parse(cookies[i].substring(6));
-			//document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 			break;
 		}
 	};
@@ -156,10 +160,10 @@ function retrieveOrderFromCookies(){
 
 function computeTotal(){
 	var subtotal = 0;
-	for (var i = 0; i < order["dishes"].length; i++) {
-		addOrderLine(order["dishes"][i]);
+	for (var i = 0; i < order["Dishes"].length; i++) {
+		addOrderLine(order["Dishes"][i]);
 
-		subtotal += (order["dishes"][i]["Quantity"] * order["dishes"][i]["Price"]);
+		subtotal += (order["Dishes"][i]["Quantity"] * order["Dishes"][i]["Price"]);
 	};
 
 	var tempTps = subtotal * TPS;
@@ -208,12 +212,16 @@ function initDeliveryTime(){
 		select.appendChild(option);
 	};
 
-	$("#date").datepicker();
+	$("#date").datepicker({dateFormat: "dd/mm/yy" });
 	var d = new Date();
-    $("#date").datepicker("setDate",(d.getMonth()+1) +"/"+d.getDate() + "/" + d.getFullYear());
+    $("#date").datepicker("setDate",d.getDate() +"/"+ (d.getMonth()+1) + "/" + d.getFullYear());
 
     //Adding an hour to now time for delievery
     d = new Date(d.getTime() + 1*60*60*1000); 
     
    	document.getElementById("timeHour").value = d.getHours();
 }
+
+
+/////////////////////////////////////////////////////////
+// Api calls

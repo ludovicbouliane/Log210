@@ -66,7 +66,7 @@
 			</select>
 			Minute : 
 			<select id="timeMinute">
-				<option value="0">0</option>
+				<option value="0">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
@@ -147,6 +147,3 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] ."/partial/site_footer.php");
 ?>
 <script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.min.js"></script>
-
-<script>
-</script>
