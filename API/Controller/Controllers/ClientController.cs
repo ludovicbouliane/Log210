@@ -52,5 +52,34 @@ namespace Controller.Controllers
             var response = _clientService.Update(user);
             return ResponseMessage(response);
         }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("predefinedAddress")]
+        public IHttpActionResult AddPredefinedAddress([FromBody]ClientPredefinedAddress predefinedAddress)
+        {
+            var response = _clientService.AddPredefinedAddress(predefinedAddress);
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("predefinedAddress/{username}")]
+        public IHttpActionResult GetAllPredefinedAddress(string username)
+        {
+            var response = _clientService.GetAllPredefinedAddress(username);
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("predefinedAddress/address/{addressid}")]
+        public IHttpActionResult GetAddressDetail(string addressId)
+        {
+            var response = _clientService.GetAddressDetail(addressId);
+            return ResponseMessage(response);
+        }
+
     }
 }

@@ -6,7 +6,7 @@ namespace Domain.Services.Interfaces
 {
     public interface IOrderService
     {
-        IResponse Create(Order order);
+        IResponse Create(InsertOrderWithDishes insertOrder);
         IResponse GetAll();
         IResponse UpdateStatus(OrderStatus orderStatus);
         IResponse GetAllOrderStatusByRestaurantId(string restaurantId);
