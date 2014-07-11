@@ -8,6 +8,8 @@ using Domain.Response;
 using Domain.Services.Interfaces;
 using Model.ControllerModel;
 using Model.DomainModel;
+using Model.Enum;
+using MongoDB.Bson;
 
 namespace Domain.Services
 {
@@ -22,9 +24,26 @@ namespace Domain.Services
             _orderRepository = orderRepository;
         }
 
-        public IResponse Create(Order order)
+        public IResponse Create(InsertOrderWithDishes insertOrder)
         {
-            throw new NotImplementedException();
+            var response = new Response.Response();
+            var order = new Order();
+
+
+            order.Id = ObjectId.GenerateNewId().ToString();
+            order.Username = insertOrder.Username;
+            order.RestaurantId = insertOrder.RestaurantId;
+            order.Status = OrderStatusType.Received;
+            order.Dishes = insertOrder.Dishes;
+            order.ConfirmationNumber = ObjectId.GenerateNewId().ToString();
+            order.DeliveryTime = insertOrder.DeliveryTime;
+            order.Address = insertOrder.Address;
+            order.MenuId = insertOrder.MenuId;
+
+            _orderRepository.Insert(order);
+
+            response.Set(HttpStatusCode.Created, order.ConfirmationNumber);
+            return response;
         }
 
         public IResponse GetAllOrderStatusByRestaurantId(string restaurantId)

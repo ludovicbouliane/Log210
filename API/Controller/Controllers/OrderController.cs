@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Domain.Services.Interfaces;
 using Model.ControllerModel;
+using Model.DomainModel;
 
 namespace Controller.Controllers
 {
@@ -14,6 +15,15 @@ namespace Controller.Controllers
         {
             if (orderService == null) throw new ArgumentNullException("orderService");
             _orderService = orderService;
+        }
+
+        [HttpPut]
+        [AllowAnonymous]
+        [Route("")]
+        public IHttpActionResult Create([FromBody] InsertOrderWithDishes insertOrder)
+        {
+            var response = _orderService.Create(insertOrder);
+            return ResponseMessage(response);
         }
 
         [HttpPost]

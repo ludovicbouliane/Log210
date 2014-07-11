@@ -52,5 +52,6 @@ namespace Controller.Controllers
             var response = _clientService.Update(user);
             return ResponseMessage(response);
         }
+
     }
 }
