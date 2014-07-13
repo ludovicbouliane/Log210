@@ -64,6 +64,7 @@
     <Compile Include="DomainModel\Address.cs" />
     <Compile Include="DomainModel\Client.cs" />
     <Compile Include="DomainModel\Contractor.cs" />
+    <Compile Include="DomainModel\DeliveryMan.cs" />
     <Compile Include="DomainModel\Dish.cs" />
     <Compile Include="DomainModel\Menu.cs" />
     <Compile Include="DomainModel\Order.cs" />

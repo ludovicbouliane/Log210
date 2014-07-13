@@ -16,22 +16,25 @@ namespace Domain.Services
         private readonly IRestaurantManagerRepository _restaurantManagerRepository;
         private readonly IContractorRepository _contractorRepository;
         private readonly IClientRepository _clientRepository;
+        private readonly IDeliveryManRepository _deliveryManRepository;
 
         #endregion
 
         #region Constructor
 
-        public AccountService(IAccountRepository accountRepository, IRestaurantManagerRepository restaurantManagerRepository, IContractorRepository contractorRepository, IClientRepository clientRepository)
+        public AccountService(IAccountRepository accountRepository, IRestaurantManagerRepository restaurantManagerRepository, IContractorRepository contractorRepository, IClientRepository clientRepository, IDeliveryManRepository deliveryManRepository)
         {
             if (accountRepository == null) throw new ArgumentNullException("accountRepository");
             if (restaurantManagerRepository == null) throw new ArgumentNullException("restaurantManagerRepository");
             if (contractorRepository == null) throw new ArgumentNullException("contractorRepository");
             if (clientRepository == null) throw new ArgumentNullException("clientRepository");
+            if (deliveryManRepository == null) throw new ArgumentNullException("deliveryManRepository");
 
             _accountRepository = accountRepository;
             _restaurantManagerRepository = restaurantManagerRepository;
             _contractorRepository = contractorRepository;
             _clientRepository = clientRepository;
+            _deliveryManRepository = deliveryManRepository;
         }
 
         #endregion
@@ -42,8 +45,7 @@ namespace Domain.Services
         {
             var response = new Response.Response();
 
-            var userAccount =
-                _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
+            var userAccount = _accountRepository.GetSingle(a => a.Username == account.Username && a.Password == account.Password);
 
             if (userAccount != null)
             {
@@ -79,6 +81,13 @@ namespace Domain.Services
             {
                 userAccount.Username = accountUsername;
                 userAccount.AccountType = "Client";
+            }
+
+            var deliveryMan = _deliveryManRepository.GetSingle(a => a.Username == accountUsername);
+            if (deliveryMan != null)
+            {
+                userAccount.Username = accountUsername;
+                userAccount.AccountType = "Delivery Man";
             }
 
             return userAccount;

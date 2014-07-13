@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\DeliveryManRepository.cs" />
     <Compile Include="Repositories\ContractorRepository.cs" />
     <Compile Include="Repositories\DishRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAccountRepository.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Repositories\Interfaces\IDishRepository.cs" />
     <Compile Include="Repositories\Interfaces\IMenuRepository.cs" />
     <Compile Include="Repositories\Interfaces\IOrderRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDeliveryManRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRestaurantManagerRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRepository.cs" />

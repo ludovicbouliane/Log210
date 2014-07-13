@@ -29,7 +29,6 @@ namespace Domain.Services
             var response = new Response.Response();
             var order = new Order();
 
-
             order.Id = ObjectId.GenerateNewId().ToString();
             order.Username = insertOrder.Username;
             order.RestaurantId = insertOrder.RestaurantId;
@@ -69,6 +68,45 @@ namespace Domain.Services
             }
 
             response.Set(HttpStatusCode.OK, restaurantOrderStatuses);
+
+            return response;
+        }
+
+        public IResponse GetAllPendingOrder()
+        {
+            var response = new Response.Response();
+
+            var orders = _orderRepository.GetAll();
+
+            if (!orders.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No order found");
+                return response;
+            }
+
+            var pendingOrder = orders.Where(o => o.Status == OrderStatusType.PreparationCompleted).ToList();
+
+            response.Set(HttpStatusCode.OK, pendingOrder);
+
+            return response;
+        }
+
+        public IResponse GetAllPendingOrderByRestaurantId(string restaurantId)
+        {
+            var response = new Response.Response();
+
+            var orders = _orderRepository.GetAll();
+
+            if (!orders.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No order found");
+                return response;
+            }
+
+            var restaurantOrders = orders.Where(o => o.RestaurantId == restaurantId).ToList();
+            var pendingOrder = restaurantOrders.Where(o => o.Status == OrderStatusType.PreparationCompleted).ToList();
+
+            response.Set(HttpStatusCode.OK, pendingOrder);
 
             return response;
         }

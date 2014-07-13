@@ -1,6 +1,5 @@
 ﻿using Domain.Response;
 using Model.ControllerModel;
-using Model.DomainModel;
 
 namespace Domain.Services.Interfaces
 {
@@ -10,5 +9,7 @@ namespace Domain.Services.Interfaces
         IResponse GetAll();
         IResponse UpdateStatus(OrderStatus orderStatus);
         IResponse GetAllOrderStatusByRestaurantId(string restaurantId);
+        IResponse GetAllPendingOrder();
+        IResponse GetAllPendingOrderByRestaurantId(string restaurantId);
     }
 }
