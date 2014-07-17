@@ -46,11 +46,6 @@ $(document).ready(function() {
                 validators:{
                     notEmpty:{
                         message : 'Le code postal est obligatoire'                        
-                    },
-                    zipCode: {
-                        min: 6,
-                        max: 7,
-                        message: 'Le code postal doit avoir entre 6 et 7 charactères'
                     }
                 }
             },

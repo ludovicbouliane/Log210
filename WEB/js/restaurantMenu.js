@@ -37,6 +37,10 @@ function newDish(){
 		var mess = new MessageBox();
 		mess.show(3,"Le plat doit avoir un prix");
 	}
+	else if(isNaN(info["Price"])){
+		var mess = new MessageBox();
+		mess.show(3,"Le prix n'est pas valide");	
+	}
 	else if(info["Description"].trim() === ''){
 		var mess = new MessageBox();
 		mess.show(2,"Le plat ajouté n'avait pas de description");
@@ -52,7 +56,6 @@ function newDish(){
 		emptyDishInfo();
 
 		$('#name').focus();
-		activateButton();
 	}
 }
 
@@ -88,20 +91,6 @@ function deleteDish(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dish table methods
 
-// If no row is active in the table the user can't modify or delete a dish.
-// else the user can add, edit or delete a dish.
-function activateButton(){
-
-	if(dishTable.isOneRowActive()){
-		document.getElementById('btn_edit').disabled = false;
-		document.getElementById('btn_delete').disabled = false;
-	}
-	else{
-		document.getElementById('btn_edit').disabled = true;
-		document.getElementById('btn_delete').disabled = true;
-	}
-}
-
 function desactivateAllRows(){
 	dishTable.desactivateAllRows();
 }
@@ -118,7 +107,6 @@ function onRestaurantChanged(){
 	if(restaurantId == ''){
 		emptyMenuPage();
 		emptyDishTable();
-		activateButton();
 	}
 	else{
 		var menu = getMenuFromRestaurantId(restaurantId);
