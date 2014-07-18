@@ -11,7 +11,7 @@
 	require_once("partial/site_header.php");
 ?>
 	<div class="col-sm-8 content">
-		<h2>Bonjour</h2>
+		<h2>Bonjour, <?php echo $action->getUsername();?></h2>
 	</div>
 <?php
 	require_once("partial/site_footer.php");

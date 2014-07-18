@@ -14,14 +14,20 @@
 		<div class="row form_row">
 			<div class="table-responsive">
 				<table class="table table-stripped table-hover table-bordered">
-					<thead>
-					<tr>
+					<colgroup>
 						<col width="75">
-						<th class="qteHeader">Qte</th>
-						<th>Nom</th>
-						<th>Prix</th>
-						<th>Description</th>
-					</tr>
+						<col width="*">
+						<col width="75">
+						<col width="*">
+					</colgroup>
+					<thead>
+						<tr>
+						
+							<th class="qteHeader">Quantité</th>
+							<th>Nom</th>
+							<th>Prix</th>
+							<th>Description</th>
+						</tr>
 					</thead>
 					<tbody id="dishesTable">
 					</tbody>

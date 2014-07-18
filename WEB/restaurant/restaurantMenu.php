@@ -31,7 +31,7 @@
 
 		<div class="row form_row">
 			<div class="table-responsive">
-				<table class="table table-stripped table-hover">
+				<table class="table table-stripped table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>Nom du plat</th>

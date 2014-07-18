@@ -15,7 +15,7 @@
 
 			<div class="row form_row form-group">
 				<div class="col-lg-3">
-					Nom d'usager : 
+					<label for="username"> Nom d'usager : </label>
 				</div>
 				<div class="col-lg-9">
 					<input type="text" class="form-control" id="username" placeholder="Nom d'usager" tabindex="1" value="<?php echo $action->getLastUsernameUsed(); ?>" name="username"/>
@@ -23,7 +23,7 @@
 			</div>
 			<div class="row form_row form-group">
 				<div class="col-lg-3">
-					Mot de passe : 
+					<label for="password">Mot de passe : </label>
 				</div>
 				
 				<div class="col-lg-9">

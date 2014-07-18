@@ -10,7 +10,7 @@
 ?>
 	<div class="col-sm-8">
 		<div class="row form_row">
-			<h3>Préparer une commande</h3>
+			<h2>Préparer une commande</h2>
 			<label>Sélection de restaurant :</label>
 			<select id="listRestaurant" onchange="restaurantChanged()"></select>
 		</div>
@@ -18,15 +18,17 @@
 		<div class="row form_row">
 			<div class="table-responsive">
 				<table class="table table-stripped table-hover table-bordered">
-					<thead>
-					<tr>
+					<colgroup>
 						<col width="*">
 						<col width="*">
 						<col width="100">
-						<th>Id de commande</th>
-						<th>Status</th>
-						<th></th>
-					</tr>
+					</colgroup>
+					<thead>
+						<tr>							
+							<th>Id de commande</th>
+							<th>Status</th>
+							<th></th>
+						</tr>
 					</thead>
 					<tbody id="OrderTable">
 					</tbody>
