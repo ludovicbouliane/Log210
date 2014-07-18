@@ -21,11 +21,6 @@ body{
 	padding-bottom:20px;
 }
 
-.table-responsive{
-	max-height: 300px;
-	overflow-y:auto;
-}
-
 .left{
 	text-align: left;
 }
@@ -54,6 +49,18 @@ h2{
 	border-bottom:2px solid #70A0CC;
 	font-style: italic;
 }
+
+#Overlay{
+	position: absolute;
+	left: 90px;
+	top: 120px;
+	width:200px;
+	height:90px;
+	text-align:center;
+	border: solid;
+	background-color: lightgray;
+}
+
 /****************************
  * Overwrite jQuery value
 *****************************/
@@ -83,6 +90,22 @@ h2{
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
 	background-color:#294E9B;	
 }
+
+.navbar-nav>li>.dropdown-menu{
+	background-color:#00458A;
+}
+
+.navbar-nav .open .dropdown-menu>li>a{
+	color:#FFF;
+}
+.navbar-nav .open .dropdown-menu>li>a:hover{
+	background-color:#294E9B;	
+}
+
+.dropdown-menu .divider{
+	background-color:#7588AF;
+}
+
 
 /** 
 	This was added to leave a line under the navbar 
@@ -125,8 +148,12 @@ h2{
 	border-collapse:separate;
 
 }
+
 .table-responsive{
 	min-height:60px;
+	max-height: 300px;
+	overflow-y:auto;
+	overflow-x: hidden;
 }
 
 @media screen and (max-width:768px){
@@ -134,6 +161,7 @@ h2{
 		margin-right:15px;
 		margin-left:15px;
 		width:auto;
+		overflow-x: hidden;
 	}
 }
 

@@ -43,6 +43,7 @@
 				if(strpos($_SERVER["REQUEST_URI"], "orderSummary")){
 		?>
 						<script type="text/javascript" src="/js/orderSummary.js"></script>
+						<script type="text/javascript" src="/js/OrderConfirmationMessageBox.js"></script>
 				<?php
 				}
 				else{

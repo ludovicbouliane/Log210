@@ -60,17 +60,21 @@
 		<div class="col-xs-12">
 		<div class="row form_row">
 			<h4>Date et heure de livraison</h4>
-			Date : <input type="text" id="date" value="<?php ?>">
-			Heure : 
-			<select id="timeHour">
-			</select>
-			Minute : 
-			<select id="timeMinute">
-				<option value="0">00</option>
-				<option value="15">15</option>
-				<option value="30">30</option>
-				<option value="45">45</option>
-			</select>
+			<div class="col-sm-6">
+				Date : <input type="text" id="date" value="<?php ?>">
+			</div>
+			<div class="col-sm-6">
+				Heure : 
+				<select id="timeHour">
+				</select>
+				Minute : 
+				<select id="timeMinute">
+					<option value="0">00</option>
+					<option value="15">15</option>
+					<option value="30">30</option>
+					<option value="45">45</option>
+				</select>
+			</div>
 
 		</div>
 			<div class="row form_row">

@@ -179,22 +179,19 @@ function initDeliveryTime(){
 
 function finalizeOrder(confirmedOrder){
 
-	confirmedOrder = JSON.stringify(confirmedOrder);
+	var order = JSON.stringify(confirmedOrder);
 
 	$.ajax({
 		type:"PUT",
 		url : API_URL + 'orders',
 		contentType:"application/json",
-		data : confirmedOrder,
+		data : order,
 		success : function(data){
-			if(confirm("Numéro de confirmation : " + data)){
-				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-				window.location = "/order/restaurant";
-			}
-			else{
-				document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";	
-				window.location = "/order/restaurant";
-			}
+			var dialog = new OrderConfirmationMessageBox();
+			dialog.show(data,confirmedOrder["Address"]);
+			
+			//document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+			//window.location = "/order/restaurant";		
 		}
 	});
 }
