@@ -50,15 +50,48 @@ h2{
 	font-style: italic;
 }
 
+/**************************************
+ * OrderConfirmationMessageBox value
+**************************************/
 #Overlay{
 	position: absolute;
-	left: 90px;
+	left: 50%;
 	top: 120px;
-	width:200px;
-	height:90px;
-	text-align:center;
-	border: solid;
-	background-color: lightgray;
+	height:300px;
+	z-index: 1002;
+}
+
+.innerOverlay{
+	position: relative;
+	left:-50%;
+	border:2px solid #111;
+	border-radius:7px;
+	background-color: #EEE;
+	padding:10px;
+	padding-left:60px;
+	padding-right:60px;
+}
+
+.innerOverlay > input {
+	position:relative;
+	left:45%;
+	padding:3px;
+	padding-right: 20px;
+	padding-left:20px;
+}
+
+.fadeDiv{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index: 1001;
+	background-color:rgba(50,50,50,0.7);
+}
+
+.messageInfo{
+	margin-left:20px;
 }
 
 /****************************

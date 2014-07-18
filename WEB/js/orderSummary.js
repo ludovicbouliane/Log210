@@ -188,10 +188,12 @@ function finalizeOrder(confirmedOrder){
 		data : order,
 		success : function(data){
 			var dialog = new OrderConfirmationMessageBox();
-			dialog.show(data,confirmedOrder["Address"]);
-			
-			//document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-			//window.location = "/order/restaurant";		
+			dialog.show(data,confirmedOrder["Address"],
+						function(){
+							document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+							window.location = "/order/restaurant";		
+						});
+
 		}
 	});
 }
