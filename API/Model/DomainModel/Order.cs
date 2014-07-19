@@ -12,6 +12,7 @@ namespace Model.DomainModel
         public string Username { get; set; }
         public string RestaurantId { get; set; }
         public string MenuId { get; set; }
+        public string DeliveryManUsername { get; set; }
         public OrderStatusType Status { get; set; }
         public List<OrderDish> Dishes { get; set; }
         public string ConfirmationNumber { get; set; }

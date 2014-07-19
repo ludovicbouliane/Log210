@@ -35,6 +35,15 @@ namespace Controller.Controllers
             return ResponseMessage(response);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("delivery")]
+        public IHttpActionResult UpdateDeliveryManUsername([FromBody]OrderDelivery orderDelivery)
+        {
+            var response = _orderService.UpdateDeliveryManUsername(orderDelivery);
+            return ResponseMessage(response);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         [Route("")]

@@ -174,5 +174,28 @@ namespace Domain.Services
             response.Set(HttpStatusCode.NoContent);
             return response;
         }
+
+        public IResponse UpdateDeliveryManUsername(OrderDelivery orderDelivery)
+        {
+            var response = new Response.Response();
+
+            var existingOrder = _orderRepository.GetSingle(o => o.Id == orderDelivery.OrderId);
+            if (existingOrder == null)
+            {
+                response.Set(HttpStatusCode.NotFound, "No order found");
+                return response;
+            }
+
+            existingOrder.Status = OrderStatusType.InDelivery;
+            existingOrder.DeliveryManUsername = orderDelivery.DeliveryManUsername;
+
+            _orderRepository.Save(existingOrder);
+
+            var client = _clientRepository.GetSingle(c => c.Username == existingOrder.Username);
+            SendOrderStatusToClient(existingOrder, client);
+
+            response.Set(HttpStatusCode.NoContent);
+            return response;
+        }
     }
 }

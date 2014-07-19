@@ -4,6 +4,7 @@
     {
         Received = 1,
         InPreparation = 2,
-        PreparationCompleted = 3
+        PreparationCompleted = 3,
+        InDelivery = 4
     }
 }
