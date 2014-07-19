@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using AutoMapper;
 using DataAccess.Repositories.Interfaces;
 using Domain.Response;
@@ -16,12 +17,15 @@ namespace Domain.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository, IClientRepository clientRepository)
         {
             if (orderRepository == null) throw new ArgumentNullException("orderRepository");
+            if (clientRepository == null) throw new ArgumentNullException("clientRepository");
 
             _orderRepository = orderRepository;
+            _clientRepository = clientRepository;
         }
 
         public IResponse Create(InsertOrderWithDishes insertOrder)
@@ -41,8 +45,29 @@ namespace Domain.Services
 
             _orderRepository.Insert(order);
 
+            var client = _clientRepository.GetSingle(c => c.Username == insertOrder.Username);
+            SendOrderStatusToClient(order, client);
+
             response.Set(HttpStatusCode.Created, order.ConfirmationNumber);
             return response;
+        }
+
+        private void SendOrderStatusToClient(Order order, Client client)
+        {
+            var message = new MailMessage();
+            message.To.Add(client.Email);
+            message.Subject = ("Order Status #" + order.Id);
+            message.From = new MailAddress("log210@log210.com");
+            message.Body = "Your order status is : " + Enum.GetName(typeof(OrderStatusType), order.Status);
+            var smtp = new SmtpClient();
+            var basicCredential = new NetworkCredential("bqerbertbrt@outlook.com", "a1B2C3d4e5");
+            smtp.Host = "smtp.live.com";
+            smtp.UseDefaultCredentials = false;
+            smtp.Port = 587;
+            smtp.Credentials = basicCredential;
+            smtp.EnableSsl = true;
+
+            smtp.Send(message);
         }
 
         public IResponse GetAllOrderStatusByRestaurantId(string restaurantId)
@@ -142,6 +167,9 @@ namespace Domain.Services
             existingOrder.Status = orderStatus.Status;
 
             _orderRepository.Save(existingOrder);
+
+            var client = _clientRepository.GetSingle(c => c.Username == existingOrder.Username);
+            SendOrderStatusToClient(existingOrder, client);
 
             response.Set(HttpStatusCode.NoContent);
             return response;
