@@ -18,14 +18,20 @@ namespace Domain.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IClientRepository _clientRepository;
+        private readonly IRestaurantRepository _restaurantRepository;
+        private readonly IDishRepository _dishRepository;
 
-        public OrderService(IOrderRepository orderRepository, IClientRepository clientRepository)
+        public OrderService(IOrderRepository orderRepository, IClientRepository clientRepository, IRestaurantRepository restaurantRepository, IDishRepository dishRepository)
         {
             if (orderRepository == null) throw new ArgumentNullException("orderRepository");
             if (clientRepository == null) throw new ArgumentNullException("clientRepository");
+            if (restaurantRepository == null) throw new ArgumentNullException("restaurantRepository");
+            if (dishRepository == null) throw new ArgumentNullException("dishRepository");
 
             _orderRepository = orderRepository;
             _clientRepository = clientRepository;
+            _restaurantRepository = restaurantRepository;
+            _dishRepository = dishRepository;
         }
 
         public IResponse Create(InsertOrderWithDishes insertOrder)
@@ -133,6 +139,74 @@ namespace Domain.Services
 
             response.Set(HttpStatusCode.OK, pendingOrder);
 
+            return response;
+        }
+
+        public IResponse GetAllPendingOrdersWithOrderInfo()
+        {
+            var response = new Response.Response();
+
+            var orders = _orderRepository.GetAll();
+
+            if (!orders.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No order found");
+                return response;
+            }
+
+            var orderInfos = ConvertOrderToOrderInfos(orders.Where(o => o.Status == OrderStatusType.PreparationCompleted));
+
+            response.Set(HttpStatusCode.OK, orderInfos);
+            return response;
+        }
+
+        private List<OrderInfo> ConvertOrderToOrderInfos(IEnumerable<Order> orders)
+        {
+            var orderInfos = new List<OrderInfo>();
+
+            foreach (var order in orders)
+            {
+                var orderInfo = new OrderInfo();
+                orderInfo.Id = order.Id;
+                orderInfo.DeliveryAddress = order.Address;
+
+                var restaurant = _restaurantRepository.GetSingle(r => r.Id == order.RestaurantId);
+                var restaurantThumbnail = new RestaurantThumbnail { Name = restaurant.Name, Address = restaurant.Address };
+
+                orderInfo.RestaurantThumbnail = restaurantThumbnail;
+
+                var dishThumbnails = new List<DishThumbnail>();
+
+                foreach (var orderDish in order.Dishes)
+                {
+                    var dish = _dishRepository.GetSingle(d => d.Id == orderDish.DishId);
+                    var dishThumbnail = new DishThumbnail { Name = dish.Name, Quantity = orderDish.Quantity };
+                    dishThumbnails.Add(dishThumbnail);
+                }
+
+                orderInfo.Dishes = dishThumbnails;
+
+                orderInfos.Add(orderInfo);
+            }
+
+            return orderInfos;
+        }
+
+        public IResponse GetAllPendingOrderWithOrderInfoByDeliveryManUsername(string username)
+        {
+            var response = new Response.Response();
+
+            var orders = _orderRepository.GetAll();
+
+            if (!orders.Any())
+            {
+                response.Set(HttpStatusCode.NoContent, "No order found");
+                return response;
+            }
+
+            var orderInfos = ConvertOrderToOrderInfos(orders.Where(o => o.Status == OrderStatusType.InDelivery && o.DeliveryManUsername == username));
+
+            response.Set(HttpStatusCode.OK, orderInfos);
             return response;
         }
 

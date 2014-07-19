@@ -64,6 +64,24 @@ namespace Controller.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("pending/orderinfo")]
+        public IHttpActionResult GetAllPendingOrderWithOrderInfo()
+        {
+            var response = _orderService.GetAllPendingOrdersWithOrderInfo();
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("pending/orderinfo/{username}")]
+        public IHttpActionResult GetAllPendingOrderWithOrderInfoByDeliveryManUsername(string username)
+        {
+            var response = _orderService.GetAllPendingOrderWithOrderInfoByDeliveryManUsername(username);
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         [Route("pending/{restaurantId}")]
         public IHttpActionResult GetAllPendingOrderByRestaurantId(string restaurantId)
         {
