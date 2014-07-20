@@ -47,13 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerModel\ClientPredefinedAddress.cs" />
+    <Compile Include="ControllerModel\DishThumbnail.cs" />
     <Compile Include="ControllerModel\InsertOrderWithDishes.cs" />
     <Compile Include="ControllerModel\MenuUpdateWithDishes.cs" />
     <Compile Include="ControllerModel\MenuInsertWithDishes.cs" />
+    <Compile Include="ControllerModel\OrderDelivery.cs" />
     <Compile Include="ControllerModel\OrderDish.cs" />
+    <Compile Include="ControllerModel\OrderInfo.cs" />
     <Compile Include="ControllerModel\OrderStatus.cs" />
     <Compile Include="ControllerModel\PredefineAddress.cs" />
     <Compile Include="ControllerModel\RestaurantManagerWithRestaurants.cs" />
+    <Compile Include="ControllerModel\RestaurantThumbnail.cs" />
     <Compile Include="ControllerModel\UserAccount.cs" />
     <Compile Include="ControllerModel\ClientWithAccount.cs" />
     <Compile Include="ControllerModel\ContractorWithAccount.cs" />

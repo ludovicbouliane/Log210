@@ -16,22 +16,22 @@
 
 
 		<div class="row form_row">
-			<div class="col-sm-4">Nom d'usager:</div>
-			<div class="col-sm-8">
+			<div class="col-xs-4">Nom d'usager:</div>
+			<div class="col-xs-8">
 				<p class="form-control-static" id="username">Nom d'usager</p>
 			</div>
 		</div>
 
 		<div class="row form_row">
-			<div class="col-sm-4">Prénom :</div>
-			<div class="col-sm-8">
+			<div class="col-xs-4">Prénom :</div>
+			<div class="col-xs-8">
 				<p class="form-control-static" id="firstName">Prénom</p>
 			</div>
 		</div>
 
 		<div class="row form_row">
-			<div class="col-sm-4">Nom :</div>
-			<div class="col-sm-8">
+			<div class="col-xs-4">Nom :</div>
+			<div class="col-xs-8">
 				<p class="form-control-static" id="lastName">Nom</p>
 			</div>
 		</div>

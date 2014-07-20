@@ -10,7 +10,7 @@ body{
 .page{
 	border-radius:7px;
 	box-shadow:0px 0px 7px #999;
-	min-height:700px;
+	min-height:200px;
 }
 
 .form_row{

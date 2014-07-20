@@ -1,8 +1,8 @@
 ﻿namespace Model.ControllerModel
 {
-    public class OrderDish
+    public class DishThumbnail
     {
-        public string DishId { get; set; }
+        public string Name { get; set; }
         public int Quantity { get; set; }
     }
 }

@@ -11,5 +11,8 @@ namespace Domain.Services.Interfaces
         IResponse GetAllOrderStatusByRestaurantId(string restaurantId);
         IResponse GetAllPendingOrder();
         IResponse GetAllPendingOrderByRestaurantId(string restaurantId);
+        IResponse UpdateDeliveryManUsername(OrderDelivery orderDelivery);
+        IResponse GetAllPendingOrdersWithOrderInfo();
+        IResponse GetAllPendingOrderWithOrderInfoByDeliveryManUsername(string username);
     }
 }

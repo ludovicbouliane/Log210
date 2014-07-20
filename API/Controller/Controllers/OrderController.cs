@@ -35,6 +35,15 @@ namespace Controller.Controllers
             return ResponseMessage(response);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("delivery")]
+        public IHttpActionResult UpdateDeliveryManUsername([FromBody]OrderDelivery orderDelivery)
+        {
+            var response = _orderService.UpdateDeliveryManUsername(orderDelivery);
+            return ResponseMessage(response);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         [Route("")]
@@ -50,6 +59,24 @@ namespace Controller.Controllers
         public IHttpActionResult GetAllPendingOrder()
         {
             var response = _orderService.GetAllPendingOrder();
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("pending/orderinfo")]
+        public IHttpActionResult GetAllPendingOrderWithOrderInfo()
+        {
+            var response = _orderService.GetAllPendingOrdersWithOrderInfo();
+            return ResponseMessage(response);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("pending/orderinfo/{username}")]
+        public IHttpActionResult GetAllPendingOrderWithOrderInfoByDeliveryManUsername(string username)
+        {
+            var response = _orderService.GetAllPendingOrderWithOrderInfoByDeliveryManUsername(username);
             return ResponseMessage(response);
         }
 
