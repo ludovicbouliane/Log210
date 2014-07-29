@@ -3,7 +3,7 @@ function OrderTable(tableContainer){
 	this.tableContainer = tableContainer;
 
 	this.addRow = function(info){
-		if(info["Status"] !== 3){
+		if(info["Status"] < 3){
 			var row = new OrderRow(this.tableContainer);
 			row.setInfo(info);
 

@@ -11,7 +11,7 @@ function Order(info){
 	}
 
 	this.changeStatus =function(){
-		if(this.status ===1){
+		if(this.status === 1){
 			this.status = 2;
 		}
 		else if(this.status === 2){
