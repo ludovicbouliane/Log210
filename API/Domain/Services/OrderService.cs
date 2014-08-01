@@ -260,6 +260,12 @@ namespace Domain.Services
                 return response;
             }
 
+            if (!(String.IsNullOrEmpty(existingOrder.DeliveryManUsername)))
+            {
+                response.Set(HttpStatusCode.BadRequest, "Delivery Man is already assigned !");
+                return response;
+            }
+
             existingOrder.Status = OrderStatusType.InDelivery;
             existingOrder.DeliveryManUsername = orderDelivery.DeliveryManUsername;
 
