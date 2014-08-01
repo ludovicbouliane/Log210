@@ -27,7 +27,7 @@ $(document).ready(function() {
                         message: 'Le prix est obligatoire'
                     },
                     regexp:{
-                        regexp: /^\d*(\.|,\d{2})?$/,
+                        regexp: /^\d*(\.\d{2})?$/,
                         message : 'Le format du prix est invalide'
                     }
                 }

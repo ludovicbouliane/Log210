@@ -26,6 +26,8 @@ function authenticate(){
 //	error will be displayed.
 function authenticateUser(info){
 
+	document.body.style.cursor = 'wait';
+
 	$.ajax({
 		type:"post",
 		url: API_URL + 'accounts/login',
